@@ -1,15 +1,14 @@
 package org.timetable.univ.model.vo;
 
-public class BoardVo {
-	private int no;
+public class PostlikeVo {
+	private int postNo;
 	private String name;
 	
-	
-	public int getNo() {
-		return no;
+	public int getPostNo() {
+		return postNo;
 	}
-	public void setNo(int no) {
-		this.no = no;
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
 	}
 	public String getName() {
 		return name;
@@ -17,8 +16,6 @@ public class BoardVo {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	
 	
-
 }

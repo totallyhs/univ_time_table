@@ -4,14 +4,16 @@ import java.util.Date;
 
 public class MemberVo {
 
-	String id;
-	String pass;
-	String name;
-	String nickname;
-	String department;
-	String major;
-	Date joindate;
-	Date lastlogin;
+	private String id;
+	private String pass;
+	private String name;
+	private String nickname;
+	private String department;
+	private String major;
+	private Date joindate;
+	private Date lastlogin;
+	
+	
 	public String getId() {
 		return id;
 	}

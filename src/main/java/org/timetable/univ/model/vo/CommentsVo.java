@@ -2,7 +2,7 @@ package org.timetable.univ.model.vo;
 
 import java.util.Date;
 
-public class CommentVo {
+public class CommentsVo {
 	private int no;
 	private int postNo;
 	private String commentator;

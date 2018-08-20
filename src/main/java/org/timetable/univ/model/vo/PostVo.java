@@ -3,15 +3,16 @@ package org.timetable.univ.model.vo;
 import java.util.Date;
 
 public class PostVo {
-	int no;
-	int postNo;
-	String subject;
-	String writer;
-	String content;
-	String ip;
-	Date date;
-	int hit;
-	String published;
+	private int no;
+	private int postNo;
+	private String subject;
+	private String writer;
+	private String content;
+	private String ip;
+	private Date writtenDate;
+	private int hit;
+	private String published;
+	
 	public int getNo() {
 		return no;
 	}
@@ -49,10 +50,10 @@ public class PostVo {
 		this.ip = ip;
 	}
 	public Date getDate() {
-		return date;
+		return writtenDate;
 	}
 	public void setDate(Date date) {
-		this.date = date;
+		this.writtenDate = date;
 	}
 	public int getHit() {
 		return hit;

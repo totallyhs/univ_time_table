@@ -1,10 +1,11 @@
+
 package org.timetable.univ.model.vo;
 
 import java.util.Date;
 
 public class PostVo {
 	private int no;
-	private int postNo;
+	private int boardNo;
 	private String subject;
 	private String writer;
 	private String content;
@@ -19,11 +20,11 @@ public class PostVo {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public int getPostNo() {
-		return postNo;
+	public int getBoardNo() {
+		return boardNo;
 	}
-	public void setPostNo(int postNo) {
-		this.postNo = postNo;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
 	public String getSubject() {
 		return subject;

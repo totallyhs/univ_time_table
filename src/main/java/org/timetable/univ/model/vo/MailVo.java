@@ -3,13 +3,13 @@ package org.timetable.univ.model.vo;
 import java.util.Date;
 
 public class MailVo {
-	int no;
-	String sender;
-	String receiver;
-	String title;
-	String content;
-	Date sentDate;
-	String seen;
+	private int no;
+	private String sender;
+	private String receiver;
+	private String title;
+	private String content;
+	private Date sentDate;
+	private String seen;
 	
 	public int getNo() {
 		return no;

@@ -1,10 +1,10 @@
 package org.timetable.univ.model.vo;
 
 public class MailFileVo {
-	int no;
-	int mailNo;
-	Double fileSize;
-	String filePath;
+	private int no;
+	private int mailNo;
+	private Double fileSize;
+	private String filePath;
 	
 	public int getNo() {
 		return no;

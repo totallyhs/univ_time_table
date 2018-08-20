@@ -1,11 +1,11 @@
 package org.timetable.univ.model.vo;
 
 public class PostFileVo {
-	int no;
-	int postNo;
-	String filePath;
-	double fileSize;
-	int downloadCnt;
+	private int no;
+	private int postNo;
+	private String filePath;
+	private double fileSize;
+	private int downloadCnt;
 	
 	public int getNo() {
 		return no;

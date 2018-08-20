@@ -10,9 +10,22 @@
 
 
     <mvc:annotation-driven />
-
+	
+	
+	<!-- tiles -->
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<array>
+				<value>/WEB-INF/tiles/*-tiles.xml</value>
+			</array>
+		</property>
+	</bean>
+	
+	<!-- RequestMapping -->
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
-
+	
+	<!-- InternalResourceViewResolver -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	        <property name="prefix" value="/WEB-INF/view/"/>
 	        <property name="suffix" value=".jsp"/>
@@ -36,6 +49,7 @@
 		</property>
 	</bean>
 	
+	<!-- SqlSessionTemplate -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
@@ -45,5 +59,6 @@
 	
 	<!-- about MultipartResolver -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
-
+	
+	
 </beans>

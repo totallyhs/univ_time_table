@@ -4,19 +4,23 @@ import java.util.Date;
 
 public class CommentVo {
 	int no;
+	int postNo;
 	String commentator;
 	String content;
-	int post_key;
-	int like;
+	String published;
 	String ip;
 	Date date;
-	String published;
-	
 	public int getNo() {
 		return no;
 	}
 	public void setNo(int no) {
 		this.no = no;
+	}
+	public int getPostNo() {
+		return postNo;
+	}
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
 	}
 	public String getCommentator() {
 		return commentator;
@@ -30,17 +34,11 @@ public class CommentVo {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getPost_key() {
-		return post_key;
+	public String getPublished() {
+		return published;
 	}
-	public void setPost_key(int post_key) {
-		this.post_key = post_key;
-	}
-	public int getLike() {
-		return like;
-	}
-	public void setLike(int like) {
-		this.like = like;
+	public void setPublished(String published) {
+		this.published = published;
 	}
 	public String getIp() {
 		return ip;
@@ -54,12 +52,7 @@ public class CommentVo {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getPublished() {
-		return published;
-	}
-	public void setPublished(String published) {
-		this.published = published;
-	}
+	
 	
 	
 

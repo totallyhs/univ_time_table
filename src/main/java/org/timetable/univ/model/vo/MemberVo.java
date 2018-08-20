@@ -12,8 +12,6 @@ public class MemberVo {
 	String major;
 	Date joindate;
 	Date lastlogin;
-	
-	
 	public String getId() {
 		return id;
 	}
@@ -62,6 +60,7 @@ public class MemberVo {
 	public void setLastlogin(Date lastlogin) {
 		this.lastlogin = lastlogin;
 	}
+	
 	
 	
 	

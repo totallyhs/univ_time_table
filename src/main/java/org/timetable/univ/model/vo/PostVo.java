@@ -4,21 +4,25 @@ import java.util.Date;
 
 public class PostVo {
 	int no;
+	int postNo;
 	String subject;
 	String writer;
 	String content;
 	String ip;
 	Date date;
 	int hit;
-	int like;
 	String published;
-	
-	
 	public int getNo() {
 		return no;
 	}
 	public void setNo(int no) {
 		this.no = no;
+	}
+	public int getPostNo() {
+		return postNo;
+	}
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
 	}
 	public String getSubject() {
 		return subject;
@@ -56,12 +60,6 @@ public class PostVo {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	public int getLike() {
-		return like;
-	}
-	public void setLike(int like) {
-		this.like = like;
-	}
 	public String getPublished() {
 		return published;
 	}
@@ -70,7 +68,6 @@ public class PostVo {
 	}
 	
 	
-
 	
 	
 }

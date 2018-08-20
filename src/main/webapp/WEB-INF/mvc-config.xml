@@ -21,9 +21,9 @@
 	<!-- about dbcp -->
 	<bean id="cp30" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@13.209.87.247:1521:xe"/>
-		<property name="user" value="mgr"/>
-		<property name="password" value="oracle"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@52.78.22.20:1521:xe"/>
+		<property name="user" value="final"/>
+		<property name="password" value="final"/>
 	</bean>
 	
 	<!-- about mybatis -->

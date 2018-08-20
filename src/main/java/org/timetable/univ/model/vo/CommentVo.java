@@ -9,7 +9,7 @@ public class CommentVo {
 	private String content;
 	private String published;
 	private String ip;
-	private Date date;
+	private Date writtenDate;
 	
 	
 	public int getNo() {
@@ -49,10 +49,10 @@ public class CommentVo {
 		this.ip = ip;
 	}
 	public Date getDate() {
-		return date;
+		return writtenDate;
 	}
 	public void setDate(Date date) {
-		this.date = date;
+		this.writtenDate = date;
 	}
 	
 	

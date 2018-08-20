@@ -9,7 +9,7 @@ public class PostVo {
 	private String writer;
 	private String content;
 	private String ip;
-	private Date date;
+	private Date writtenDate;
 	private int hit;
 	private String published;
 	
@@ -50,10 +50,10 @@ public class PostVo {
 		this.ip = ip;
 	}
 	public Date getDate() {
-		return date;
+		return writtenDate;
 	}
 	public void setDate(Date date) {
-		this.date = date;
+		this.writtenDate = date;
 	}
 	public int getHit() {
 		return hit;

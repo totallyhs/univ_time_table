@@ -1,9 +1,8 @@
 package org.timetable.univ.model.vo;
 
 public class BoardVo {
-	int no;
-	String name;
-	String published;
+	private int no;
+	private String name;
 	
 	
 	public int getNo() {
@@ -18,12 +17,8 @@ public class BoardVo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPublished() {
-		return published;
-	}
-	public void setPublished(String published) {
-		this.published = published;
-	}
+
 	
 	
+
 }

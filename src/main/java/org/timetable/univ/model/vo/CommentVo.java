@@ -3,13 +3,15 @@ package org.timetable.univ.model.vo;
 import java.util.Date;
 
 public class CommentVo {
-	int no;
-	int postNo;
-	String commentator;
-	String content;
-	String published;
-	String ip;
-	Date date;
+	private int no;
+	private int postNo;
+	private String commentator;
+	private String content;
+	private String published;
+	private String ip;
+	private Date date;
+	
+	
 	public int getNo() {
 		return no;
 	}

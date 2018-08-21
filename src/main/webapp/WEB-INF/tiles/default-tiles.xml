@@ -3,8 +3,14 @@
 "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
+	
 	<definition name="default" template="/WEB-INF/view/layout/default_layout.jsp">
 		<put-attribute name="nav" value="/WEB-INF/view/navbar/default_nav.jsp"/>
+	</definition>
+	
+	<definition name="index" template="/WEB-INF/view/layout/default_layout.jsp">
+		<put-attribute name="navlogin" value="/WEB-INF/view/navbar/sign_in_nav.jsp"/>
+		<put-attribute name="navprofile" value="/WEB-INF/view/navbar/profile_navbar.jsp"/>
 	</definition>
 
 </tiles-definitions>

@@ -9,5 +9,19 @@
 	</head> 
 	<body>
 		<h2>열심히 안하면 이름 뺍니다!</h2>
+		
+		
+		<form action="index" method="post" autocomplete="off">
+			<select id="selectId" name="id">
+				<option>test1</option>
+				<option>test2</option>
+			</select>
+			<button type="submit">로그인</button>		
+		</form> 
 	</body>
 </html>
+
+
+<script>
+	
+</script>

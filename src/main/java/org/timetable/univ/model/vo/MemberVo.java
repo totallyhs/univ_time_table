@@ -9,7 +9,6 @@ public class MemberVo {
 	private String name;
 	private String nickname;
 	private String department;
-	private String major;
 	private Date joindate;
 	private Date lastlogin;
 	
@@ -43,12 +42,6 @@ public class MemberVo {
 	}
 	public void setDepartment(String department) {
 		this.department = department;
-	}
-	public String getMajor() {
-		return major;
-	}
-	public void setMajor(String major) {
-		this.major = major;
 	}
 	public Date getJoindate() {
 		return joindate;

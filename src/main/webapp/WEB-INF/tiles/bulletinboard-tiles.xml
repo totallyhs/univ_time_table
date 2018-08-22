@@ -15,4 +15,14 @@
 		<put-attribute name="boardUI" expression="${board}"/>
 	</definition>
 	-->
+	<definition name="boardwrite" template="WEB-INF/view/layout/board/boardwrite_layout.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
+		<put-attribute name="boardwriteUI" value="/WEB-INF/view/board/boardwrite.jsp"/>
+	</definition>
+	
+	<definition name="boardview" template="WEB-INF/view/layout/board/boardview_layout.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
+		<put-attribute name="boardviewUI" value="/WEB-INF/view/board/boardview.jsp"/>
+	</definition>
+	
 </tiles-definitions>

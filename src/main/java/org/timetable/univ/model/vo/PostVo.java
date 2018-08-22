@@ -14,6 +14,8 @@ public class PostVo {
 	private int hit;
 	private String published;
 	
+	
+	
 	public int getNo() {
 		return no;
 	}
@@ -50,11 +52,11 @@ public class PostVo {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	public Date getDate() {
+	public Date getWrittenDate() {
 		return writtenDate;
 	}
-	public void setDate(Date date) {
-		this.writtenDate = date;
+	public void setWrittenDate(Date writtenDate) {
+		this.writtenDate = writtenDate;
 	}
 	public int getHit() {
 		return hit;
@@ -68,6 +70,16 @@ public class PostVo {
 	public void setPublished(String published) {
 		this.published = published;
 	}
+	@Override
+	public String toString() {
+		return "PostVo [no=" + no + ", boardNo=" + boardNo + ", subject=" + subject + ", writer=" + writer
+				+ ", content=" + content + ", ip=" + ip + ", writtenDate=" + writtenDate + ", hit=" + hit
+				+ ", published=" + published + "]";
+	}
+	
+	
+	
+	
 	
 	
 	

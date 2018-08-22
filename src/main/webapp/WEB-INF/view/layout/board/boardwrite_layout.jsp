@@ -11,19 +11,21 @@
 
   <!-- jQuery && Bootstrap -->
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" id="bootstrap-css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	
 	<!-- navbar -->
 	<link href="/css/navbar.css" rel="stylesheet" type="text/css"/>
 	
+	<!-- inbox -->
+	<link href="/css/inbox.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body>
 	<tiles:insertAttribute name="navbar"/>
 	
-	<div class="container" id="bulletinboard">
-		<tiles:insertAttribute name="bulletinboardUI"/>
+	<div class="container" id="boardwrite">
+		<tiles:insertAttribute name="boardwriteUI"/>
 	</div>
 	
 

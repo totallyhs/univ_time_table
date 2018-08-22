@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="bulletinboard" template="/WEB-INF/view/layout/board/bulletinboard_layout.jsp">
+		<put-attribute name="navlogin" value="/WEB-INF/view/navbar/sign_in_nav.jsp"/>
+		<put-attribute name="navprofile" value="/WEB-INF/view/navbar/profile_navbar.jsp"/>
+		<put-attribute name="bulletinboardUI" value="/WEB-INF/view/board/bulletinboard.jsp"/>
+	</definition>
+	<!-- 
+	<definition name="bulletinboard" template="/WEB-INF/view/layout/board/bulletinboard_layout.jsp">
+		<put-attribute name="navlogin" value="/WEB-INF/view/navbar/sign_in_nav.jsp"/>
+		<put-attribute name="navprofile" value="/WEB-INF/view/navbar/profile_navbar.jsp"/>
+		<put-attribute name="boardUI" expression="${board}"/>
+	</definition>
+	-->
+</tiles-definitions>

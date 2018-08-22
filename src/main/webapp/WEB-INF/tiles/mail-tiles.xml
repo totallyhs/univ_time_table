@@ -5,8 +5,7 @@
 <tiles-definitions>
 	
 	<definition name="inbox" template="/WEB-INF/view/layout/mail/inbox_layout.jsp">
-		<put-attribute name="navlogin" value="/WEB-INF/view/navbar/sign_in_nav.jsp"/>
-		<put-attribute name="navprofile" value="/WEB-INF/view/navbar/profile_navbar.jsp"/>
+		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
 		<put-attribute name="inboxUI" value="/WEB-INF/view/mail/inbox.jsp"/>
 	</definition>
 

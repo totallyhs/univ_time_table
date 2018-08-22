@@ -5,8 +5,7 @@
 <tiles-definitions>
 
 	<definition name="bulletinboard" template="/WEB-INF/view/layout/board/bulletinboard_layout.jsp">
-		<put-attribute name="navlogin" value="/WEB-INF/view/navbar/sign_in_nav.jsp"/>
-		<put-attribute name="navprofile" value="/WEB-INF/view/navbar/profile_navbar.jsp"/>
+		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
 		<put-attribute name="bulletinboardUI" value="/WEB-INF/view/board/bulletinboard.jsp"/>
 	</definition>
 	<!-- 

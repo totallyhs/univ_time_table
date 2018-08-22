@@ -22,15 +22,7 @@
 
 </head>
 <body>
-	<c:choose>
-		<c:when test="${logged }">
-			<tiles:insertAttribute name="navprofile"/>
-		</c:when>
-		<c:otherwise>
-			<tiles:insertAttribute name="navlogin"/>
-		</c:otherwise>
-	
-	</c:choose>	
+	<tiles:insertAttribute name="navbar"/>
 	
 	<div class="container" id="inbox">
 		<tiles:insertAttribute name="inboxUI"/>

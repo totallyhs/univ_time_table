@@ -3,25 +3,23 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<html>
-	<head>
-		<title>Welcome</title>
-	</head> 
-	<body>
 		<h2>열심히 안하면 이름 뺍니다!</h2>
 		
 		
-		<form action="index" method="post" autocomplete="off">
-			<select id="selectId" name="id">
-				<option>test1</option>
-				<option>test2</option>
-			</select>
-			<button type="submit">로그인</button>		
-		</form> 
-	</body>
-</html>
+		<c:choose>
+			<c:when test="${sessionScope.memberVo eq null }">
+				<form action="index" method="post" autocomplete="off">	
+					<select id="selectId" name="id">
+						<option value="test1">test1</option>
+						<option value="test2">test2</option>
+					</select>
+					<button type="submit">로그인</button>		
+				</form> 
+			</c:when>
+			<c:otherwise>
+				<c:out value="${sessionScope.memberVo.nickname }"/> 님 환영합니다.<br/>
+				<a href="/logout"><button id="logoutBtn">로그아웃</button></a>
+			</c:otherwise>
+		</c:choose>
+		<br/><span id="anyUse"></span>
 
-
-<script>
-	
-</script>

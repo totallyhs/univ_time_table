@@ -19,13 +19,16 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${logged }">
+		<c:when test="${sessionScope.memberVo ne null }">
 			<tiles:insertAttribute name="navprofile"/>
 		</c:when>
 		<c:otherwise>
 			<tiles:insertAttribute name="navlogin"/>
 		</c:otherwise>
 	</c:choose>	
+	<div class="container">
+		<tiles:insertAttribute name="indexUI"/>
+	</div>
 	
 
 </body>

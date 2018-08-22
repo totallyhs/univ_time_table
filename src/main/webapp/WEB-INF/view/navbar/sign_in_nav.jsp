@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- navbar for sign in -->
-    <nav class="navbar navbar-inverse fixed-top">
+    <nav class="navbar navbar-inverse">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">

@@ -3,11 +3,20 @@
 "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	
-	<definition name="inbox" template="/WEB-INF/view/layout/mail/inbox_layout.jsp">
+
+	<definition name="mail" template="/WEB-INF/view/layout/mail/mail_layout.jsp">
 		<put-attribute name="navlogin" value="/WEB-INF/view/navbar/sign_in_nav.jsp"/>
 		<put-attribute name="navprofile" value="/WEB-INF/view/navbar/profile_navbar.jsp"/>
-		<put-attribute name="inboxUI" value="/WEB-INF/view/mail/inbox.jsp"/>
+		<put-attribute name="mail_menu" value="/WEB-INF/view/mail/mail_menu.jsp"/>
 	</definition>
+	
+	<definition name="mail.inbox" extends="mail">
+		<put-attribute name="inboxUI" value="/WEB-INF/view/mail/inbox.jsp"/>		
+	</definition>
+	
+	<definition name="mail.compose" extends="mail">
+		<put-attribute name="compose" value="/WEB-INF/view/mail/compose_mail.jsp"/>
+	</definition>
+	
 
 </tiles-definitions>

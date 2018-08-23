@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <nav class="navbar navbar-inverse fixed-top">
-  <div class="container">
+  <div class="container" style="border: 1px solid black;">
       <jsp:include page="${pageContext.servletContext.contextPath }/WEB-INF/view/navbar/navbar_mobile_display.jsp"/>
       
       <jsp:include page="${pageContext.servletContext.contextPath }/WEB-INF/view/navbar/navbar_categories.jsp"/>

@@ -11,6 +11,7 @@
 	<definition name="index" template="/WEB-INF/view/layout/default_layout.jsp">
 		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
 		<put-attribute name="indexUI" value="/WEB-INF/view/index.jsp"/>
+		<put-attribute name="loginUI" value="/WEB-INF/view/login/login.jsp"/>
 	</definition>
 
 </tiles-definitions>

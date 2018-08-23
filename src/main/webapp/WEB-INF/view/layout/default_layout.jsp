@@ -18,9 +18,10 @@
 
 </head>
 <body>
-	<tiles:insertAttribute name="navbar"/>
-	<div class="container">
+	<tiles:insertAttribute name="navbar"/>	
+	<div class="container" style="border: 1px solid black; background: rgba(48, 46, 45, 1);">
 		<tiles:insertAttribute name="indexUI"/>
+		<tiles:insertAttribute name="loginUI"/>
 	</div>
 	
 

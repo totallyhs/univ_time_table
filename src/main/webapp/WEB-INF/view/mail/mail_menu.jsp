@@ -4,6 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<!-- https://bootsnipp.com/snippets/ORaE8 -->
+<!-- https://bootsnipp.com/snippets/featured/gmail-inbox -->
+
 <div class="btn-group">
 	<button type="button" class="btn btn-primary dropdown-toggle"
 		data-toggle="dropdown">

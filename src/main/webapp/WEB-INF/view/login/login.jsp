@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- https://bootsnipp.com/snippets/56A0W -->
+<!-- https://bootsnipp.com/snippets/featured/google-style-login-extended -->
 
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4" id="login-box">

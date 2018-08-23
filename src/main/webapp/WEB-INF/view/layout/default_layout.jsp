@@ -27,7 +27,9 @@
 	</div>
 	<div class="container">
 		<tiles:insertAttribute name="indexUI"/>
-		<tiles:insertAttribute name="loginUI"/>
+		<c:if test="${sessionScope.memberVo eq null }">
+			<tiles:insertAttribute name="loginUI"/>
+		</c:if>
 	</div>
 	
 

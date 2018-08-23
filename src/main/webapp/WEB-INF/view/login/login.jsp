@@ -13,11 +13,15 @@
 						<div class="tab-pane active" id="login">
                		    <img class="profile-img" 
                		    src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
-               			<form class="form-signin" action="" method="">
-               				<input type="text" class="form-control" placeholder="Username" required autofocus>
-               				<input type="password" class="form-control" placeholder="Password" required>
-               				<input type="submit" class="btn btn-lg btn-default btn-block" value="Sign In" />
+               			<!-- login form -->
+               			<form class="form-signin" action="/login/login" method="post" autocomplete="off">
+               				<input type="text" class="form-control" name="id" placeholder="Username" required autofocus>
+               				<input type="password" class="form-control" name="pass" placeholder="Password" required>
+               				<button type="submit" class="btn btn-lg btn-default btn-block">Sign In</button>
                			</form>
+               			<c:if test="${requestScope.login eq false}">
+               				<div style="text-align: center; margin-bottom: 10px;"><small style="color: red">아이디나 비밀번호를 확인해주세요.</small></div>
+               			</c:if>
                			<div id="tabs" data-tabs="tabs">
                				<p class="text-center"><a href="#register" data-toggle="tab">Need an Account?</a></p>
                				<p class="text-center"><a href="#select" data-toggle="tab">Select Account</a></p>

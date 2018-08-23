@@ -17,8 +17,8 @@ public class SHSMemberDao {
 		return template.selectOne("shs_member.findById", id);
 	}
 	
-	public MemberVo findByIdAndPass(Map<String, String> data) {
-		return template.selectOne("shs_member.findByIdAndPass", data);
+	public MemberVo findByIdAndPassMap(Map<String, String> data) {
+		return template.selectOne("shs_member.findByIdAndPassMap", data);
 		
 	}
 }

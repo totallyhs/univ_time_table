@@ -27,14 +27,14 @@
   <c:choose>
     <c:when test="${sessionScope.memberVo eq null }">
        <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
-         <form class="navbar-form navbar-right form-inline" role="form">
+         <form class="navbar-form navbar-right form-inline" role="form" action="/login/login" method="post" autocomplete="off">
            <div class="form-group">
              <label class="sr-only" for="Email">Email</label>
-             <input type="email" class="form-control" id="Email" placeholder="Email" autofocus required />
+             <input type="text" class="form-control" id="id" name="id" placeholder="User Id" autofocus required />
            </div>
            <div class="form-group">
              <label class="sr-only" for="Password">Password</label>
-             <input type="password" class="form-control" id="Password" placeholder="Password" required />
+             <input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required />
            </div>
            <button type="submit" class="btn btn-success">Sign in</button>
          </form>
@@ -44,7 +44,7 @@
        <ul class="collapse nav navbar-nav nav-collapse slide-down" role="search" id="nav-collapse2">
          <li><a href="#">Support</a></li>
          <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="img-circle" src="https://pbs.twimg.com/profile_images/588909533428322304/Gxuyp46N.jpg" alt="maridlcrmn" width="20" /> Maridlcrmn <span class="caret"></span></a>
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="img-circle" src="" alt="maridlcrmn" width="20" /> Maridlcrmn <span class="caret"></span></a>
            <ul class="dropdown-menu" role="menu">
              <li><a href="#">My profile</a></li>
              <li><a href="#">Favorite</a></li>

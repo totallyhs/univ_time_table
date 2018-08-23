@@ -15,12 +15,12 @@
 </style>
 
 	<div id="index">
-		<h2>열심히 안하면 이름 뺍니다!</h2>
+		<h2 style="color: white;">열심히 안하면 이름 뺍니다!</h2>
 		
 		
 		<c:choose>
 			<c:when test="${sessionScope.memberVo eq null }">
-				<form action="index" method="post" autocomplete="off">	
+				<form action="/index" method="post" autocomplete="off">	
 					<select id="selectId" name="id">
 						<option value="test1">test1</option>
 						<option value="test2">test2</option>

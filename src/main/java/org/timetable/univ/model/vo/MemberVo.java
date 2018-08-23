@@ -11,6 +11,8 @@ public class MemberVo {
 	private String department;
 	private Date joindate;
 	private Date lastlogin;
+	private String photo;
+	private String email;
 	
 	
 	public String getId() {
@@ -55,6 +57,20 @@ public class MemberVo {
 	public void setLastlogin(Date lastlogin) {
 		this.lastlogin = lastlogin;
 	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 	
 	
 	

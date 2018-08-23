@@ -15,11 +15,17 @@
 	
 	<!-- navbar -->
 	<link href="/css/navbar.css" rel="stylesheet" type="text/css"/>
+	
+	<!-- login -->
+	<link href="/css/login.css" rel="stylesheet" type="text/css"/>
 
 </head>
-<body>
-	<tiles:insertAttribute name="navbar"/>	
-	<div class="container" style="border: 1px solid black; background: rgba(48, 46, 45, 1);">
+<body style="min-height: 500px; background: rgba(48, 46, 45, 1);">
+
+	<div id="navb">
+		<tiles:insertAttribute name="navbar"/>	
+	</div>
+	<div class="container">
 		<tiles:insertAttribute name="indexUI"/>
 		<tiles:insertAttribute name="loginUI"/>
 	</div>

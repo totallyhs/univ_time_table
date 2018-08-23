@@ -8,4 +8,8 @@
 		select * from member where id=#{id}
 	</select>
 	
+	<select id="findByIdAndPass" parameterType="java.util.HashMap" resultType="org.timetable.univ.model.vo.MemberVo">
+		select * from member where id=#{id} and pass=#{pass}
+	</select>
+	
 </mapper>

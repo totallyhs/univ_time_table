@@ -6,11 +6,8 @@
 
 <!-- https://bootsnipp.com/snippets/56A0W -->
 
-
-<link href="/css/login.css" rel="stylesheet" type="text/css"/>
-
     <div class="row">
-        <div class="col-sm-6 col-md-4 col-md-offset-4">
+        <div class="col-sm-6 col-md-4 col-md-offset-4" id="login-box">
             <div class="account-wall">
                 <div id="my-tab-content" class="tab-content">
 						<div class="tab-pane active" id="login">

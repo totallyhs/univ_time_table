@@ -6,8 +6,8 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse" id="navbar-collapse-2">
   <ul class="nav navbar-nav navbar-right">
-    <li><a href="index">home</a></li>
-    <li><a href="bulletinboard">자유게시판</a></li>
+    <li><a href="/index">home</a></li>
+    <li><a href="/bulletinboard">자유게시판</a></li>
     <li><a href="#">Services</a></li>
     <li><a href="#">Works</a></li>
     <li><a href="#">News</a></li>

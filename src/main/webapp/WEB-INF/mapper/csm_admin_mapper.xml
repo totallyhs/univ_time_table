@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="csm_admin">
+	<!-- insert -->
+	<!-- add subject -->
+	<insert id="insertSubject" parameterType="org.timetable.univ.model.vo.SubjectVo">
+		insert into subject values(#{no},#{name},#{units},#{grade},#{department})
+	</insert>
+	<!-- add class -->
+	<insert id="insertClass" parameterType="org.timetable.univ.model.vo.ClassVo">
+		insert into class values(class_seq_nextval,#{no},#{name},#{units},#{grade},#{department})
+	</insert>
+	
+
+	<!-- select -->
+	<!-- 과목번호로 찾기 -->
+	<select id="findBySubject" parameterType="java.lang.Integer"
+		resultType="org.timetable.univ.model.vo.SubjectVo">
+		select * from Subject where no=#{no}
+	</select>
+	<!-- 수업번호로 찾기 -->
+	<select id="findByClass" parameterType="java.lang.Integer"
+		resultType="org.timetable.univ.model.vo.ClassVo">
+		select * from Subject where no=#{no}
+	</select>
+	<!-- 전공과목 찾기 -->
+	<select id="findBySubjectByDepartment" parameterType="java.lang.String"
+		resultType="org.timetable.univ.model.vo.SubjectVo">
+		select * from Subject where department=#{department}
+	</select>
+	<!-- 학년으로 찾기 -->
+	<select id="findBySubjectByGrade" parameterType="java.util.Map"
+		resultType="org.timetable.univ.model.vo.SubjectVo">
+		select * from Subject where grade=#{grade} and department=#{department}
+	</select>
+	<!-- 요일로 찾기 -->
+	<select id="findByClassByDay" parameterType="java.lang.Integer"
+		resultType="org.timetable.univ.model.vo.ClassVo">
+		select * from Subject where day=#{day}
+	</select>
+	
+	
+	<!-- update -->
+
+
+</mapper>

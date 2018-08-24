@@ -3,7 +3,7 @@ package org.timetable.univ.model.vo;
 public class ClassVo {
 	private int id;
 	private int no;
-	private int subjectNo;
+	private String subjectNo;
 	private String professor;
 	private int day;
 	private int starttime;
@@ -21,10 +21,10 @@ public class ClassVo {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public int getSubjectNo() {
+	public String getSubjectNo() {
 		return subjectNo;
 	}
-	public void setSubjectNo(int subjectNo) {
+	public void setSubjectNo(String subjectNo) {
 		this.subjectNo = subjectNo;
 	}
 	public String getProfessor() {

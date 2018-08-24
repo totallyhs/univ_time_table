@@ -13,8 +13,9 @@ public class CSMAdminDao {
 	SqlSessionTemplate template;
 	//과목 추가
 	public boolean addSubject(SubjectVo svo) {
-
+		System.out.println("dao connect");
 		int result = template.insert("csm_admin.insertSubject", svo);
+		System.out.println("insert complete");
 		if (result == 1) {
 			return true;
 		} else {

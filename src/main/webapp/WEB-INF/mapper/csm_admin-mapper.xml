@@ -10,7 +10,7 @@
 	</insert>
 	<!-- add class -->
 	<insert id="insertClass" parameterType="org.timetable.univ.model.vo.ClassVo">
-		insert into class values(class_seq_nextval,#{no},#{name},#{units},#{grade},#{department})
+		insert into class values(class_seq.nextval,#{no},#{subjectNo},#{professor},#{day},#{starttime},#{endtime})
 	</insert>
 	
 

@@ -1,16 +1,16 @@
 package org.timetable.univ.model.vo;
 
 public class SubjectVo {
-	private int no;
+	private String no;
 	private String name;
 	private int units;
 	private int grade;
 	private String department;
 	
-	public int getNo() {
+	public String getNo() {
 		return no;
 	}
-	public void setNo(int no) {
+	public void setNo(String no) {
 		this.no = no;
 	}
 	public String getName() {

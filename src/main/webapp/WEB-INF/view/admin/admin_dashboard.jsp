@@ -6,58 +6,9 @@
 
 <!-- https://bootsnipp.com/snippets/O5WPN -->
 
-    <header id="header">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-10">
-            <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard <small>Manage Your Site</small></h1>
-          </div>
-          <div class="col-md-2">
-                   <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Create Content
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="#">Add Pages</a></li>
-    <li><a href="#">Add Posts</a></li>
-    <li><a href="#">Add Users</a></li>
-  </ul>
-</div> 
-          </div>
-        </div>
-      </div>
-    </header>
-<br>
+    
 
 
-<section id="main">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="list-group">
-      <a href="index.html" class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-        Dashboard <span class="badge">12</span>
-      </a>
-      <a href="pages.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages<span class="badge">25</span></a>
-      <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts<span class="badge">126</span></a>
-      <a href="users.html" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">12</span></a>
-      <a href="users.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Timetable <span class="badge">12</span></a>
-    </div>
-
-        <div class="well">
-          <h4>Disk Space Used</h4>
-          <div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-    60%
-  </div>
-</div>
-<h4>Bandwidth Used</h4>
-<div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
-    40%
-  </div>
-</div>
-        </div>
-      </div>
       <div class="col-md-9">
           <div class="panel panel-default">
   <div class="panel-heading" style="background-color:  #428bca;">
@@ -129,18 +80,16 @@
 </div>
 
       </div>
-    </div>
-  </div>
-</section>
 
-
+<!--  
   <footer id="footer">
     <p>Copyright : Madhav Prasad<br>2017</p>
   </footer>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+     Bootstrap core JavaScript
+    ================================================== 
+     Placed at the end of the document so the pages load faster 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     
     <script src="dist/js/bootstrap.min.js"></script>
+    -->

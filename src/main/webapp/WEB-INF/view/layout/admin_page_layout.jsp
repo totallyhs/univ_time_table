@@ -18,6 +18,11 @@
 	
 	<!-- admin -->
 	<link href="/css/admin.css" rel="stylesheet" type="text/css"/>
+	
+	<!-- classes adding -->
+	<c:if test="${content eq 'classes' }">
+	<link href="/css/admin-classes-adding.css" rel="stylesheet" type="text/css"/>
+	</c:if>
 
 </head>
 <body style="min-height: 500px; background: rgba(48, 46, 45, 1);">
@@ -25,9 +30,32 @@
 	<div id="navb">
 		<tiles:insertAttribute name="navbar"/>	
 	</div>
+	<tiles:insertAttribute name="admin_header"/>
 	<div class="container">
-		<tiles:insertAttribute name="dashboard"/>
+		<section id="main">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<tiles:insertAttribute name="admin_left_menu"/>
+					</div>
+					<div class="col-md-9">
+						<c:choose>
+							<c:when test="${content eq 'dashboard' }">
+								<tiles:insertAttribute name="dashboard"/>
+							</c:when>
+							<c:when test="${content eq 'classes' }">
+								<tiles:insertAttribute name="classes_adding"/>
+							</c:when>
+						</c:choose>
+					
+					</div>
+				</div>
+			</div>
+		</section>
 	</div>
+					
+	
+	
 	
 
 </body>

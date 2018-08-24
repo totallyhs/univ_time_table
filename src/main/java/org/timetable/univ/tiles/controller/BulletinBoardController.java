@@ -1,20 +1,130 @@
 package org.timetable.univ.tiles.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.timetable.univ.dao.board.BulletinBoardDao;
+import org.timetable.univ.model.vo.MemberVo;
+import org.timetable.univ.model.vo.PostVo;
 
 @Controller
-public class BulletinBoardController {
-
+public class BulletinBoardController {	
+	
+	@Autowired
+	BulletinBoardDao bulletinboadrdao;
+	
+	// 최초 상단바에서 자유게시판 눌렀을 때 세팅해주는 컨트롤러
 	@RequestMapping("/bulletinboard")
-	public ModelAndView bulletinBoardHandle() {
+	public ModelAndView bulletinBoardHandle(@RequestParam(name="no") int no,@RequestParam(name="page", defaultValue="1") int page) {
 		ModelAndView mav = new ModelAndView();
+		List<PostVo> list = new ArrayList();
+		System.out.println(page);
+		int start = (page-1)*10+1;
+		int end = page*10;
+		Map<String,Integer> map = new HashMap();
+		System.out.println(no);
+		map.put("no", Integer.valueOf(no));
+		map.put("start", start);
+		map.put("end",end);
+		list = bulletinboadrdao.selectBoardPage(map);
+		int totalPage = bulletinboadrdao.pageCount(no);
+		int pagebegin=0;
+		int pageend=0;
+		if(page>3&&totalPage>=page+2) {
+			pagebegin=page-2;
+		}else if(page>4&&totalPage<page+2) {
+			pagebegin=totalPage-4;
+		}else {
+			pagebegin=1;
+		}
+		if(page<=3&&totalPage>=5) {
+			pageend=5;
+		}else if(page>3&&totalPage>=page+2) {
+			pageend=page+2;
+		}else{
+			pageend=totalPage;
+		}
+		
+		mav.addObject("pagebegin",pagebegin);
+		mav.addObject("pageend",pageend);
+		mav.addObject("totalpage",totalPage);
+		mav.addObject("no",no);
+		mav.addObject("page",page);
 		mav.setViewName("bulletinboard");
-		
-		mav.addObject("board","/WEB-INF/view/board/builletinboard.jsp");
-		
+		mav.addObject("board", "자유게시판");
+		mav.addObject("postlist",list);
 		
 		return mav;
 	}
+	
+	// 글쓰기 눌렀을 때 넘겨주는 컨트롤러
+	@GetMapping("/boardwrite")
+	public ModelAndView bulletinWriteGetHandle() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("boardNo", 10);
+
+		mav.setViewName("boardwrite");
+		return mav;
+	}
+	
+	// 글작성 눌렀을때 보내주는 컨트롤러 
+	@PostMapping("/boardwrite")
+	public ModelAndView bulletinWritePostHandle(@ModelAttribute PostVo vo,HttpSession session,HttpServletResponse response) {
+		System.out.println(vo.getPublished());
+		ModelAndView mav = new ModelAndView();
+		//vo.setNo(13); // mapper에서 sequence 처리 해야함.
+		MemberVo mvo=(MemberVo) session.getAttribute("memberVo");
+		vo.setWriter(mvo.getNickname());
+		vo.setPublished("y");
+		vo.setHit(0);
+		System.out.println(vo.toString());
+		boolean result = bulletinboadrdao.insertPost(vo);
+		System.out.println(result);
+		if(result) {
+			try {
+				response.sendRedirect("bulletinboard?no=10");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+				}else {
+			mav.setViewName("error");
+		}
+		
+		return mav;
+	}
+	
+	
+	
+	// 게시판 게시글 보여주는 컨트롤러
+	@RequestMapping("/boardview")
+	public ModelAndView bulletinViewHandle(@RequestParam int no) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("boardview");
+		// hit 업데이트 처줘야댐.
+		PostVo vo = bulletinboadrdao.selectPost(no);
+		mav.addObject("PostVo",vo);
+		int hit = vo.getHit();
+		int hitPlus = hit+1;
+		Map<String,Object> map = new HashMap();
+		map.put("hitPlus",hitPlus);
+		map.put("no",no);
+		bulletinboadrdao.boardHit(map);
+		return mav;
+	}
+	
+	
 }

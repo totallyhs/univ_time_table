@@ -5,16 +5,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" href="/css/bootstrap.css">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- 
+    <link rel="stylesheet" href="/css/bootstrap.css">	
+	 -->
 </head>
 <body>
 <div class="container">
   <h2>자유게시판</h2>
-  <p>테스트중 입니다.</p>  
+  <p>
+  ${memberVo.id }<br/>
+  </p>
+  <h3>테스트중 입니다.</h3>  
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -25,61 +26,46 @@
                     <th>조회수</th>
                 </tr>
             </thead>
-
   		<tbody>
+		<c:forEach var="postlist" items="${postlist }">
+		
   			<tr>
-  				<th>6</th>
-  				<th>테스트중</th>
-  				<th>아무개</th>
-  				<th>2018/8/22</th>
-  				<th>11111</th>
+  				<th>${postlist.no }</th>
+  				<th><a href="boardview?no=${postlist.no }">${postlist.subject }</a></th>
+  				<th>${postlist.writer }</th>
+  				<th><fmt:formatDate value="${postlist.writtenDate }" pattern="yyyy-MM-dd [HH:MM]"/></th>
+  				<th>${postlist.hit }</th>
   			</tr>
-  			 			<tr>
-  				<th>5</th>
-  				<th>테스트중</th>
-  				<th>테스트트트</th>
-  				<th>2018/8/22</th>
-  				<th>11111</th>
-  			</tr>
-  			 			<tr>
-  				<th>4</th>
-  				<th>테스트중ㅇㅇㄹㅇㄹ</th>
-  				<th>아무개</th>
-  				<th>2018/8/22</th>
-  				<th>11111</th>
-  			</tr>
-  			 			<tr>
-  				<th>3</th>
-  				<th>테스트중</th>
-  				<th>아무개</th>
-  				<th>2018/8/22</th>
-  				<th>11111</th>
-  			</tr>
-  			 			<tr>
-  				<th>2</th>
-  				<th>테스트중</th>
-  				<th>아무개</th>
-  				<th>2018/8/22</th>
-  				<th>11111</th>
-  			</tr>
-  			 			<tr>
-  				<th>1</th>
-  				<th>테스트중</th>
-  				<th>아무개</th>
-  				<th>2018/8/22</th>
-  				<th>11111</th>
-  			</tr>
+		
+		</c:forEach>
   		</tbody>
         </table>
-        <div>            
-            <a href="" class="btn btn-success">글쓰기</a>            
+        
+        <div>
+        <form action="boardwrite">            
+            <button class="btn btn-success">글쓰기</button>
+        </form>
         </div>
-          <ul class="pager">
-   			 <li><a href="#">1</a></li>
-    		<li><a href="#">2</a></li>
-    		<li><a href="#">3</a></li>
+          <ul class="pagination">
+        <c:if test="${page-2 gt 1 }">
+ 		 <li><a href="bulletinboard?no=${no }&page=1">1</a></li>
+ 		 <li><a>.....</a></li>
+ 		 </c:if>
+        <c:forEach var="p" begin="${pagebegin }" end="${pageend }" step="1">
+        	<c:choose>
+        	<c:when test="${p eq page }">
+   			 <li class="active"><a href="bulletinboard?no=${no }&page=${p }">${p }</a></li>
+   			 </c:when>
+   			 <c:otherwise>
+   			 <li><a href="bulletinboard?no=${no }&page=${p }">${p }</a></li>
+ 		 	</c:otherwise>
+ 		 	</c:choose>
+ 		 </c:forEach>
+ 		 <c:if test="${page+2 lt totalpage }">
+ 		 <li><a>.....</a></li>
+ 		 <li><a href="bulletinboard?no=${no }&page=${totalpage }">${totalpage }</a></li>
+ 		 </c:if>
  		 </ul>
 </div>
-
 </body>
 </html>

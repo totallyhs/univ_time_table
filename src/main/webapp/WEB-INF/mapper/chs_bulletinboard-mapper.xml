@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chs_bulletinboard">
+	<select id="boardList" resultType="org.timetable.univ.model.vo.BoardVo">
+		select * from board
+	</select>
+	
+	<select id="selectpost" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.PostVo">
+		select * from post where no = #{no}
+	</select>
+	
+	<insert id="insertpost" parameterType="org.timetable.univ.model.vo.PostVo">
+		insert into post values(post_seq.nextval,#{boardNo},#{subject},#{writer},#{content},1,sysdate,#{hit},#{published})
+	</insert>
+	
+	<update id="boardhit" parameterType="java.util.Map">
+		update post set hit = #{hitPlus} where no = #{no}
+	</update>
+	
+	<select id="boardpage" parameterType="java.util.Map" resultType="org.timetable.univ.model.vo.PostVo">
+	select s.* from (select rownum r,t.* from (select * from post where boardno=#{no} order by no desc)t)s where s.r between #{start} and #{end}
+	</select>
+	
+	<select id="pagecount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	select count(*) from post where boardno=#{no}
+	</select>
+
+</mapper>

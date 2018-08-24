@@ -6,8 +6,8 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse" id="navbar-collapse-2">
   <ul class="nav navbar-nav navbar-right">
-    <li><a href="index">home</a></li>
-    <li><a href="bulletinboard">자유게시판</a></li>
+    <li><a href="${pageContext.servletContext.contextPath }/index">home</a></li>
+    <li><a href="${pageContext.servletContext.contextPath }/bulletinboard">자유게시판</a></li>
     <li><a href="#">Services</a></li>
     <li><a href="#">Works</a></li>
     <li><a href="#">News</a></li>
@@ -42,15 +42,15 @@
      </c:when>
      <c:otherwise>
        <ul class="collapse nav navbar-nav nav-collapse slide-down" role="search" id="nav-collapse2">
+             <li><a href="/login/logout">Logout</a></li>
+             <li><a href="#">My profile</a></li>
+             <li><a href="#">Settings</a></li>
          <li><a href="#">Support</a></li>
+             <li><a href="#">Favorite</a></li>
+             <li class="divider"></li>
          <li class="dropdown">
            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="img-circle" src="" alt="maridlcrmn" width="20" /> Maridlcrmn <span class="caret"></span></a>
            <ul class="dropdown-menu" role="menu">
-             <li><a href="#">My profile</a></li>
-             <li><a href="#">Favorite</a></li>
-             <li><a href="#">Settings</a></li>
-             <li class="divider"></li>
-             <li><a href="#">Logout</a></li>
            </ul>
         </li>
       </ul>

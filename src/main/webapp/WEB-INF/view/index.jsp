@@ -9,7 +9,7 @@
 	min-height: 250px;
 	top : 100px;
 	padding: 20px;
-	z-index: 9999;
+	z-index: 1000;
 }
 
 </style>
@@ -30,7 +30,7 @@
 			</c:when>
 			<c:otherwise>
 				<c:out value="${sessionScope.memberVo.nickname }"/> 님 환영합니다.<br/>
-				<a href="/logout"><button id="logoutBtn">로그아웃</button></a>
+				<a href="/login/logout"><button id="logoutBtn">로그아웃</button></a>
 			</c:otherwise>
 		</c:choose>
 		<br/><span id="anyUse"></span>	

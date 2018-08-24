@@ -40,13 +40,4 @@ public class IndexController {
 		
 	}
 	
-	@RequestMapping("/logout")
-	public String indexAjaxLogoutHandle(HttpSession session) {
-		session.invalidate();
-		
-		return "index";
-	}
-	
-	
-	
 }

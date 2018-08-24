@@ -4,7 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!-- https://bootsnipp.com/snippets/56A0W -->
 <!-- https://bootsnipp.com/snippets/featured/google-style-login-extended -->
 
     <div class="row">
@@ -98,9 +97,7 @@
             </div>
         </div>
     </div>
-<div id="particles-js"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-<script src="/js/loginAnimation.js"></script>
+
 
 
 

@@ -18,6 +18,14 @@
 	
 	<!-- login -->
 	<link href="/css/login.css" rel="stylesheet" type="text/css"/>
+	
+	<style>
+		#navb {
+		position: absolute;
+		width: 100%;
+		z-index: 3000;
+}
+	</style>
 
 </head>
 <body style="min-height: 500px; background: rgba(48, 46, 45, 1);">
@@ -31,6 +39,12 @@
 			<tiles:insertAttribute name="loginUI"/>
 		</c:if>
 	</div>
+	
+	<!-- https://bootsnipp.com/snippets/56A0W 
+	<div id="particles-js"></div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+	<script src="/js/loginAnimation.js"></script>
+	-->
 	
 
 </body>

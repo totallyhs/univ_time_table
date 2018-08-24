@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shs_admin">
+	<!-- Update -->
+	<update id="updateVisitorCnt" parameterType="java.lang.Integer">
+		update visitor_count set cnt = #{cnt}
+	</update>
+	
+	<!-- Select -->
+	<select id="getVisitorCountVo" resultType="org.timetable.univ.model.vo.VisitorCountVo">
+		select * from visitor_count
+	</select>
+	
+	<select id="getVisitorCnt" resultType="java.lang.Integer">
+		select cnt from visitor_count
+	</select>
+	
+	
+	
+</mapper>

@@ -63,6 +63,19 @@ public class SHSAdminPageController {
 		
 		return json;
 	}
+	@RequestMapping(path="/classes/add/ajax/subject2", produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String adminClassesAddAjaxSubject2Handle(@RequestParam String sno) {
+		System.out.println(sno);
+		//Map dataMap = gson.fromJson(data, Map.class);
+		//int departmentNo = (Integer)dataMap.get("departmentNo");
+		
+		// 과목(Subject) 정보 가져오고 보내기
+		SubjectVo svo = shsSubjectDao.getSubjectsBySno(sno);
+		String json = gson.toJson(svo);
+		
+		return json;
+	}
 	
 	
 	@PostMapping("/classes/add")

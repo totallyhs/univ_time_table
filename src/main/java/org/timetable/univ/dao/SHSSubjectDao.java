@@ -20,4 +20,7 @@ public class SHSSubjectDao {
 	public List<SubjectVo> getSubjectsByDept(int departmentNo) {
 		return template.selectList("shs_subject.getSubjectsByDept", departmentNo);
 	}
+	public SubjectVo getSubjectsBySno(String sno) {
+		return template.selectOne("shs_subject.getSubjectsBySno",sno);
+	}
 }

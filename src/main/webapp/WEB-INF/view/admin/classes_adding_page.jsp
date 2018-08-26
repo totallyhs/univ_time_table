@@ -97,11 +97,11 @@
 					</div>
 					<div class="form-group">
 						<label>수업 시작 시간</label> 
-						<input type="number" name="starttime" class="form-control">
+						<input type="number" name="starttime" step=50 class="form-control">
 					</div>
 					<div class="form-group">
 						<label>수업 끝 시간</label> 
-						<input type="number" name="endtime" class="form-control">
+						<input type="number" name="endtime" step=50 class="form-control">
 					</div>
 					<button type="submit" class="btn btn-lg btn-info">Submit</button>
 				</div>
@@ -120,31 +120,49 @@
 				}
 			}).done(function(r) {
 				console.log(r);
+				console.log(r.length);
 				for (var i=0; i<r.length; i++) {
 					// sno
 					var sno = "<option value=\"" + r[i].no + "\">";
 					sno += r[i].name + "</option>";
-					$("#snoList").html(sno);
+					$("#snoList").append(sno);
 					
 					// sname
-					var sname = "<option value=\"" + r[i].name + "\">";
-					sname += "</option>";
-					$("#snameList").html(sname);
+					//var sname = "<option value=\"" + r[i].name + "\">";
+					//sname += "</option>";
+					//$("#snameList").append(sname);
 					
 					// sgrade
-					var sname = "<option value=\"" + r[i].grade + "\">";
-					sname += "</option>";
-					$("#sgradeList").html(sname);
+					//var sgrade = "<option value=\"" + r[i].grade + "\">";
+					//sname += "</option>";
+					//$("#sgradeList").append(sgrade);
 					
 					// sunits
-					var sname = "<option value=\"" + r[i].units + "\">";
-					sname += "</option>";
-					$("#sunitsList").html(sunits);
+					//var sunits = "<option value=\"" + r[i].units + "\">";
+					//sname += "</option>";
+					//$("#sunitsList").append(sunits);
 					
 					// sinfo
-					var sinfo = r[i].info;
-					$("#sinfo").value(sinfo);
+					//var sinfo = r[i].info;
+					//$("#sinfo").html(sinfo);
 				}
+			});
+		});
+		$("#sno").on("change",function(){
+			console.log($(this).val());
+			$.ajax({
+				"url" : "/admin/classes/add/ajax/subject2",
+				"method" : "post",
+				"data" : {
+					"sno" : $(this).val()
+				}
+			}).done(function(r){
+				console.log(r);
+				$("#sname").val(r.name);
+				$("#sgrade").val(r.grade);
+				$("#sunits").val(r.units);
+				$("#sname").val(r.name);
+				
 			});
 		});
 	</script>

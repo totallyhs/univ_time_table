@@ -11,5 +11,7 @@
 	<select id="getSubjectsByDept" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.SubjectVo">
 		select * from subject where department=#{departmentNo} order by no asc
 	</select>
-	
+	<select id="getSubjectsBySno" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.SubjectVo">
+		select * from subject where no=#{sno}
+	</select>
 </mapper>

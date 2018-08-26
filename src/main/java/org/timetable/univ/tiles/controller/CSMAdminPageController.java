@@ -17,9 +17,10 @@ import org.timetable.univ.model.vo.SubjectVo;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminPageController {
+public class CSMAdminPageController {
 	@Autowired
 	CSMAdminDao admindao;
+	
 //	ServletContext application;
 //	
 //	@RequestMapping("/dashboard")
@@ -61,4 +62,6 @@ public class AdminPageController {
 		mav.setViewName("admin.subjects");
 		return mav;
 	}
+	
+	
 }

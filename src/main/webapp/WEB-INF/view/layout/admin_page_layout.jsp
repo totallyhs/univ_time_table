@@ -43,6 +43,9 @@
 							<c:when test="${content eq 'dashboard' }">
 								<tiles:insertAttribute name="dashboard"/>
 							</c:when>
+							<c:when test="${content eq 'subjects' }">
+								<tiles:insertAttribute name="subjects_adding"/>
+							</c:when>
 							<c:when test="${content eq 'classes' }">
 								<tiles:insertAttribute name="classes_adding"/>
 							</c:when>

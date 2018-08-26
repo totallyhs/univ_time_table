@@ -15,6 +15,10 @@
 	</definition>
 	
 	<definition name="admin.subjects" extends="admin">
+		<put-attribute name="subjects_adding" value="/WEB-INF/view/admin/subjects_adding_page.jsp"/>
+	</definition>
+	
+	<definition name="admin.classes" extends="admin">
 		<put-attribute name="classes_adding" value="/WEB-INF/view/admin/classes_adding_page.jsp"/>
 	</definition>
 

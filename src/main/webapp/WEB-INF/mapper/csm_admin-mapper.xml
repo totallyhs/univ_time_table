@@ -6,7 +6,7 @@
 	<!-- insert -->
 	<!-- add subject -->
 	<insert id="insertSubject" parameterType="org.timetable.univ.model.vo.SubjectVo">
-		insert into subject values(#{no},#{name},#{units},#{grade},#{department})
+		insert into subject values(#{no},#{name},#{units},#{grade},#{department}, #{info})
 	</insert>
 	<!-- add class -->
 	<insert id="insertClass" parameterType="org.timetable.univ.model.vo.ClassVo">

@@ -1,4 +1,4 @@
-package org.timetable.univ.controller.subjects;
+package org.timetable.univ.dao;
 
 import java.util.List;
 

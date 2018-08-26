@@ -1,17 +1,21 @@
 package org.timetable.univ.tiles.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
-import org.timetable.univ.controller.subjects.SHSSubjectDao;
+import org.springframework.web.servlet.ModelAndView;
+import org.timetable.univ.dao.SHSClassDao;
 import org.timetable.univ.dao.SHSDepartmentDao;
+import org.timetable.univ.dao.SHSSubjectDao;
+import org.timetable.univ.model.vo.ClassVo;
 import org.timetable.univ.model.vo.DepartmentVo;
 import org.timetable.univ.model.vo.SubjectVo;
 
@@ -25,22 +29,22 @@ public class SHSAdminPageController {
 	SHSSubjectDao shsSubjectDao;
 	
 	@Autowired
+	SHSClassDao shsClassDao;
+	
+	@Autowired
 	SHSDepartmentDao shsDepartmentDao;
 	
 	@Autowired
 	Gson gson;
 	
 	@GetMapping("/classes/add")
-	public String adminClassesHandle(WebRequest webRequest) {
+	public String adminClassesAddGetHandle(WebRequest webRequest) {
 		webRequest.setAttribute("content", "classes", WebRequest.SCOPE_REQUEST);
 		
 		// 전공 정보 가져오고 보내기
 		List<DepartmentVo> departmentList = shsDepartmentDao.getAllDept();
 		webRequest.setAttribute("departmentList", departmentList, WebRequest.SCOPE_REQUEST);
-		
-		
-		
-		
+
 		return "admin.classes";
 		
 	}
@@ -58,7 +62,25 @@ public class SHSAdminPageController {
 		String json = gson.toJson(subjectList);
 		
 		return json;
-
+	}
+	
+	
+	@PostMapping("/classes/add")
+	public ModelAndView adminClassesAddPostHandle(@ModelAttribute ClassVo classVo, WebRequest webRequest) {
+		webRequest.setAttribute("content", "classes", WebRequest.SCOPE_REQUEST);
+		ModelAndView mav = new ModelAndView();
+		
+		// get Seq
+		int id = shsClassDao.getClassSeq();
+		classVo.setId(id);
+		
+		boolean result = shsClassDao.insertClass(classVo);
+		
+		System.out.println("addsubject complete");
+		
+		mav.addObject("addresult", result);
+		mav.setViewName("admin.classes");
+		return mav;
 	}
 	
 	

@@ -6,6 +6,7 @@ public class SubjectVo {
 	private int units;
 	private int grade;
 	private int department;
+	private String info;
 	
 	public String getNo() {
 		return no;
@@ -37,6 +38,13 @@ public class SubjectVo {
 	public void setDepartment(int department) {
 		this.department = department;
 	}
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
+	}
+	
 	
 	
 }

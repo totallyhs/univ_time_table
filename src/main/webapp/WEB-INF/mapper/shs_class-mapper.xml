@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shs_class">
+	<!-- select -->
+	<select id="getClassSeq" resultType="java.lang.Integer">
+		select class_seq.nextval from dual
+	</select>
+	
+	<!-- insert -->
+	<insert id="insertClass" parameterType="org.timetable.univ.model.vo.ClassVo">
+		insert into class values(#{id}, #{no}, #{subjectNo}, #{professor}, #{day}, #{starttime}, #{endtime})
+	</insert>
+	
+</mapper>

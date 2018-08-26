@@ -10,7 +10,17 @@
       <a href="pages.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages<span class="badge">25</span></a>
       <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts<span class="badge">126</span></a>
       <a href="users.html" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">12</span></a>
-      <a href="/admin/subjects/add" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Timetable <span class="badge">12</span></a>
+      <a href="#" class="list-group-item" id="timetable">
+      	<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Timetable <span class="badge">12</span>
+      </a>
+      <div id="timetableClickDiv" style="display: none;">
+      	<a href="/admin/subjects/add" class="list-group-item">
+      		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Subjects <span class="badge">11</span>	
+      	</a>
+      	<a href="/admin/classes/add" class="list-group-item">
+      		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Classes <span class="badge">20</span>	
+      	</a>
+      </div>
 </div>
 
 <div class="well">
@@ -27,3 +37,14 @@
     </div>
   </div>
 </div>
+
+<script>
+	$("#timetable").on("click", function() {
+		var t = document.getElementById("timetableClickDiv");
+		if (t.style.display == "none") {
+			t.style.display = "block";
+		} else {
+			t.style.display = "none";
+		}
+	})
+</script>

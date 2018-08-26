@@ -23,6 +23,9 @@
 	<c:if test="${content eq 'classes' }">
 	<link href="/css/admin-classes-adding.css" rel="stylesheet" type="text/css"/>
 	</c:if>
+	<c:if test="${content eq 'subjects' }">
+	<link href="/css/admin-classes-adding.css" rel="stylesheet" type="text/css"/>
+	</c:if>
 
 </head>
 <body style="min-height: 500px; background: rgba(48, 46, 45, 1);">

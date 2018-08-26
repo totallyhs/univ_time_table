@@ -40,25 +40,21 @@ public class CSMAdminPageController {
 	
 	@GetMapping("/subjects/add")
 	public String adminSubjectsHandle(WebRequest webRequest) {
-		webRequest.setAttribute("content", "classes", WebRequest.SCOPE_REQUEST);
+		webRequest.setAttribute("content", "subjects", WebRequest.SCOPE_REQUEST);
 		
 		return "admin.subjects";
 	}
 	@PostMapping("/subjects/add")
-	public ModelAndView adminSubjectsAddHandle(@ModelAttribute SubjectVo svo,@ModelAttribute ClassVo cvo,@RequestParam(name="sno") String sno,@RequestParam(name="cno") int cno ,WebRequest webRequest) {
+	public ModelAndView adminSubjectsAddHandle(@ModelAttribute SubjectVo svo,@RequestParam(name="sno") String sno, WebRequest webRequest) {
 		webRequest.setAttribute("content", "classes", WebRequest.SCOPE_REQUEST);
 		ModelAndView mav = new ModelAndView();
 		svo.setNo(sno);
-		cvo.setNo(cno);
-		cvo.setSubjectNo(sno);
 		System.out.println(""+svo.getNo()+","+svo.getName()+","+svo.getUnits()+","+svo.getGrade()+","+svo.getDepartment());
 		
-		boolean result2 = admindao.addSubject(svo);
+		boolean result = admindao.addSubject(svo);
 		System.out.println("addsubject complete");
-		boolean result = admindao.addClass(cvo);
 		System.out.println("addclass complete");
 		mav.addObject("addresult",result);
-//		mav.addObject("addresult",false);
 		mav.setViewName("admin.subjects");
 		return mav;
 	}

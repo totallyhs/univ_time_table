@@ -101,11 +101,11 @@
 					var button = document.getElementById("joinbt");
 					if (data == null) {
 						sid.style.color = "blue";
-						sid.innerHTML = "사용 가능";
+						sid.innerHTML = "사용가능한 멋진 아이디 입니다!";
 						button.disabled = false;
 					} else {
 						sid.style.color = "red";
-						sid.innerHTML = "사용 불가능";
+						sid.innerHTML = "중복된 아이디가 존재 합니다.";
 						button.disabled = true;
 					}
 				}
@@ -126,11 +126,11 @@
 					var button = document.getElementById("joinbt");
 					if (data == null) {
 						nickName.style.color = "blue";
-						nickName.innerHTML = "사용가능";
+						nickName.innerHTML = "사용 가능한 멋진 닉네임 입니다.";
 						button.disabled = false;
 					} else {
 						nickName.style.color = "red";
-						nickName.innerHTML = "사용 불가능";
+						nickName.innerHTML = "중복된 닉네임이 존재 합니다.";
 						button.disabled = true;
 					}
 				}
@@ -145,7 +145,7 @@
 			var pattern = /^([a-zA-Z0-9])(?=.*\d\S)(?=.*[a-zA-Z]).{7,16}/
 			
 			if (!pattern.test(pass)) {
-				pattensMsg.innerHTML = "비밀번호는 영문, 숫자 조합으로 8~16자리를 사용해야 합니다.";
+				pattensMsg.innerHTML = "8~16자 영문 대 소문자, 숫자를 포함해서 사용하세요.";
 				button.disabled = true;
 			}else {
 				pattensMsg.innerHTML = "";
@@ -158,13 +158,14 @@
 			var passCheck = $("#passCheck").val();
 			var passmsg = document.getElementById("passmsg");
 			var button = document.getElementById("joinbt");
-				if (pass != passCheck) {
-					passmsg.innerHTML ="비밀번호를 다시 확인 해주세요.";
-					button.disabled = true;
-				} else {
-					passmsg.innerHTML = "";
-					button.disabled = false;
-				}
+			
+			if (pass != passCheck) {
+				passmsg.innerHTML ="비밀번호를 다시 확인 해주세요.";
+				button.disabled = true;
+			} else {
+				passmsg.innerHTML = "";
+				button.disabled = false;
+			}
 		});
 	</script>
 </body>

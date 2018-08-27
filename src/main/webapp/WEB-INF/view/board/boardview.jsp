@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 </html>
 
@@ -23,6 +26,7 @@
 	</c:when>
 	<c:otherwise>
 		<div class="container">
+	<h2>${PostVo.no }postvo.no test</h2>
   	<h2>${PostVo.writer }</h2> <br/>
   	작성일 : <fmt:formatDate value="${PostVo.writtenDate }" pattern="yyyy-MM-dd"/>
   	<p>${PostVo.subject }</p>
@@ -31,16 +35,109 @@
 					${PostVo.content }
 				</div>
  			</div>
-		</div>
-		<div class="container">
-  <h2>댓글</h2>
-  <form>
-    <div class="form-group">
-      <label for="comment"></label>
-      <textarea class="form-control" rows="5" id="comment" placeholder="댓글을 작성해주세요."></textarea><br/>
-      <button type="button" class="btn btn-success">댓글작성</button>
-    </div>
-  </form>
+		</div> 
+	
+	<form action="/boardview" method="post">
+	<div class="container">
+    <div class="row">       
+        <div class="panel panel-default widget">
+        	
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+                <h3 class="panel-title">Reply</h3>
+            
+                    
+            </div>
+            <c:forEach var="reply" items="${replylist }">
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-1">
+                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
+                            <div class="col-xs-10 col-md-11">
+                                <div> 작성자 : ${reply.commentator }
+                                    <div class="mic-info">
+                                        댓글날짜 : <fmt:formatDate value="${reply.writtenDate }" pattern="yyyy-MM-dd [HH:MM]"/>
+                                    </div>
+                                </div>
+                                <div class="comment-text"> ${reply.content }
+                                </div>
+                            </div>
+                        </div>
+                    </li>         
+                </ul>
+            </div>
+            </c:forEach>
+            <div class="col">
+                    <div class="panel-body">
+                        <form role="form">
+                            <fieldset>
+                                <div class="form-group">
+    <textarea class="form-control" name="content" rows="3" placeholder="댓글을 입력해주세요." onkeyup="fnReplyByte(this,'1000')" required="댓글을 입력해주세요."></textarea>
+ 		<span id="byteInfo">0</span>/1000Byte <br/><br/>
+
+                                </div>
+                                
+                            <input type="hidden" name="postno" value="${PostVo.no }">
+                        <button type="submit" class="[ btn btn-success ]" data-loading-text="Loading...">댓글작성</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                        </div>
+                </div>
 </div>
+        </div>
+</form>	
+<a href="bulletinboard?no=${boardno }"><button type="submit" class="[ btn btn-success ]">목록으로</button></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script>
+function fnReplyByte(obj, maxByte){
+	var str = obj.value;
+	var str_len = str.length;
+
+	var rbyte = 0;
+	var rlen = 0;
+	var one_char = "";
+	var str2 = "";
+
+	for(var i=0; i<str_len; i++){
+	one_char = str.charAt(i);
+	if(escape(one_char).length > 4){
+	    rbyte += 2;                                         //한글2Byte
+	}else{
+	    rbyte++;                                            //영문 등 나머지 1Byte
+	}
+
+	if(rbyte <= maxByte){
+	    rlen = i+1;                                          //return할 문자열 갯수
+		}
+	}
+
+	if(rbyte > maxByte){
+	    alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
+	    str2 = str.substr(0,rlen);                                  //문자열 자르기
+	    obj.value = str2;
+	    fnChkByte(obj, maxByte);
+	}else{
+	    document.getElementById('byteInfo').innerText = rbyte;
+		}
+	}
+
+</script>
 	</c:otherwise>
 </c:choose>

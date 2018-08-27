@@ -10,8 +10,6 @@ public class CommentsVo {
 	private String published;
 	private String ip;
 	private Date writtenDate;
-	
-	
 	public int getNo() {
 		return no;
 	}
@@ -48,12 +46,15 @@ public class CommentsVo {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	public Date getDate() {
+	public Date getWrittenDate() {
 		return writtenDate;
 	}
-	public void setDate(Date date) {
-		this.writtenDate = date;
+	public void setWrittenDate(Date writtenDate) {
+		this.writtenDate = writtenDate;
 	}
+	
+	
+
 	
 	
 	

@@ -46,6 +46,7 @@
 						class="form-control" id="pass" name="pass"
 						placeholder="비밀번호를 입력해주세요" required="">
 				</div>
+				<span id="pattensMsg" style="color: red;"></span>
 				<div class="form-group">
 					<label for="passCheck">비밀번호 확인</label> <input type="password"
 						class="form-control" id="passCheck"
@@ -136,19 +137,29 @@
 			})
 		});
 
-		// 패스워드 패턴과 패스워드가 서로 같은지 체크
-		$("#pass, #passCheck").on("input", function() {
+		// 패스워드 패턴 체크
+		$("#pass").on("change", function() {
+			var pattensMsg = document.getElementById("pattensMsg");
+			var button = document.getElementById("joinbt");
+			var pattern = /^([a-zA-Z0-9])(?=.*\d\S)(?=.*[a-zA-Z]).{7,16}/
+			
+			if (!pattern.test(pass)) {
+				pattensMsg.innerHTML = "비밀번호는 영문, 숫자 조합으로 8~16자리를 사용해야 합니다.";
+				button.disabled = true;
+			}else {
+				pattensMsg.innerHTML = "";
+				button.disabled = false;
+			}
+			
+		});
+		// 비번과 비번 확인 같은지 체크
+		$("#passCheck").on("change", function() {
 			var pass = $("#pass").val();
 			var passCheck = $("#passCheck").val();
 			var passmsg = document.getElementById("passmsg");
 			var button = document.getElementById("joinbt");
-			var pattern = /^([a-zA-Z0-9])(?=.*\d\S)(?=.*[a-zA-Z]).{7,16}/
-			console.log(!pattern.test(pass) && pattern.test(passCheck));
 			if (pass != passCheck) {
-				passmsg.innerHTML = "비밀번호를 다시 확인 주세요.";
-				button.disabled = true;
-			} else if (!pattern.test(pass) && !pattern.test(passCheck)) {
-				passmsg.innerHTML = "비밀번호는 영문, 숫자 조합으로 8~16자리를 사용해야 합니다.";
+				passmsg.innerHTML ="비밀번호를 다시 확인 해주세요.";
 				button.disabled = true;
 			} else {
 				passmsg.innerHTML = "";

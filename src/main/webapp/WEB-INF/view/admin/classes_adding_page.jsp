@@ -69,7 +69,7 @@
 							<datalist id="sunitsList">
 							</datalist>
 						</div>
-					<div class="form-group">
+					<div class="col-sm-12 form-group">
 						<label>수업 관련 내용</label>
 						<textarea rows="3" class="form-control" id="sinfo" disabled="disabled"></textarea>
 					</div>

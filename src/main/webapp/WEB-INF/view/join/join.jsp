@@ -43,13 +43,13 @@
 				<samp id="IdCheck" style="color: blue;"></samp>
 				<div class="form-group">
 					<label for="pass">비밀번호</label> <input type="password"
-						class="form-control" id="pass" name="pass"
-						placeholder="비밀번호를 입력해주세요" required="">
+						class="form-control" id="pass" class= "passch" name="pass"
+						placeholder="비밀번호를 입력해주세요" required="" >
 				</div>
 				<span id="pattensMsg" style="color: red;"></span>
 				<div class="form-group">
 					<label for="passCheck">비밀번호 확인</label> <input type="password"
-						class="form-control" id="passCheck"
+						class="form-control" id="passCheck" class= "passch"
 						placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요" required="">
 				</div>
 				<span id="passmsg" style="color: red;"></span>
@@ -113,13 +113,13 @@
 		});
 		$("#InputNickName").on("change", function() {
 			$.ajax({
-				url : "/joinNickCheck", // 중복체크할 페이지
+				url : "/joinNickCheck", // 중복체크할 경로
 				type : "POST",
 				data : {
 					nickname : $(this).val()
 				},
 				success : function(data) {
-					console.log(data);
+					console.log(data); //데이터 확인용
 					// 데이터에 널값이 들어오면 닉네임 사용가능 가입버튼 활성화
 					// 아니면 닉네임 사용 불가능 가입버튼 비활성화
 					var nickName = document.getElementById("nickmsg");
@@ -130,7 +130,7 @@
 						button.disabled = false;
 					} else {
 						nickName.style.color = "red";
-						nickName.innerHTML = "사용불가능";
+						nickName.innerHTML = "사용 불가능";
 						button.disabled = true;
 					}
 				}
@@ -139,6 +139,7 @@
 
 		// 패스워드 패턴 체크
 		$("#pass").on("change", function() {
+			var pass = $("#pass").val();
 			var pattensMsg = document.getElementById("pattensMsg");
 			var button = document.getElementById("joinbt");
 			var pattern = /^([a-zA-Z0-9])(?=.*\d\S)(?=.*[a-zA-Z]).{7,16}/
@@ -150,7 +151,6 @@
 				pattensMsg.innerHTML = "";
 				button.disabled = false;
 			}
-			
 		});
 		// 비번과 비번 확인 같은지 체크
 		$("#passCheck").on("change", function() {
@@ -158,13 +158,13 @@
 			var passCheck = $("#passCheck").val();
 			var passmsg = document.getElementById("passmsg");
 			var button = document.getElementById("joinbt");
-			if (pass != passCheck) {
-				passmsg.innerHTML ="비밀번호를 다시 확인 해주세요.";
-				button.disabled = true;
-			} else {
-				passmsg.innerHTML = "";
-				button.disabled = false;
-			}
+				if (pass != passCheck) {
+					passmsg.innerHTML ="비밀번호를 다시 확인 해주세요.";
+					button.disabled = true;
+				} else {
+					passmsg.innerHTML = "";
+					button.disabled = false;
+				}
 		});
 	</script>
 </body>

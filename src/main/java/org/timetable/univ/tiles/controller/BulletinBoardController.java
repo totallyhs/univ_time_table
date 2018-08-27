@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.timetable.univ.dao.board.BulletinBoardDao;
+import org.timetable.univ.model.vo.CommentsVo;
 import org.timetable.univ.model.vo.MemberVo;
 import org.timetable.univ.model.vo.PostVo;
 
@@ -110,8 +111,9 @@ public class BulletinBoardController {
 	
 	
 	// 게시판 게시글 보여주는 컨트롤러
-	@RequestMapping("/boardview")
+	@GetMapping("/boardview")
 	public ModelAndView bulletinViewHandle(@RequestParam int no) {
+		//여기서 post no 값 가지고옴 requestParam을 통해서 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("boardview");
 		// hit 업데이트 처줘야댐.
@@ -122,9 +124,41 @@ public class BulletinBoardController {
 		Map<String,Object> map = new HashMap();
 		map.put("hitPlus",hitPlus);
 		map.put("no",no);
+		mav.addObject("postNo",no);
 		bulletinboadrdao.boardHit(map);
+		List<CommentsVo> rvo = new ArrayList();
+		rvo = bulletinboadrdao.replyList(no);
+		mav.addObject("replylist",rvo);
+		mav.addObject("boardno",10);
 		return mav;
 	}
 	
+	// 자유게시판 리플
+	@PostMapping("/boardview")
+	public ModelAndView bulletinReplyHandle(@RequestParam(name="postno") int postno,@RequestParam(name="content") String content, HttpSession session, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("boardview");
+		CommentsVo vo = new CommentsVo();
+		//PostVo pvo = bulletinboadrdao.selectPost(10);
+		//mav.addObject("PostVo",pvo);
+		vo.setContent(content);
+		vo.setPostNo(postno);
+		MemberVo mvo=(MemberVo) session.getAttribute("memberVo");
+		vo.setPublished("y");
+		vo.setCommentator(mvo.getNickname());
+		System.out.println("reply"+vo.getCommentator()+vo.getNo()+vo.getPostNo()+vo.getContent());
+		boolean result = bulletinboadrdao.insertReply(vo);
+		
+		if(result) {
+			try {
+				response.sendRedirect("boardview?no="+postno);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		//dao , mapper
+		return mav;
+		
+	}
 	
 }

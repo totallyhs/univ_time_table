@@ -38,7 +38,7 @@
 			<div class="form-group">
 				<label for="content">내용</label>
 				  <textarea class="form-control" id="content" name="content" rows="20"
-					onkeyup="fnChkByte(this, '2000')"></textarea>
+					onkeyup="fnChkByte(this, '2000')" required="required"></textarea>
 				<span id="byteInfo">0</span>/2000Byte
 			</div>
 

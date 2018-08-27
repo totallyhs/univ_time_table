@@ -26,5 +26,12 @@
 	<select id="pagecount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
 	select count(*) from post where boardno=#{no}
 	</select>
-
+	
+	<insert id="insertreply" parameterType="org.timetable.univ.model.vo.CommentsVo">
+		insert into comments values(comments_seq.nextval,#{postNo},#{commentator},#{content},#{published},1,sysdate)
+	</insert>
+	
+	<select id="replylist" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.CommentsVo">
+		select * from comments where postno = #{postno}
+	</select>
 </mapper>

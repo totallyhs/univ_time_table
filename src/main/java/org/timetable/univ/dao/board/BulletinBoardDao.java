@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.timetable.univ.model.vo.BoardVo;
+import org.timetable.univ.model.vo.CommentsVo;
 import org.timetable.univ.model.vo.PostVo;
 
 @Repository
@@ -25,7 +26,13 @@ public class BulletinBoardDao {
 	public boolean insertPost(PostVo vo) {
 		return template.insert("chs_bulletinboard.insertpost",vo)==1?true:false;
 	}
+	public boolean insertReply(CommentsVo vo) {
+		return template.insert("chs_bulletinboard.insertreply",vo)==1?true:false;
+	}
 	
+	public List<CommentsVo> replyList(int postno) {
+		return template.selectList("chs_bulletinboard.replylist",postno);
+	}
 	// 게시판선택
 	public List<PostVo> selectBoardPage(Map map){
 		return template.selectList("chs_bulletinboard.boardpage",map);

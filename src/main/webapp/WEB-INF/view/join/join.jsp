@@ -58,10 +58,10 @@
 				</div>
 				<span id="nickmsg"></span>
 				<div class="form-group">
-					<label for="input">학과</label> <select name="department" class="form-control">
-						<option>선택하세요</option>
-						<c:forEach var="dt" items="${department }">
-							<option value="${dt.no }">${dt.name }</option>
+					<label for="input">학과</label> <select required name="department" class="form-control">
+						<option value="">선택하세요</option>
+						<c:forEach var="dt" items="${department }" begin="">
+							<option value="${dt.name }" >${dt.name }</option>
 						</c:forEach>
 					</select>
 				</div>

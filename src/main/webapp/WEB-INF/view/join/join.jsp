@@ -68,7 +68,7 @@
 					<label for="input">학과</label> <select name="department">
 						<option>선택하세요</option>
 						<c:forEach var="dt" items="${department }">
-							<option value="${dt.name }">${dt.name }</option>
+							<option value="${dt.no }">${dt.name }</option>
 						</c:forEach>
 					</select>
 				</div>

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.timetable.univ.model.vo.DepartmentVo;
 import org.timetable.univ.model.vo.MemberVo;
 
 @Repository
@@ -18,8 +19,8 @@ public class LKHMemberDao {
 		return template.insert("LKH-Member.addJoin", vo);
 	}
 	// 맵퍼로 학과정보 리스트 요청하는 메소드
-	public List<MemberVo> getDepartment() {
-		List<MemberVo> list = template.selectList("LKH-Member.getDepartment");
+	public List<DepartmentVo> getDepartment() {
+		List<DepartmentVo> list = template.selectList("LKH-Member.getDepartment");
 		return list;
 	}
 	// 맵퍼로 아이디 정보 하나 요청 메소드

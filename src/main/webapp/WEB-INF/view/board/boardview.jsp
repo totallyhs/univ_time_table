@@ -49,6 +49,7 @@
                     
             </div>
             <c:forEach var="reply" items="${replylist }">
+            <c:if test="${reply.published eq 'y' }">
             <div class="panel-body">
                 <ul class="list-group">
                     <li class="list-group-item">
@@ -63,11 +64,16 @@
                                 </div>
                                 <div class="comment-text"> ${reply.content }
                                 </div>
+                                
+                                <c:if test="${sessionScope.memberVo.nickname eq reply.commentator }">
+                                	<a href="/replydelete?no=${reply.no }&postno=${reply.postNo}">삭제</a>
+                                </c:if>
                             </div>
                         </div>
                     </li>         
                 </ul>
             </div>
+            </c:if>
             </c:forEach>
             <div class="col">
                     <div class="panel-body">
@@ -91,6 +97,10 @@
 </form>	
 <a href="bulletinboard?no=${boardno }"><button type="submit" class="[ btn btn-success ]">목록으로</button></a>
 
+
+<c:forEach var="file" items="${flist }">
+	<a href="${file.filePath }" download>${file.fileName }</a>
+</c:forEach>
 
 
 

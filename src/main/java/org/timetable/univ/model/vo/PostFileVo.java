@@ -6,6 +6,7 @@ public class PostFileVo {
 	private String filePath;
 	private double fileSize;
 	private int downloadCnt;
+	private String fileName;
 	
 	public int getNo() {
 		return no;
@@ -37,4 +38,19 @@ public class PostFileVo {
 	public void setDownloadCnt(int downloadCnt) {
 		this.downloadCnt = downloadCnt;
 	}
+	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	@Override
+	public String toString() {
+		return "PostFileVo [no=" + no + ", postNo=" + postNo + ", filePath=" + filePath + ", fileSize=" + fileSize
+				+ ", downloadCnt=" + downloadCnt + "]";
+	}
+	
+	
+	
 }

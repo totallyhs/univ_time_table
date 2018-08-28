@@ -16,17 +16,29 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.timetable.univ.dao.board.BulletinBoardDao;
 import org.timetable.univ.model.vo.CommentsVo;
 import org.timetable.univ.model.vo.MemberVo;
+import org.timetable.univ.model.vo.PostFileVo;
 import org.timetable.univ.model.vo.PostVo;
+import org.timetable.univ.service.UploadService;
+
+import com.google.gson.Gson;
+
 
 @Controller
 public class BulletinBoardController {	
 	
 	@Autowired
 	BulletinBoardDao bulletinboadrdao;
+	@Autowired
+	UploadService uploadService;
+	
+	
+	@Autowired
+	Gson gson;
 	
 	// 최초 상단바에서 자유게시판 눌렀을 때 세팅해주는 컨트롤러
 	@RequestMapping("/bulletinboard")
@@ -84,9 +96,12 @@ public class BulletinBoardController {
 	
 	// 글작성 눌렀을때 보내주는 컨트롤러 
 	@PostMapping("/boardwrite")
-	public ModelAndView bulletinWritePostHandle(@ModelAttribute PostVo vo,HttpSession session,HttpServletResponse response) {
+	public ModelAndView bulletinWritePostHandle(@ModelAttribute PostVo vo,HttpSession session,HttpServletResponse response,
+			@RequestParam("fileupload") MultipartFile[] files ) throws Exception {
 		System.out.println(vo.getPublished());
 		ModelAndView mav = new ModelAndView();
+		int no = bulletinboadrdao.getSquence();
+		vo.setNo(no);
 		//vo.setNo(13); // mapper에서 sequence 처리 해야함.
 		MemberVo mvo=(MemberVo) session.getAttribute("memberVo");
 		vo.setWriter(mvo.getNickname());
@@ -95,6 +110,17 @@ public class BulletinBoardController {
 		System.out.println(vo.toString());
 		boolean result = bulletinboadrdao.insertPost(vo);
 		System.out.println(result);
+		//file
+		if(!files[0].isEmpty()) {
+			for(MultipartFile file : files) {
+				
+				PostFileVo fvo = uploadService.uploadHandle(file, vo.getNo());
+				bulletinboadrdao.fileUpload(fvo);
+				
+			}
+		}
+		
+		
 		if(result) {
 			try {
 				response.sendRedirect("bulletinboard?no=10");
@@ -115,6 +141,10 @@ public class BulletinBoardController {
 	public ModelAndView bulletinViewHandle(@RequestParam int no) {
 		//여기서 post no 값 가지고옴 requestParam을 통해서 
 		ModelAndView mav = new ModelAndView();
+		List<PostFileVo> flist = bulletinboadrdao.fileView(no);
+		mav.addObject("flist",flist);
+		
+		
 		mav.setViewName("boardview");
 		// hit 업데이트 처줘야댐.
 		PostVo vo = bulletinboadrdao.selectPost(no);
@@ -160,5 +190,21 @@ public class BulletinBoardController {
 		return mav;
 		
 	}
+	
+	@RequestMapping("/replydelete")
+	public String replyDelete(@RequestParam(name="no") int no,@RequestParam(name="postno") int postno,HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		Map<String,Object> map = new HashMap();
+		map.put("published", "n");
+		map.put("no", no);
+		boolean result = bulletinboadrdao.replyDelete(map);
+		System.out.println("replydelete /" + map.get("published")+map.get("no")+postno+result);
+		if(result) {
+				System.out.println("in");
+		}
+		return "redirect:/boardview?no="+postno;
+	}
+	
+
 	
 }

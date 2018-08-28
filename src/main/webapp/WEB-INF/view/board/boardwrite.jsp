@@ -25,7 +25,8 @@
 		<h2>로그인을 부탁드립니다.</h2>
 	</c:when>
 	<c:otherwise>
-			<form action="/boardwrite" method="post">
+			<form action="/boardwrite" method="post" 
+			enctype="multipart/form-data" autocomplete="off">
 		<div class="container">
 			<h2>${board }</h2>
 			<div class="form-group">
@@ -43,9 +44,17 @@
 			</div>
 
 			<button type="submit" class="btn btn-primary">작성</button>
-			</div>
+			</div><br/>
+			
+			<!-- 파일 -->
+			<b>첨부파일</b> 
+			<input type="file" name="fileupload" multiple style="width: 430px;"/>
+			
+			
 			
 			</form>
+			
+
 	</c:otherwise>
 </c:choose>
 

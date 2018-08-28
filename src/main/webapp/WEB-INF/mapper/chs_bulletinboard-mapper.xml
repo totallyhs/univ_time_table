@@ -12,7 +12,7 @@
 	</select>
 	
 	<insert id="insertpost" parameterType="org.timetable.univ.model.vo.PostVo">
-		insert into post values(post_seq.nextval,#{boardNo},#{subject},#{writer},#{content},1,sysdate,#{hit},#{published})
+		insert into post values(#{no},#{boardNo},#{subject},#{writer},#{content},1,sysdate,#{hit},#{published})
 	</insert>
 	
 	<update id="boardhit" parameterType="java.util.Map">
@@ -34,4 +34,23 @@
 	<select id="replylist" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.CommentsVo">
 		select * from comments where postno = #{postno}
 	</select>
+	
+	<update id="replydelete" parameterType="java.util.Map">
+		update comments set published = #{published} where no=#{no}
+	</update>
+	
+	<insert id="fileupload" parameterType="org.timetable.univ.model.vo.PostFileVo">
+		insert into postfile values(postfile_seq.nextval,#{postNo},#{filePath},#{fileSize},#{downloadCnt},#{fileName})
+	</insert>
+	
+	<select id="getSquence" resultType="java.lang.Integer">
+		select post_seq.nextval from dual
+	</select>
+	
+	<select id="fileview" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.PostFileVo">
+		select * from postfile where postno = #{no}
+	</select>
+	
 </mapper>
+
+

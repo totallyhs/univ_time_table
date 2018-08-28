@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.timetable.univ.model.vo.BoardVo;
 import org.timetable.univ.model.vo.CommentsVo;
+import org.timetable.univ.model.vo.PostFileVo;
 import org.timetable.univ.model.vo.PostVo;
 
 @Repository
@@ -50,5 +51,24 @@ public class BulletinBoardDao {
 			return count/10+1;
 		}
 	}
+	
+	public boolean replyDelete(Map map) {
+		return template.update("chs_bulletinboard.replydelete",map)==1?true:false;
+	}
+	
+	
+	// file 
+	public boolean fileUpload(PostFileVo fvo) {
+		return template.insert("chs_bulletinboard.fileupload",fvo)==1?true:false;
+	}
+
+	public int getSquence() {
+		return template.selectOne("chs_bulletinboard.getSquence");
+	}
+	
+	public List<PostFileVo> fileView(int postno){
+		return template.selectList("chs_bulletinboard.fileview",postno);
+	}
+	
 
 }

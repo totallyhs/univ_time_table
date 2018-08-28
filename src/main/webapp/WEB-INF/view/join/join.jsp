@@ -9,8 +9,6 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>너의 계획표가 필요해: 회원가입</title>
 <!-- 최신 JQuery -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -28,11 +26,6 @@
 </head>
 <body>
 	<article class="container">
-		<div class="page-header">
-			<div class="col-md-6 col-md-offset-3">
-				<h3>회원가입</h3>
-			</div>
-		</div>
 		<div class="col-sm-6 col-md-offset-3">
 			<form role="form" action="joinadd" method="post">
 				<div class="form-group">

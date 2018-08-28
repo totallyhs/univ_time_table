@@ -23,6 +23,7 @@
 <title>${title }</title>
 </head>
 <body>
+	<!-- 가입페이지 불러올 페이지 목록들 -->
 	<div>
 		<tiles:insertAttribute name="joinlogo"/>
 	</div>

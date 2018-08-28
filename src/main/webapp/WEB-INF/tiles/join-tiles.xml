@@ -5,7 +5,7 @@
 <!-- 타일즈 겁데기 설정 -->
 	<definition name="join" template="/WEB-INF/view/layout/joinlayout.jsp">
 		<!-- 타일즈 겁데기 안에 넣을 페이지 요소들 추가 -->
-		<put-attribute name="joinlogo" value="/WEB-INF/view/login/join_logo.jsp"/>
+		<put-attribute name="joinlogo" value="/WEB-INF/view/join/join_logo.jsp"/>
 		<put-attribute name="joinpage" value="/WEB-INF/view/join/join.jsp"/>
 	</definition>
 	

@@ -10,36 +10,36 @@
 				<div class="form-group">
 					<label for="inputId">아이디</label> <input type="text"
 						class="form-control" id="inputId" name="id"
-						placeholder="아이디를 입력해 주세요" required="">
+						placeholder="아이디를 입력해 주세요" required>
 				</div>
 				<samp id="IdCheck" style="color: blue;"></samp>
 				<div class="form-group">
 					<label for="pass">비밀번호</label> <input type="password"
 						class="form-control" id="pass" class= "passch" name="pass"
-						placeholder="비밀번호를 입력해주세요" required="" >
+						placeholder="비밀번호를 입력해주세요" required>
 				</div>
 				<span id="pattensMsg" style="color: red;"></span>
 				<div class="form-group">
 					<label for="passCheck">비밀번호 확인</label> <input type="password"
 						class="form-control" id="passCheck" class= "passch"
-						placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요" required="">
+						placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요" required>
 				</div>
 				<span id="passmsg" style="color: red;"></span>
 				<div class="form-group">
 					<label for="InputName">이름</label> <input type="text"
 						class="form-control" id="InputName" name="name"
-						placeholder="이름을 입력해 주세요" required="">
+						placeholder="이름을 입력해 주세요" required>
 				</div>
 				<div class="form-group">
 					<label for="InputNickName">닉네임</label> <input type="text"
 						class="form-control" id="InputNickName" name="nickname"
-						placeholder="닉네임을 입력해 주세요" required="">
+						placeholder="닉네임을 입력해 주세요" required>
 				</div>
 				<span id="nickmsg"></span>
 				<div class="form-group">
 					<label for="input">학과</label> <select required name="department" class="form-control">
 						<option value="">선택하세요</option>
-						<c:forEach var="dt" items="${department }" begin="">
+						<c:forEach var="dt" items="${department }">
 							<option value="${dt.name }" >${dt.name }</option>
 						</c:forEach>
 					</select>

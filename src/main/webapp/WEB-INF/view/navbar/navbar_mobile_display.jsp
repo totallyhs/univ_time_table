@@ -11,7 +11,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index">테스트</a>
+          <a class="navbar-brand" href="/index">너의 시간표가 보여</a>
         </div>
         
         

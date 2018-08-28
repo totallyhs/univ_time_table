@@ -1,6 +1,7 @@
 package org.timetable.univ.tiles.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -95,6 +96,94 @@ public class SHSAdminPageController {
 		mav.setViewName("admin.classes");
 		return mav;
 	}
+	
+	// subject 수정
+	@GetMapping("/subjects/update")
+	public String adminSubjectsUpdateGetHandle(@RequestParam String no, WebRequest webRequest) {
+		webRequest.setAttribute("content", "subjects.update", WebRequest.SCOPE_REQUEST);
+		
+		// get subject and put in request
+		SubjectVo subjectVo = shsSubjectDao.getSubjectsBySno(no);
+		webRequest.setAttribute("subjectVo", subjectVo, WebRequest.SCOPE_REQUEST);
+		
+		// 전공 정보 가져오고 보내기
+		List<DepartmentVo> departmentList = shsDepartmentDao.getAllDept();
+		webRequest.setAttribute("departmentList", departmentList, WebRequest.SCOPE_REQUEST);
+		
+		return "admin.subjects.update";
+		
+	}
+	
+	@PostMapping("/subjects/update")
+	public ModelAndView adminSubjectsUpdatePostHandle(@ModelAttribute SubjectVo subjectVo, WebRequest webRequest) {
+		webRequest.setAttribute("content", "subjects.update", WebRequest.SCOPE_REQUEST);
+		ModelAndView mav = new ModelAndView();
+		
+		System.out.println(subjectVo.getNo() + "//" + subjectVo.getDepartment());
+		
+		boolean result = shsSubjectDao.updateSubject(subjectVo);
+		
+		System.out.println("updateSubject complete");
+		
+		mav.addObject("addresult", result);
+		mav.setViewName("admin.subjects.update");
+		return mav;
+	}
+	
+	// subject 삭제
+	@GetMapping("/subjects/delete")
+	public String adminSubjectsDeleteGetHandle(@RequestParam String no, WebRequest webRequest) {
+		webRequest.setAttribute("content", "subjects.delete", WebRequest.SCOPE_REQUEST);
+		
+		// get subject and put in request
+		SubjectVo subjectVo = shsSubjectDao.getSubjectsBySno(no);
+		webRequest.setAttribute("subjectVo", subjectVo, WebRequest.SCOPE_REQUEST);
+		
+		return "admin.subjects.delete";
+			
+	}
+	
+	@PostMapping("/subjects/delete")
+	public ModelAndView adminSubjectsDeletePostHandle(@RequestParam String no, WebRequest webRequest) {
+		webRequest.setAttribute("content", "subjects.delete", WebRequest.SCOPE_REQUEST);
+		ModelAndView mav = new ModelAndView();
+		
+		boolean result = shsSubjectDao.deleteSubjectByNo(no);
+		
+		System.out.println("deleteSubject complete");
+		
+		mav.addObject("addresult", result);
+		mav.setViewName("admin.subjects.delete");
+		return mav;
+	}
+	
+	// subject 삭제
+		@GetMapping("/subjects/delete/many")
+		public String adminSubjectsDeleteManyGetHandle(@RequestParam(name="checkbox") List list, WebRequest webRequest) {
+			webRequest.setAttribute("content", "subjects.delete.many", WebRequest.SCOPE_REQUEST);
+			webRequest.setAttribute("checkbox", list, WebRequest.SCOPE_REQUEST);
+			
+			return "admin.subjects.delete.many";
+				
+		}
+		
+		@PostMapping("/subjects/delete/many")
+		public ModelAndView adminSubjectsDeleteManyPostHandle(@RequestParam(name="checkbox") List<String> list, WebRequest webRequest) {
+			webRequest.setAttribute("content", "subjects.delete.many", WebRequest.SCOPE_REQUEST);
+			System.out.println(list);
+			ModelAndView mav = new ModelAndView();
+			
+			boolean result = shsSubjectDao.deleteSubjectManyByNo(list);
+			
+			System.out.println("deleteSubject complete");
+			
+			mav.addObject("addresult", result);
+			mav.setViewName("admin.subjects.delete.many");
+			return mav;
+		}
+	
+	
+	
 	
 	
 	

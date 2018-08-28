@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	
+	<definition name="courses.list" template="/WEB-INF/view/layout/courses/courses_list_layout.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
+	</definition>
+	
+	<definition name="courses.list.subjects" extends="courses.list">
+		<put-attribute name="subjects_list" value="/WEB-INF/view/courses/subjects_list.jsp"/>
+	</definition>
+	
+
+</tiles-definitions>

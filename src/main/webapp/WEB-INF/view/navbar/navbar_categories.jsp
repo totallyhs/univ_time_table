@@ -7,8 +7,11 @@
 <div class="collapse navbar-collapse" id="navbar-collapse-2">
   <ul class="nav navbar-nav navbar-right">
     <li><a href="/index">home</a></li>
+    <c:if test="${sessionScope.memberVo.id eq 'admin' }">
+    	<li><a href="/admin/dashboard">관리자</a></li>
+    </c:if>
     <li><a href="/bulletinboard?no=10">자유게시판</a></li>
-    <li><a href="#">Services</a></li>
+    <li><a href="/courses/subject/list">과목</a></li>
     <li><a href="#">Works</a></li>
     <li><a href="#">News</a></li>
     <li><a href="#">Contact</a></li>

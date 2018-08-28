@@ -18,13 +18,13 @@
   <h3>테스트중 입니다.</h3>  
         <table class="table table-striped table-hover">
             <thead>
-                <tr>
+            	<tr>
                     <th>번호</th>
                     <th style="width:600px;">제목</th>
                     <th style="width:200px">작성자</th>
                     <th style="width:1px;">날짜</th>
                     <th>조회수</th>
-                </tr>
+               </tr>
             </thead>
   		<tbody>
 		<c:forEach var="postlist" items="${postlist }">

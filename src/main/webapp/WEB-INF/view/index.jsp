@@ -33,6 +33,6 @@
 				<a href="/login/logout"><button id="logoutBtn">로그아웃</button></a>
 			</c:otherwise>
 		</c:choose>
-		<br/><span id="anyUse"></span>	
+		<br/><span id="anyUse" ></span>	
 	</div>
 

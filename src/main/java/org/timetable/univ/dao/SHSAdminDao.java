@@ -11,10 +11,12 @@ public class SHSAdminDao {
 	@Autowired
 	SqlSessionTemplate template;
 	
+	// VISITOR COUNT
 	public boolean updateVisitorCnt(Integer cnt) {
 		int success = template.update("shs_admin.updateVisitorCnt", cnt);
 		return (success == 1);
 	}
+	
 	
 	public VisitorCountVo getVisitorCountVo() {
 		return template.selectOne("shs_admin.getVisitorCountVo", null);

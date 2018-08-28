@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="timetable" template="/WEB-INF/view/layout/timetable/timetable_layout.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
+		<put-attribute name="timetableUI" value="/WEB-INF/view/timetable/timetable.jsp"/>
+	</definition>
+	
+</tiles-definitions>

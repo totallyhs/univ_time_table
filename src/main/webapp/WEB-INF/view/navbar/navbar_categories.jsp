@@ -32,7 +32,7 @@
        <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
          <form class="navbar-form navbar-right form-inline" role="form" action="/login/login" method="post" autocomplete="off">
            <div class="form-group">
-             <label class="sr-only" for="Email">Email</label>
+             <label class="sr-only" for="Email">Id</label>
              <input type="text" class="form-control" id="id" name="id" placeholder="User Id" autofocus required />
            </div>
            <div class="form-group">
@@ -40,6 +40,7 @@
              <input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required />
            </div>
            <button type="submit" class="btn btn-success">Sign in</button>
+           <a href="/join"><button type="button" class="btn btn-link">Sign up</button></a>
          </form>
        </div>
      </c:when>

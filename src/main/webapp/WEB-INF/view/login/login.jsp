@@ -23,8 +23,8 @@
                				<div style="text-align: center; margin-bottom: 10px;"><small style="color: red">아이디나 비밀번호를 확인해주세요.</small></div>
                			</c:if>
                			<div id="tabs" data-tabs="tabs">
-               				<p class="text-center"><a href="#register" data-toggle="tab">Need an Account?</a></p>
-               				<p class="text-center"><a href="#select" data-toggle="tab">Select Account</a></p>
+               				<p class="text-center"><a href="/join">Need an Account?</a></p>
+               				<!--  <p class="text-center"><a href="#select" data-toggle="tab">Select Account</a></p>-->
               				</div>
 						</div>
 						<!-- 

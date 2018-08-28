@@ -21,7 +21,7 @@ public class JoinController {
 	LKHMemberDao memberDao;
 	
 	//가입 페이지에 학과 정보들 받아오는 메소드
-	@GetMapping("join")
+	@GetMapping("/join")
 	public ModelAndView joinDepartmentHandle() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("join");
@@ -35,7 +35,7 @@ public class JoinController {
 		return mav;
 	}
 	//가입 요청시 가입결과 반환 하는 메소드
-	@PostMapping("joinadd")
+	@PostMapping("/joinadd")
 	public ModelAndView joinAddPostHandle(@ModelAttribute MemberVo vo, @RequestParam Map data, WebRequest webRequest) {
 		ModelAndView mav = new ModelAndView();
 		int r = memberDao.addJoin(vo);

@@ -3,27 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 최신 JQuery -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</head>
 <body>
 	<article class="container">
 		<div class="col-sm-6 col-md-offset-3">
@@ -69,7 +48,7 @@
 					<button type="submit" id="joinbt" class="btn btn-primary">
 						회원가입<i class="fa fa-check spaceLeft"></i>
 					</button>
-					<button type="submit" class="btn btn-warning">
+					<button type="button" id="cancelBtn" class="btn btn-primary">
 						가입취소<i class="fa fa-times spaceLeft"></i>
 					</button>
 				</div>
@@ -160,6 +139,10 @@
 				button.disabled = false;
 			}
 		});
+		
+		// 가입취소 눌렀을때 뒤로가기
+		$("#cancelBtn").on("click", function(){
+			window.history.back();
+		});
+		
 	</script>
-</body>
-</html>

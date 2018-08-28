@@ -6,7 +6,12 @@
 	<!-- Select -->
 	<select id="getAllSubjects" resultType="org.timetable.univ.model.vo.SubjectVo">
 		select * from subject order by no asc
-	</select> 
+	</select>
+	
+	<select id="getAllSubjectsWithDeptName" resultType="java.util.HashMap">
+		select s.*, d.name departmentname from subject s 
+			left join department d on s.department = d.no order by s.no asc
+	</select>
 	
 	<select id="getSubjectsByDept" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.SubjectVo">
 		select * from subject where department=#{departmentNo} order by no asc
@@ -14,4 +19,24 @@
 	<select id="getSubjectsBySno" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.SubjectVo">
 		select * from subject where no=#{sno}
 	</select>
+	
+		
+	<!-- Update Subject -->
+	<update id="updateSubject" parameterType="org.timetable.univ.model.vo.SubjectVo">
+		update subject set name = #{name}, units = #{units}, 
+		  grade = #{grade}, department = #{department}, info = #{info} where no=#{no}
+	</update>
+	
+	<!-- Delete Subject -->
+	<delete id="deleteSubjectByNo" parameterType="java.lang.String">
+		delete from subject where no=#{no}
+	</delete>
+	
+	<delete id="deleteSubjectManyByNo" parameterType="java.util.HashMap">
+		delete from subject where no in
+		<foreach collection="list" item="item" separator="," open="(" close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
 </mapper>

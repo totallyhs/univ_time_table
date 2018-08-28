@@ -55,6 +55,15 @@
 							<c:when test="${content eq 'classes' }">
 								<tiles:insertAttribute name="classes_adding"/>
 							</c:when>
+							<c:when test="${content eq 'subjects.update' }">
+								<tiles:insertAttribute name="subjects_update"/>
+							</c:when>
+							<c:when test="${content eq 'subjects.delete' }">
+								<tiles:insertAttribute name="subjects_delete"/>
+							</c:when>
+							<c:when test="${content eq 'subjects.delete.many' }">
+								<tiles:insertAttribute name="subjects_delete_many"/>
+							</c:when>
 						</c:choose>
 					
 					</div>

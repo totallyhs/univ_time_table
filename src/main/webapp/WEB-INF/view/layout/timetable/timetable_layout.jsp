@@ -24,10 +24,19 @@
 <body>
 	<tiles:insertAttribute name="navbar"/>
 	
+	<c:choose>
+	<c:when test="${content eq 'result' }">
 	<div class="container" id="timetable">
-		<tiles:insertAttribute name="timetableUI"/>
+		<tiles:insertAttribute name="resulttimetableUI"/>
 	</div>
+	</c:when>
+	<c:when test="${content eq 'search' }">
+	<div class="container" id="timetable">
+		<tiles:insertAttribute name="searchtimetableUI"/>
+	</div>
+	</c:when>
 	
 
+	</c:choose>
 </body>
 </html>

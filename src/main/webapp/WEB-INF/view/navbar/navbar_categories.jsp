@@ -12,7 +12,7 @@
     </c:if>
     <li><a href="/bulletinboard?no=10">자유게시판</a></li>
     <li><a href="/courses/subject/list">과목</a></li>
-    <li><a href="#">Works</a></li>
+    <li><a href="/timetable/search">시간표 만들기</a></li>
     <li><a href="#">News</a></li>
     <li><a href="#">Contact</a></li>
     <li>

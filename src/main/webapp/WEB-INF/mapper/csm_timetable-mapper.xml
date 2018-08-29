@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="csm_timetable">
+	<!-- 모든 subject  -->
+	<select id="allSubjectList" resultType="org.timetable.univ.model.vo.SubjectVo">
+		select * from subject
+	</select>
+	<!-- subject no 에 해당하는 class no 뽑기-->
+	<select id="subjectClassNoList" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select no from class where subjectno=#{subjectno}
+	</select>
+	<!-- class no 에 해당하는 class들 -->
+	<select id="classList" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.ClassVo">
+		select * from class where no = #{no}
+	</select>
+
+
+</mapper>

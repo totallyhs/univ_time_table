@@ -27,6 +27,7 @@
                </tr>
             </thead>
   		<tbody>
+  		
 		<c:forEach var="postlist" items="${postlist }">
 		
   			<tr>
@@ -36,7 +37,6 @@
   				<th><fmt:formatDate value="${postlist.writtenDate }" pattern="yyyy-MM-dd [HH:MM]"/></th>
   				<th>${postlist.hit }</th>
   			</tr>
-		
 		</c:forEach>
   		</tbody>
         </table>

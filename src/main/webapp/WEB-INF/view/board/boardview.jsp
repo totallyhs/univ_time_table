@@ -26,6 +26,9 @@
 	</c:when>
 	<c:otherwise>
 		<div class="container">
+			<c:if test="${sessionScope.memberVo.nickname eq  PostVo.writer}">
+ 			<a href="/postdelete?no=${boardno }&postno=${PostVo.no}"><button type="submit" class="[ btn btn-success ]">개시글 삭제</button></a>
+ 			</c:if>
 	<h2>${PostVo.no }postvo.no test</h2>
   	<h2>${PostVo.writer }</h2> <br/>
   	작성일 : <fmt:formatDate value="${PostVo.writtenDate }" pattern="yyyy-MM-dd"/>

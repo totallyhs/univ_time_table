@@ -20,11 +20,11 @@
 	</update>
 	
 	<select id="boardpage" parameterType="java.util.Map" resultType="org.timetable.univ.model.vo.PostVo">
-	select s.* from (select rownum r,t.* from (select * from post where boardno=#{no} order by no desc)t)s where s.r between #{start} and #{end}
+	select s.* from (select rownum r,t.* from (select * from post where boardno=#{no} and published='y' order by no desc)t)s where s.r between #{start} and #{end}
 	</select>
 	
 	<select id="pagecount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-	select count(*) from post where boardno=#{no}
+	select count(*) from post where boardno=#{no} and published='y'
 	</select>
 	
 	<insert id="insertreply" parameterType="org.timetable.univ.model.vo.CommentsVo">
@@ -37,6 +37,10 @@
 	
 	<update id="replydelete" parameterType="java.util.Map">
 		update comments set published = #{published} where no=#{no}
+	</update>
+	
+	<update id="postdelete" parameterType="java.util.Map">
+		update post set published = #{published} where no=#{no}
 	</update>
 	
 	<insert id="fileupload" parameterType="org.timetable.univ.model.vo.PostFileVo">

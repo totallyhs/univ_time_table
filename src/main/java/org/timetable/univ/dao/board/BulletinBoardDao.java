@@ -56,6 +56,10 @@ public class BulletinBoardDao {
 		return template.update("chs_bulletinboard.replydelete",map)==1?true:false;
 	}
 	
+	public boolean postDelete(Map map) {
+		return template.update("chs_bulletinboard.postdelete",map)==1?true:false;
+	}
+	
 	
 	// file 
 	public boolean fileUpload(PostFileVo fvo) {

@@ -83,6 +83,9 @@
 				}
 			})
 		});
+		
+		
+		
 		$("#InputNickName").on("change", function() {
 			$.ajax({
 				url : "/joinNickCheck", // 중복체크할 경로

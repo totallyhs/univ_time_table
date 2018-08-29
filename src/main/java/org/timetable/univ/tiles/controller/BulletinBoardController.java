@@ -39,7 +39,6 @@ public class BulletinBoardController {
 	
 	@Autowired
 	Gson gson;
-	
 	// 최초 상단바에서 자유게시판 눌렀을 때 세팅해주는 컨트롤러
 	@RequestMapping("/bulletinboard")
 	public ModelAndView bulletinBoardHandle(@RequestParam(name="no") int no,@RequestParam(name="page", defaultValue="1") int page) {
@@ -205,6 +204,20 @@ public class BulletinBoardController {
 		return "redirect:/boardview?no="+postno;
 	}
 	
+	@RequestMapping("/postdelete")
+	public String boardDelete(@RequestParam Map<String,String> map) {
+		int no = Integer.parseInt(map.get("no"));
+		int postno = Integer.parseInt(map.get("postno"));
+		Map<String,Object> put = new HashMap();
+		put.put("published", "n");
+		put.put("no", postno);
+		boolean result = bulletinboadrdao.postDelete(put);
+		if(result) {
+			System.out.println("in");
+		}
+		return "redirect:/bulletinboard?no="+no;
+		
+	}
 
 	
 }

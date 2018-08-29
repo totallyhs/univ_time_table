@@ -5,6 +5,7 @@ public class MailFileVo {
 	private int mailNo;
 	private Double fileSize;
 	private String filePath;
+	private String fileName;
 	
 	public int getNo() {
 		return no;
@@ -30,4 +31,12 @@ public class MailFileVo {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	
+	
 }

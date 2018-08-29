@@ -24,19 +24,15 @@
 	
 	<!-- compose
 	<link href="/css/mail_compose.css" rel="stylesheet" type="text/css"/> -->
+	
+	<!-- fileupload -->
+	<link href="/css/mail-fileupload.css" rel="stylesheet" type="text/css"/>
+	<script src="/js/mail-fileupload.js"></script>
 
 </head>
 <body style="margin-top: 0px;">
 <div class="container-fluid">
-	<c:choose>
-		<c:when test="${logged }">
-			<tiles:insertAttribute name="navprofile"/>
-		</c:when>
-		<c:otherwise>
-			<tiles:insertAttribute name="navlogin"/>
-		</c:otherwise>
-	
-	</c:choose>	
+	<tiles:insertAttribute name="nav"/>
 </div>
 	
 	<div class="container">

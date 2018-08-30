@@ -15,6 +15,8 @@
 	<select id="classList" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.ClassVo">
 		select * from class where no = #{no}
 	</select>
-
+	<select id="subjectClassList" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.ClassVo">
+		select * from class where subjectno=#{subjectno}
+	</select>
 
 </mapper>

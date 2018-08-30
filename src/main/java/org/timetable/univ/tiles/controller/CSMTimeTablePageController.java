@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.timetable.univ.dao.CSMTimeTableDao;
 import org.timetable.univ.dao.SHSSubjectDao;
+import org.timetable.univ.model.vo.ClassVo;
 import org.timetable.univ.model.vo.SubjectVo;
 
 @Controller
@@ -17,7 +19,8 @@ import org.timetable.univ.model.vo.SubjectVo;
 public class CSMTimeTablePageController {
 	@Autowired
 	SHSSubjectDao subjectdao;
-	
+	@Autowired
+	CSMTimeTableDao timetabledao;
 	
 	@RequestMapping("/result")
 	public String timetableResultHandle(WebRequest webRequest) {
@@ -32,9 +35,10 @@ public class CSMTimeTablePageController {
 		
 		ModelAndView mav = new ModelAndView();
 		List<SubjectVo> subjectList = subjectdao.getAllSubjects();
-		Map<String, Object> subjectMap = new HashMap();
 		
-		mav.addObject("content","search");
+		for(int i=0;i<subjectList.size();i++) {
+			subjectList.get(i).setClassList(timetabledao.getSubjectClassList(subjectList.get(i).getNo()));
+		}
 		mav.addObject("subjectList", subjectList);
 		mav.setViewName("timetable");
 		return mav;

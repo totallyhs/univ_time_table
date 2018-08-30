@@ -22,5 +22,8 @@ public class CSMTimeTableDao {
 	public List<ClassVo> getClassList(int classNo){
 		return template.selectList("csm_timetable.classList",classNo);
 	}
+	public List<ClassVo> getSubjectClassList(String subjectNo){
+		return template.selectList("csm_timetable.subjectClassList",subjectNo);
+	}
 	
 }

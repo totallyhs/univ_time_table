@@ -52,11 +52,11 @@
 			</tr>
 			<tr>
 				<td class='time'>${i }.30</td>
-				<td id='1${i }30'></td>
-				<td id='2${i }30'></td>
-				<td id='3${i }30'></td>
-				<td id='4${i }30'></td>
-				<td id='5${i }30'></td>
+				<td id='1${i }50'></td>
+				<td id='2${i }50'></td>
+				<td id='3${i }50'></td>
+				<td id='4${i }50'></td>
+				<td id='5${i }50'></td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -64,22 +64,41 @@
 	<div class="box box-c">
 		<h1>과목 리스트</h1>
 		<c:forEach var="subject" items="${subjectList }">
-			<tr>
-				<input id='${subject.no }' type="checkbox"/>
-				<td>학수번호 : ${subject.no }</td>
-				<td>과목 명 : ${subject.name }</td>
+			<div class='${subject.no }'>
+				<input type="checkbox"/>
+				학수번호 : ${subject.no } 과목 명 : ${subject.name }
+				<c:forEach var="classs" items="${subject.classList }">
+					<div data="${classs.no }" id='${classs.id }-${classs.day }${classs.starttime }' class='${classs.no } class' >
+						수업번호 : ${classs.no } 교수님 : ${classs.professor } 수업시간 : ${classs.starttime }~${classs.endtime }
+					</div>
+				</c:forEach>
 				
-			</tr>
 			<hr/>
+			</div>
 		</c:forEach>
-
 	</div>
 </div>
-<button id='example'>버튼</button>
+<button id='example' >버튼</button>
 <script>
-	var ex = document.getElementById('COE3052');
-	var ex2 = document.getElementById('1900');
-	ex.addEventListener('mouseover', function() {
-		ex2.style.backgroundColor = 'green';
+	$(".class").on("mouseover",function(){
+		var data=$(this).attr("data");
+		
+		$(".class").each(function(){
+			if($(this).hasClass(data)){
+				console.log($(this).attr("id"));
+				$("#"+$(this).attr("id").split("-")[1]).css("backgroundColor","green");
+			}
+		});
+		
+	}).on("mouseout",function(){
+var data=$(this).attr("data");
+		
+		$(".class").each(function(){
+			if($(this).hasClass(data)){
+				console.log($(this).attr("id"));
+				$("#"+$(this).attr("id").split("-")[1]).css("backgroundColor","white");
+			}
+		});
+		
 	});
 </script>

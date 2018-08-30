@@ -1,5 +1,7 @@
 package org.timetable.univ.model.vo;
 
+import java.util.List;
+
 public class SubjectVo {
 	private String no;
 	private String name;
@@ -7,7 +9,14 @@ public class SubjectVo {
 	private int grade;
 	private int department;
 	private String info;
+	private List<ClassVo> classList;
 	
+	public List<ClassVo> getClassList() {
+		return classList;
+	}
+	public void setClassList(List<ClassVo> classList) {
+		this.classList = classList;
+	}
 	public String getNo() {
 		return no;
 	}

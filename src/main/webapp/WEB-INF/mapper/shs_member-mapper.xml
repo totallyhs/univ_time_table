@@ -12,4 +12,8 @@
 		select * from member where id=#{id} and pass=#{pass}
 	</select>
 	
+	<select id="findAlikeId" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.MemberVo">
+		select * from member where id like #{id}
+	</select>
+	
 </mapper>

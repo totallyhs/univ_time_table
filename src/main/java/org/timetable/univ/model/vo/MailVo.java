@@ -7,7 +7,7 @@ public class MailVo {
 	private String sender;
 	private String receiver;
 	private String title;
-	private String content;
+	private String contents;
 	private Date sentDate;
 	private String seen;
 	
@@ -35,11 +35,11 @@ public class MailVo {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getContent() {
-		return content;
+	public String getContents() {
+		return contents;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 	public Date getSentDate() {
 		return sentDate;

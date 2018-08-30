@@ -5,8 +5,7 @@
 <tiles-definitions>
 	
 	<definition name="mail" template="/WEB-INF/view/layout/mail/mail_layout.jsp">
-		<put-attribute name="navlogin" value="/WEB-INF/view/navbar/sign_in_nav.jsp"/>
-		<put-attribute name="navprofile" value="/WEB-INF/view/navbar/profile_navbar.jsp"/>
+		<put-attribute name="nav" value="/WEB-INF/view/navbar/navbar.jsp"/>
 		<put-attribute name="mail_menu" value="/WEB-INF/view/mail/mail_menu.jsp"/>
 	</definition>
 	
@@ -16,6 +15,10 @@
 	
 	<definition name="mail.compose" extends="mail">
 		<put-attribute name="compose" value="/WEB-INF/view/mail/compose_mail.jsp"/>
+	</definition>
+	
+	<definition name="mail.view" extends="mail">
+		<put-attribute name="view" value="/WEB-INF/view/mail/view_mail.jsp"/>
 	</definition>
 
 </tiles-definitions>

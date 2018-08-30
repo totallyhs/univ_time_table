@@ -16,13 +16,15 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	<!---->
+	<!-- timetable -->
 	<link href="/css/timetable.css" rel="stylesheet" type="text/css"/>
 	<!-- navbar -->
 	<link href="/css/navbar.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-	<tiles:insertAttribute name="navbar"/>
+	<div id="navb">
+		<tiles:insertAttribute name="navbar"/>	
+	</div>
 	
 	<c:choose>
 	<c:when test="${content eq 'result' }">

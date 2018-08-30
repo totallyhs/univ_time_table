@@ -14,7 +14,6 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-  <script src="/js/mail_compose.js"></script>
 	
 	<!-- navbar -->
 	<link href="/css/navbar.css" rel="stylesheet" type="text/css"/>
@@ -23,11 +22,11 @@
 	<link href="/css/inbox.css" rel="stylesheet" type="text/css"/>
 	
 	<!-- compose
-	<link href="/css/mail_compose.css" rel="stylesheet" type="text/css"/> -->
+	<link href="/css/maial_compose.css" rel="stylesheet" type="text/css"/> -->
 	
 	<!-- fileupload -->
 	<link href="/css/mail-fileupload.css" rel="stylesheet" type="text/css"/>
-	<script src="/js/mail-fileupload.js"></script>
+	<!--  <script src="/js/mail-fileupload.js"></script>-->
 
 </head>
 <body style="margin-top: 0px;">

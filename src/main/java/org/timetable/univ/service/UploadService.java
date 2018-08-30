@@ -59,7 +59,6 @@ public class UploadService {
 		mailFileVo.setNo(no);
 		mailFileVo.setMailNo(mailno);
 		mailFileVo.setFileSize(file.getSize());
-		mailFileVo.setFilePath(ctx.getContextPath() + "/mail/" + mailno + "/" + fileName);
 		mailFileVo.setFileName(fileName);
 		System.out.println(mailFileVo.toString());
 		

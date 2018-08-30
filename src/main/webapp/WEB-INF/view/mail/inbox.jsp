@@ -71,7 +71,7 @@
                 <div class="tab-pane fade in active" id="home">
                     <div class="list-group">
                     	<c:forEach items="${mailList }" var="m">
-	                        <a href="#" class="list-group-item">
+	                        <a href="/mail/view?no=${m.NO }" class="list-group-item">
     	                        <div class="checkbox">
        	                         <label>
        	                             <input type="checkbox">
@@ -89,8 +89,8 @@
                	             </span> 
                 	         <span class="badge">
                 	         	<c:choose>
-                	         		<c:when test="${today.time - m.SENTDATE < (1000*60*60*24) }">
-		                	         	<fmt:formatDate value="${m.SENTDate }" pattern="hh:mm a"/>
+                	         		<c:when test="${today.time - m.SENTDATE.time < (1000*60*60*24) }">
+		                	         	<fmt:formatDate value="${m.SENTDATE }" pattern="hh:mm"/>
                 	         		</c:when>
                 	         		<c:otherwise>
                 	         			<fmt:formatDate value="${m.SENTDATE }" type="date"/>

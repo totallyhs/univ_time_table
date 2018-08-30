@@ -25,18 +25,32 @@ public class SHSMailDao {
 		return template.selectList("shs_mail.getAllMails", null);
 	}
 	
-	public List<Map<String, Object>> getAllMailsWithFilesCount() {
-		return template.selectList("shs_mail.getAllMailsWithFilesCount", null);
+	public List<Map<String, Object>> getAllMailsWithFilesCount(String receiver) {
+		return template.selectList("shs_mail.getAllMailsWithFilesCount", receiver);
+	}
+	
+	public boolean saveMail(MailVo mailVo) {
+		int success = template.insert("shs_mail.saveMail", mailVo);
+		return (success == 1);
+	}
+	
+	public MailVo getMailByNo(int no) {
+		return template.selectOne("shs_mail.getMailByNo", no);
 	}
 	
 	
 	// Mail Files
 	
 	public int getMailfileSeq() {
-		return template.selectOne("shs_mail.getAmilfileSeq", null);
+		return template.selectOne("shs_mail.getMailfileSeq", null);
 	}
 	
 	public List<MailFileVo> getFilesByMailNo(int mailno) {
 		return template.selectList("shs_mail.getFilesByMailNo", mailno);
+	}
+	
+	public boolean saveMailFiles(MailFileVo mailFileVo) {
+		int success = template.insert("shs_mail.saveMailFiles", mailFileVo);
+		return (success == 1);
 	}
 }

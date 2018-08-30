@@ -1,13 +1,14 @@
 package org.timetable.univ.service;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.timetable.univ.dao.SHSMailDao;
+import org.timetable.univ.model.vo.MailFileVo;
 import org.timetable.univ.model.vo.PostFileVo;
 
 @Service
@@ -16,6 +17,9 @@ public class UploadService {
 	
 	@Autowired
 	ServletContext ctx;
+	
+	@Autowired
+	SHSMailDao shsMailDao;
 	
 	public PostFileVo uploadHandle(MultipartFile files,int postno) throws Exception {
 		PostFileVo vo = new PostFileVo();
@@ -35,5 +39,35 @@ public class UploadService {
 			System.out.println(vo);
 			
 			return vo;
+	}
+	
+	public MailFileVo mailFileUploadHanlde(MultipartFile file, int mailno) throws Exception {
+		MailFileVo mailFileVo = new MailFileVo();
+		File dir = new File(ctx.getRealPath("/mail/"), String.valueOf(mailno));
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		
+		String fileName = file.getOriginalFilename();
+		int no = shsMailDao.getMailfileSeq();
+		System.out.println(no);
+		
+		
+		File dest = new File(dir, fileName); //
+		file.transferTo(dest);
+		
+		mailFileVo.setFileName(fileName);
+		System.out.println(fileName);
+		mailFileVo.setFilePath(ctx.getContextPath() + "/mail/" + mailno + "/" + fileName);
+		System.out.println(mailFileVo.getFilePath());
+		mailFileVo.setFileSize((double)file.getSize());
+		System.out.println(mailFileVo.getFileSize());
+		mailFileVo.setMailNo(mailno);
+		System.out.println(mailno);
+		mailFileVo.setNo(no);
+		
+		return mailFileVo;
+		
+		
 	}
 }

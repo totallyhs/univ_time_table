@@ -14,12 +14,12 @@
         console.log(files)
     }
 
-    uploadForm.addEventListener('submit', function(e) {
-        var uploadFiles = document.getElementById('js-upload-files').files;
-        e.preventDefault()
+   // uploadForm.addEventListener('submit', function(e) {
+   //     var uploadFiles = document.getElementById('js-upload-files').files;
+   //     e.preventDefault()
 
-        startUpload(uploadFiles)
-    })
+   //    startUpload(uploadFiles)
+   // })
 
     dropZone.ondrop = function(e) {
         e.preventDefault();

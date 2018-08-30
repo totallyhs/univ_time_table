@@ -12,10 +12,21 @@
 		select * from mail order by no desc
 	</select>
 	
-	<select id="getAllMailsWithFilesCount" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-		select m.*, mf.c from mail m
+	<select id="getAllMailsWithFilesCount" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select m.*, mf.c from 
+			(select * from mail where receiver=#{receiver}) m 
 			left join (select count(*) c, mailno from mailfile group by mailno) mf on m.no = mf.mailno
 	</select>
+	
+	<select id="getMailByNo" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.MailVo">
+		select * from mail where no=#{no}
+	</select>
+	
+	<!-- insert MAIL -->
+	<insert id="saveMail" parameterType="org.timetable.univ.model.vo.MailVo">
+		insert into mail values(#{no}, #{sender}, #{receiver}, #{title}, #{contents}, #{sentDate}, #{seen})
+	</insert>
+	
 	
 	<!-- select Files -->
 	<select id="getMailfileSeq" resultType="java.lang.Integer">
@@ -26,6 +37,11 @@
 		select * from mailfile where mailno=#{mailno}
 	</select>
 	
+	
+	<!-- insert Files -->
+	<insert id="saveMailFiles" parameterType="org.timetable.univ.model.vo.MailFileVo">
+		insert into mailfile values(#{no}, #{mailNo}, #{fileSize}, #{filePath}, #{fileName})
+	</insert>
 	
 	
 </mapper>

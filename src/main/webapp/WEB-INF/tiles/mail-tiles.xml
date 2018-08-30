@@ -16,5 +16,9 @@
 	<definition name="mail.compose" extends="mail">
 		<put-attribute name="compose" value="/WEB-INF/view/mail/compose_mail.jsp"/>
 	</definition>
+	
+	<definition name="mail.view" extends="mail">
+		<put-attribute name="view" value="/WEB-INF/view/mail/view_mail.jsp"/>
+	</definition>
 
 </tiles-definitions>

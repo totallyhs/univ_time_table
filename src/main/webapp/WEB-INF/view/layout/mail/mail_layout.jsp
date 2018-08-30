@@ -40,7 +40,7 @@
         <div class="col-sm-3 col-md-2">
        	  <tiles:insertAttribute name="mail_menu"/>
        	 </div>
-		<!-- inbox or compose-->
+		<!-- inbox or compose or view-->
 		<div class="col-sm-9 col-md-10">
 		<c:choose>
 			<c:when test="${fn:endsWith(requestScope.uri, 'inbox') }">
@@ -49,6 +49,9 @@
 			<c:when test="${fn:endsWith(requestScope.uri, 'compose') }">
 				<tiles:insertAttribute name="compose"/>
 			</c:when>	
+			<c:when test="${fn:endsWith(requestScope.uri, 'view') }">
+				<tiles:insertAttribute name="view"/>
+			</c:when>
 		</c:choose>
 		</div>
       </div>

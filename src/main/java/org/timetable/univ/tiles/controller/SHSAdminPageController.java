@@ -1,5 +1,6 @@
 package org.timetable.univ.tiles.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,22 @@ public class SHSAdminPageController {
 	
 	@Autowired
 	Gson gson;
+	
+	// subject 수정
+	@GetMapping("/subjects/list")
+	public String adminSubjectsListGetHandle(WebRequest webRequest) {
+		webRequest.setAttribute("content", "subjects.list", WebRequest.SCOPE_REQUEST);				
+				
+		// get all subjects and put in request
+		List<HashMap> subjectsList =  shsSubjectDao.getAllSubjectsWithDeptName();
+		webRequest.setAttribute("subjectsList", subjectsList, WebRequest.SCOPE_REQUEST);
+		
+		return "admin.subjects.list";
+	}
+	
+	
+	
+	
 	
 	@GetMapping("/classes/add")
 	public String adminClassesAddGetHandle(WebRequest webRequest) {

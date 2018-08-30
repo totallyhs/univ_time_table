@@ -13,8 +13,8 @@
 
   <!-- jQuery && Bootstrap -->
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 	
 	<!-- navbar -->
 	<link href="/css/navbar.css" rel="stylesheet" type="text/css"/>
@@ -29,6 +29,10 @@
 	<c:if test="${content eq 'subjects' }">
 	<link href="/css/admin-classes-adding.css" rel="stylesheet" type="text/css"/>
 	</c:if>
+	
+	<!-- list css and js -->
+	<link href="/css/subjects-classes-list.css" rel="stylesheet" type="text/css"/>
+	<script src="/js/subjects-classes-list.js"></script>
 
 </head>
 <body style="min-height: 500px; background: rgba(48, 46, 45, 1);">
@@ -48,6 +52,9 @@
 						<c:choose>
 							<c:when test="${content eq 'dashboard' }">
 								<tiles:insertAttribute name="dashboard"/>
+							</c:when>
+							<c:when test="${content eq  'subjects.list'}">
+								<tiles:insertAttribute name="subjects_list"/>
 							</c:when>
 							<c:when test="${content eq 'subjects' }">
 								<tiles:insertAttribute name="subjects_adding"/>

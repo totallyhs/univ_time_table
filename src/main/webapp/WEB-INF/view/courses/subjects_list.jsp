@@ -6,9 +6,6 @@
 <!-- https://bootsnipp.com/snippets/featured/panel-table-with-filters-per-column -->
 
 <div class="container">
-    <h3>The columns titles are merged with the filters inputs thanks to the placeholders attributes</h3>
-    <hr>
-    <p>Inspired by this <a href="http://bootsnipp.com/snippets/featured/panel-tables-with-filter">snippet</a></p>
     <div class="row">
         <div class="panel panel-primary filterable">
             <div class="panel-heading">

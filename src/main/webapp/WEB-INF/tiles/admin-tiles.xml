@@ -14,10 +14,14 @@
 		<put-attribute name="dashboard" value="/WEB-INF/view/admin/admin_dashboard.jsp"/>
 	</definition>
 	
+	<!-- subject list -->
+	<definition name="admin.subjects.list" extends="admin">
+		<put-attribute name="subjects_list" value="/WEB-INF/view/courses/subjects_list.jsp"/>
+	</definition>
+ 	
 	<definition name="admin.subjects" extends="admin">
 		<put-attribute name="subjects_adding" value="/WEB-INF/view/admin/subjects_adding_page.jsp"/>
 	</definition>
-	
 	
 	<definition name="admin.classes" extends="admin">
 		<put-attribute name="classes_adding" value="/WEB-INF/view/admin/classes_adding_page.jsp"/>

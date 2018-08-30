@@ -13,27 +13,45 @@
 	display: table-cell;
 }
 
-.box-a {
-	width: 20%;
-}
-
-.box-b {
-	width: 20%
-}
-
-.box-c {
-	
-}
 </style>
 <!-- / College Timetable -->
+<!-- 시간표 만들기 중앙 타이틀 -->
 <div class="row">
-	<div class="box box-a">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-4">
+		<div class="box box-a">
 		<h1>시간표 만들기</h1>
 	</div>
-	<div class="box box-b">
-		<table border='0' cellpadding='0' cellspacing='0'>
-			<tr class='days'>
-				<th></th>
+	</div>
+	<div class="col-sm-4"></div>
+</div>
+
+<!-- 시간표 && 과목 리스트 row -->
+<div class="row">
+	<div class="box box-b col-sm-7">
+		<h2>과목 리스트</h2>
+		<c:forEach var="subject" items="${subjectList }">
+			<div class='${subject.no }'>
+				<input type="checkbox"/>
+				학수번호 : ${subject.no } 과목 명 : ${subject.name }
+				<c:forEach var="classs" items="${subject.classList }">
+					<div data="${classs.no }" id='${classs.id }-${classs.day }${classs.starttime }' class='${classs.no } class' >
+						수업번호 : ${classs.no } 교수님 : ${classs.professor } 수업시간 : ${classs.starttime }~${classs.endtime }
+					</div>
+				</c:forEach>
+				
+			<hr/>
+			</div>
+		</c:forEach>
+	</div>
+	<!-- 중간 공백 -->
+	<div class="col-sm-1"></div>
+	<h2></h2>
+		
+	<div class="box box-c col-sm-4">
+		<table border='0' cellpadding='0' cellspacing='0' style="max-height: 700; max-width: 700px; text-align: center;">
+			<tr class='days' style="width: 100%;" align="center">
+				<th style="width: 15%;"></th>
 				<th>월</th>
 				<th>화</th>
 				<th>수</th>
@@ -61,23 +79,8 @@
 			</c:forEach>
 		</table>
 	</div>
-	<div class="box box-c">
-		<h1>과목 리스트</h1>
-		<c:forEach var="subject" items="${subjectList }">
-			<div class='${subject.no }'>
-				<input type="checkbox"/>
-				학수번호 : ${subject.no } 과목 명 : ${subject.name }
-				<c:forEach var="classs" items="${subject.classList }">
-					<div data="${classs.no }" id='${classs.id }-${classs.day }${classs.starttime }' class='${classs.no } class' >
-						수업번호 : ${classs.no } 교수님 : ${classs.professor } 수업시간 : ${classs.starttime }~${classs.endtime }
-					</div>
-				</c:forEach>
-				
-			<hr/>
-			</div>
-		</c:forEach>
-	</div>
 </div>
+
 <button id='example' >버튼</button>
 <script>
 	$(".class").on("mouseover",function(){

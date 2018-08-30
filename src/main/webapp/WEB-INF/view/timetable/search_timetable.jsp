@@ -37,7 +37,7 @@
 					<div data="${classs.no }"
 						id='${classs.id }-${classs.day }${classs.starttime }-${classs.day }${classs.endtime }'
 						class='${classs.no } class'>
-						<input type="checkbox" class='${classs.no }' id='${classs.no }' />수업번호
+						<input type="checkbox" data="${classs.id }-${classs.day }${classs.starttime }-${classs.day }${classs.endtime }" class='${classs.no }' id='${classs.no }' />수업번호
 						: ${classs.no } 교수님 : ${classs.professor } 수업시간 :
 						${classs.starttime }~${classs.endtime }
 					</div>
@@ -68,7 +68,7 @@
 				<td id='20900'></td>
 				<td id='30900'></td>
 				<td id='40900'></td>
-				<td id='50900'></td>
+				<td id='50900' style="background-color: green;"></td>
 			</tr>
 			<tr>
 				<td class='time'>09.30</td>
@@ -104,26 +104,48 @@
 <button id='example'>버튼</button>
 <script>
 	$(".class").on("mouseover",function() {
-				var data = $(this).attr("data");
-				$(".class").each(function() {
+
+		var data = $(this).attr("data");
+				
+		$(".class").each(function() {
+					
 							if ($(this).hasClass(data)) {
 								var start = parseInt($(this).attr("id").split("-")[1]);
 								var end = parseInt($(this).attr("id").split("-")[2]);
+								var cid = parseInt($(this).attr("id").split("-")[0]);
 								console.log(start+"/"+end);
 								if(start===1900||start===2900||start===3900||start===4900||start===5900){
 									start=(start%1000)+parseInt((start/1000))*10000;
-									console.log(start);
+									
 									for (var i = start; i < end; i=i + 50) {
+										
+										if("rgb(0, 128, 0)"===$("#"+i).css("backgroundColor")){
+											console.log($("#"+i).css("backgroundColor"));
+											$("#"+i).css("backgroundColor","red");
+											
+										}else if("rgb(0, 0, 255)"===$("#"+i).css("backgroundColor")){
+											$("#"+i).css("backgroundColor","yellow");
+											console.log($("#"+i).css("backgroundColor"));
+										}else{
 										$("#" + i).css("backgroundColor", "green");
+										}
 									}
-				
+									
 								}else{
 									for (var i = start; i < end; i=i + 50) {
-										console.log(i);
+										if("rgb(0, 128, 0)"===$("#"+i).css("backgroundColor")){
+											$("#"+i).css("backgroundColor","red");											
+										}else if("rgb(0, 0, 255)"===$("#"+i).css("backgroundColor")){
+											$("#"+i).css("backgroundColor","yellow");
+											console.log($("#"+i).css("backgroundColor"));
+										}else{
 										$("#" + i).css("backgroundColor", "green");
+										}
 									}
 								}
+								
 							}	
+							
 						});
 
 			}).on("mouseout",function() {
@@ -137,16 +159,32 @@
 								console.log(start+"/"+end);
 								if(start===1900||start===2900||start===3900||start===4900||start===5900){
 									start=(start%1000)+parseInt((start/1000))*10000;
-									console.log(start);
 									for (var i = start; i < end; i=i + 50) {
-										$("#" + i).css("backgroundColor", "white");
+										if("rgb(255, 0, 0)"===$("#"+i).css("backgroundColor")){
+											$("#"+i).css("backgroundColor","green");											
+										}else if("rgb(0, 0, 255)"===$("#"+i).css("backgroundColor")){
+											$("#"+i).css("backgroundColor","blue");
+											console.log($("#"+i).css("backgroundColor"));
+										}else if("rgb(255, 255, 0)"===$("#"+i).css("backgroundColor")){
+											$("#"+i).css("backgroundColor","blue");
+											console.log($("#"+i).css("backgroundColor"));
+										}else{
+											$("#" + i).css("backgroundColor", "white");
+										}
 									}
 								}else{
-									
-												for (var i = start; i < end; i=i + 50) {
-													console.log(i);
-													$("#" + i).css("backgroundColor", "white");
-												}
+									for (var i = start; i < end; i=i + 50) {
+										if("rgb(255, 0, 0)"===$("#"+i).css("backgroundColor")){
+											$("#"+i).css("backgroundColor","green");											
+										}else if("rgb(0, 0, 255)"===$("#"+i).css("backgroundColor")){
+											$("#"+i).css("backgroundColor","blue");
+										}else if("rgb(255, 255, 0)"===$("#"+i).css("backgroundColor")){
+											$("#"+i).css("backgroundColor","blue");
+											console.log($("#"+i).css("backgroundColor"));
+										}else{
+											$("#" + i).css("backgroundColor", "white");
+										}
+									}
 								}
 							}
 						});
@@ -154,8 +192,23 @@
 	$(":checkbox").on("click", function() {
 		var val = $(this).attr("id");
 		console.log(val);
+		console.log($(this).attr("data"));
+		var start=parseInt($(this).attr("data").split("-")[1]);
+		var end=parseInt($(this).attr("data").split("-")[2]);
 		if ($(this).is(":checked")) {
-			$("." + val).prop("checked", true);
+			$("." + val).attr("checked",true);
+			if(start===1900||start===2900||start===3900||start===4900||start===5900){
+				start=(start%1000)+parseInt((start/1000))*10000;				
+				for (var i = start; i < end; i=i + 50) {
+					$("#" + i).css("backgroundColor", "blue");
+				}
+				
+			}else{
+				for (var i = start; i < end; i=i + 50) {
+					$("#" + i).css("backgroundColor", "blue");
+					console.log($("#"+i).css("backgroundColor"));
+				}
+			}
 		} else {
 			$("." + val).prop("checked", false);
 		}

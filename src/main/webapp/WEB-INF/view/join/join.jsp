@@ -74,7 +74,13 @@
 					if (data == null) {
 						sid.style.color = "blue";
 						sid.innerHTML = "사용가능한 멋진 아이디 입니다!";
-						button.disabled = false;
+						var a = button.disabled;
+						
+						if(a){
+							a=true;
+						}else{
+							a=false;
+						}
 					} else {
 						sid.style.color = "red";
 						sid.innerHTML = "중복된 아이디가 존재 합니다.";
@@ -102,7 +108,13 @@
 					if (data == null) {
 						nickName.style.color = "blue";
 						nickName.innerHTML = "사용 가능한 멋진 닉네임 입니다.";
-						button.disabled = false;
+						var a = button.disabled;
+						
+						if(a){
+							a=true;
+						}else{
+							a=false;
+						}
 					} else {
 						nickName.style.color = "red";
 						nickName.innerHTML = "중복된 닉네임이 존재 합니다.";
@@ -124,7 +136,13 @@
 				button.disabled = true;
 			}else {
 				pattensMsg.innerHTML = "";
-				button.disabled = false;
+var a = button.disabled;
+				
+				if(a){
+					a=true;
+				}else{
+					a=false;
+				}
 			}
 		});
 		// 비번과 비번 확인 같은지 체크
@@ -136,10 +154,17 @@
 			
 			if (pass != passCheck) {
 				passmsg.innerHTML ="비밀번호를 다시 확인 해주세요.";
+				var a = button.disabled;
 				button.disabled = true;
 			} else {
 				passmsg.innerHTML = "";
-				button.disabled = false;
+				var a = button.disabled;
+				
+				if(a){
+					a=true;
+				}else{
+					a=false;
+				}
 			}
 		});
 		

@@ -13,29 +13,7 @@
 	display: table-cell;
 }
 
-.sname {
-	display: block;
-	font-size: 1.30em;
-	margin-top: 0em;
-	margin-bottom: 0em;
-	margin-left: 0;
-	margin-right: 0;
-	font-weight: bold;
-	color: white;
-}
-
-.sno {
-	display: block;
-	font-size: .60em;
-	margin-top: .1em;
-	margin-bottom: .1em;
-	margin-left: 0;
-	margin-right: 0;
-	font-weight: bold;
-	color: white;
-}
 </style>
-
 <!-- / College Timetable -->
 <!-- 시간표 만들기 중앙 타이틀 -->
 <div class="row">
@@ -50,78 +28,27 @@
 
 <!-- 시간표 && 과목 리스트 row -->
 <div class="row">
-	<div class="box box-b col-sm-9">
+	<div class="box box-b col-sm-7">
 		<h2>과목 리스트</h2>
-<!--BEGIN HEAD-->
-	<small>
-	<div id="container" style="width:40%; margin-left: 0px;">
-	<div id="accordion" style="width:50%;">
-<!--END HEAD-->
-
-<c:forEach var="subject" items="${subjectList }">
-	<div class='${subject.no }' style="min-width: 230px;">
-		<div class="panel panel-primary border-success mb-3 text-center">
-			<div class="panel-heading">
-				<a class="collapsed text-center" data-toggle="collapse" 
-					href="#${subject.no }FIRST" style="text-decoration: none;">
-					<span class="card-title text-dark sname">${subject.name }</span>
-					<span class="card-subtitle mb-2 text-muted sno">학수번호 : ${subject.no }</span>
-				</a>
-			</div> <!-- card-header -->
-			<div id="${subject.no }FIRST" class="collapse" data-parent="#accordion">
-				<div class="panel-body text-left" style="padding: 0px;">
-					<table class="table table-hover group table-striped" style="margin: 0px;">
-						<thead style="color: gray;">
-							<tr>
-								<th>수업번호</th>
-								<th>교수님</th>
-								<th>시간</th>
-							</tr>
-						</thead>
-	  					<tbody>
-	  						<c:forEach var="cl" items="${subject.classList }" varStatus="status">
-	  							<c:choose>
-		  							<c:when test="${status.first }">
-		  								<tr data="${cl.no }" id='${cl.id }-${cl.day }${cl.starttime }' class='${cl.no } class'>
-		  									<td style="padding-left: 0; padding-right: 1.5em;"><input type="checkbox"/>&nbsp; ${cl.no }</td>
-					  						<td>${cl.professor }</td>
-					  						<td><span class="day">(${cl.day})</span>${cl.starttime }~${cl.endtime }</td>
-					  					</tr>
-	  								</c:when>
-	  								<c:when test="${cl.no == subject.classList[status.index - 1].no }">
-	  									<tr data="${cl.no }" id='${cl.id }-${cl.day }${cl.starttime }' class='${cl.no } class'>
-		  									<td>  ${cl.no }</td>
-					  						<td>${cl.professor }</td>
-					  						<td><span class="day">(${cl.day})</span>${cl.starttime }~${cl.endtime }</td>
-					  					</tr>
-	  								</c:when>
-	  								<c:when test="${cl.no != subject.classList[status.index - 1].no }">
-	  									<tr data="${cl.no }" id='${cl.id }-${cl.day }${cl.starttime }' class='${cl.no } class'>
-		  									<td style="padding-left: 0; padding-right: 1.5em;"><input type="checkbox"/>&nbsp; ${cl.no }</td>
-					  						<td>${cl.professor }</td>
-					  						<td><span class="day">(${cl.day})</span>${cl.starttime }~${cl.endtime }</td>
-					  					</tr>
-	  								</c:when>
-	  							
-	  							</c:choose>
-							</c:forEach>
-					  	</tbody>
-	  				</table> <!-- table -->
-				</div><!-- card-body -->
-				<div class="panel-footer text-muted">
-					<a role="button" target="_BLANK" href="#" class="btn btn-sm btn-info"><font style="font-size: 8px;">Link</font></a>
-					<a role="button" target="_BLANK" href="#" class="btn btn-sm btn-info"><font style="font-size: 8px;">Link</font></a>
-				</div>
-			</div> <!-- collapseFIRST -->
-		</div>
+		<c:forEach var="subject" items="${subjectList }">
+			<div class='${subject.no }'>
+				<input type="checkbox"/>
+				학수번호 : ${subject.no } 과목 명 : ${subject.name }
+				<c:forEach var="classs" items="${subject.classList }">
+					<div data="${classs.no }" id='${classs.id }-${classs.day }${classs.starttime }' class='${classs.no } class' >
+						수업번호 : ${classs.no } 교수님 : ${classs.professor } 수업시간 : ${classs.starttime }~${classs.endtime }
+					</div>
+				</c:forEach>
+				
+			<hr/>
+			</div>
+		</c:forEach>
 	</div>
-</c:forEach>
-</div>
-</div>
-</small>
-	</div>
+	<!-- 중간 공백 -->
+	<div class="col-sm-1"></div>
+	<h2></h2>
 		
-	<div class="box box-c col-sm-3">
+	<div class="box box-c col-sm-4">
 		<table border='0' cellpadding='0' cellspacing='0' style="max-height: 700; max-width: 700px; text-align: center;">
 			<tr class='days' style="width: 100%;" align="center">
 				<th style="width: 15%;"></th>

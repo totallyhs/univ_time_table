@@ -68,7 +68,7 @@
 				<input type="checkbox"/>
 				학수번호 : ${subject.no } 과목 명 : ${subject.name }
 				<c:forEach var="classs" items="${subject.classList }">
-					<div data="${classs.no }" id='${classs.id }-${classs.day }${classs.starttime }' class='${classs.no } class' >
+					<div data="${classs.no }" id='${classs.id }-${classs.day }${classs.starttime }-${classs.day }${classs.endtime }' class='${classs.no } class' >
 						수업번호 : ${classs.no } 교수님 : ${classs.professor } 수업시간 : ${classs.starttime }~${classs.endtime }
 					</div>
 				</c:forEach>

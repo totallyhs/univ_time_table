@@ -39,7 +39,6 @@ public class BulletinBoardController {
 	
 	@Autowired
 	Gson gson;
-	
 	// 최초 상단바에서 자유게시판 눌렀을 때 세팅해주는 컨트롤러
 	@RequestMapping("/bulletinboard")
 	public ModelAndView bulletinBoardHandle(@RequestParam(name="no") int no,@RequestParam(name="page", defaultValue="1") int page) {
@@ -54,6 +53,10 @@ public class BulletinBoardController {
 		map.put("start", start);
 		map.put("end",end);
 		list = bulletinboadrdao.selectBoardPage(map);
+		for(PostVo a : list) {
+			a.setCount(bulletinboadrdao.replyCount(a.getNo()));
+		}
+		
 		int totalPage = bulletinboadrdao.pageCount(no);
 		int pagebegin=0;
 		int pageend=0;
@@ -143,8 +146,8 @@ public class BulletinBoardController {
 		ModelAndView mav = new ModelAndView();
 		List<PostFileVo> flist = bulletinboadrdao.fileView(no);
 		mav.addObject("flist",flist);
-		
-		
+		int postlikeCount = bulletinboadrdao.PostLikeCount(no);
+		mav.addObject("postlike","좋아요"+postlikeCount);
 		mav.setViewName("boardview");
 		// hit 업데이트 처줘야댐.
 		PostVo vo = bulletinboadrdao.selectPost(no);
@@ -205,6 +208,92 @@ public class BulletinBoardController {
 		return "redirect:/boardview?no="+postno;
 	}
 	
+	@RequestMapping("/postdelete")
+	public String boardDelete(@RequestParam Map<String,String> map) {
+		int no = Integer.parseInt(map.get("no"));
+		int postno = Integer.parseInt(map.get("postno"));
+		Map<String,Object> put = new HashMap();
+		put.put("published", "n");
+		put.put("no", postno);
+		boolean result = bulletinboadrdao.postDelete(put);
+		if(result) {
+			System.out.println("in");
+		}
+		return "redirect:/bulletinboard?no="+no;
+		
+	}
 
+//	@PostMapping("/postlike")
+//	public String replyLike(@RequestParam Map<String,String> map) {
+//		int postno = Integer.parseInt(map.get("no"));
+//		String id = map.get("id");
+//		PostlikeVo vo = new PostlikeVo();
+//		vo.setPostNo(postno);
+//		vo.setId(id);
+//		
+//		System.out.println("postlie" + map);
+//		boolean result = bulletinboadrdao.postLike(vo);
+//		
+//	
+//		
+//		
+//		
+//		return "redirect:/boardview?no="+postno;
+//	}
+	
+	
+	@GetMapping("/rewrite")
+	public ModelAndView reWriteGepHandle(@RequestParam Map<String,String> map) {
+		ModelAndView mav = new ModelAndView();
+		int no = Integer.parseInt(map.get("postno"));
+		PostVo vo = bulletinboadrdao.selectPost(no);		
+		
+		List<PostFileVo> flist = new ArrayList();
+		
+		flist = bulletinboadrdao.fileView(no);
+		
+		mav.addObject("flist",flist);
+		
+		System.out.println("rewrite"+"/"+vo.getSubject());
+		mav.addObject("PostVo",vo);
+		mav.setViewName("rewrite");
+		return mav;
+	}
+	
+	@PostMapping("/rewrite")
+	public ModelAndView reWritePostHandle( @RequestParam Map<String,String> map ,
+			HttpSession session,HttpServletResponse response,
+			@RequestParam("fileupload") MultipartFile[] files) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		MemberVo mvo=(MemberVo) session.getAttribute("memberVo");
+		String subject = map.get("subject");
+		String content = map.get("content");
+		int no = Integer.parseInt(map.get("no"));
+		System.out.println(map);
+		boolean result = bulletinboadrdao.reWriteUpdate(map);
+		
+		//file
+		if(!files[0].isEmpty()) {
+			for(MultipartFile file : files) {
+				
+				PostFileVo fvo = uploadService.uploadHandle(file, no);
+				bulletinboadrdao.fileUpload(fvo);
+				
+			}
+		}
+		
+		
+		if(result) {
+			try {
+				response.sendRedirect("bulletinboard?no=10");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+				}else {
+			mav.setViewName("error");
+		}
+		
+		return mav;
+	}
 	
 }

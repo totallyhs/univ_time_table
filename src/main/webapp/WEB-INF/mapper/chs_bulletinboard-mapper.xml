@@ -10,6 +10,7 @@
 	<select id="selectpost" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.PostVo">
 		select * from post where no = #{no}
 	</select>
+
 	
 	<insert id="insertpost" parameterType="org.timetable.univ.model.vo.PostVo">
 		insert into post values(#{no},#{boardNo},#{subject},#{writer},#{content},1,sysdate,#{hit},#{published})
@@ -20,11 +21,15 @@
 	</update>
 	
 	<select id="boardpage" parameterType="java.util.Map" resultType="org.timetable.univ.model.vo.PostVo">
-	select s.* from (select rownum r,t.* from (select * from post where boardno=#{no} order by no desc)t)s where s.r between #{start} and #{end}
+	select s.* from (select rownum r,t.* from (select * from post where boardno=#{no} and published='y' order by no desc)t)s where s.r between #{start} and #{end}
 	</select>
 	
 	<select id="pagecount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-	select count(*) from post where boardno=#{no}
+	select count(*) from post where boardno=#{no} and published='y'
+	</select>
+	
+	<select id="replycount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(*) from comments where postno=#{no} and published='y'
 	</select>
 	
 	<insert id="insertreply" parameterType="org.timetable.univ.model.vo.CommentsVo">
@@ -39,6 +44,10 @@
 		update comments set published = #{published} where no=#{no}
 	</update>
 	
+	<update id="postdelete" parameterType="java.util.Map">
+		update post set published = #{published} where no=#{no}
+	</update>
+	
 	<insert id="fileupload" parameterType="org.timetable.univ.model.vo.PostFileVo">
 		insert into postfile values(postfile_seq.nextval,#{postNo},#{filePath},#{fileSize},#{downloadCnt},#{fileName})
 	</insert>
@@ -51,6 +60,22 @@
 		select * from postfile where postno = #{no}
 	</select>
 	
+	<insert id="postlike" parameterType="org.timetable.univ.model.vo.PostlikeVo">
+		insert into postlike values(#{postNo},#{id})
+	</insert>
+	
+	<select id="likelist" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.PostlikeVo">
+		select * from postlike where postno = #{no}
+	</select>
+	
+	<select id="postlikecount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(*) from postlike where postno=#{no}
+	</select>
+	
+	<update id="rewriteupdate" parameterType="java.util.Map">
+		update post set subject = #{subject}, content = #{content} where no= #{no}
+	</update>
+		
 </mapper>
 
 

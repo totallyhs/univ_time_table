@@ -36,4 +36,7 @@ public class AjaxController {
 		String json = gson.toJson(MemberNackname);
 		return json;
 	}
+	
+	
+	
 }

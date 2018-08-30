@@ -13,7 +13,7 @@ public class PostVo {
 	private Date writtenDate;
 	private int hit;
 	private String published;
-	
+	private int count;
 	
 	
 	public int getNo() {
@@ -69,6 +69,16 @@ public class PostVo {
 	}
 	public void setPublished(String published) {
 		this.published = published;
+	}
+	
+	
+	
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	@Override
 	public String toString() {

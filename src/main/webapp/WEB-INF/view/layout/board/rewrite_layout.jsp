@@ -27,8 +27,8 @@
 <body>
 	<tiles:insertAttribute name="navbar"/>
 	
-	<div class="container" id="boardview">
-		<tiles:insertAttribute name="boardviewUI"/>
+	<div class="container" id="rewrite">
+		<tiles:insertAttribute name="rewriteUI"/>
 	</div>
 	
 

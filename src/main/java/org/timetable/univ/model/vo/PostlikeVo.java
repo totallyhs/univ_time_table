@@ -2,7 +2,7 @@ package org.timetable.univ.model.vo;
 
 public class PostlikeVo {
 	private int postNo;
-	private String name;
+	private String id;
 	
 	public int getPostNo() {
 		return postNo;
@@ -10,12 +10,14 @@ public class PostlikeVo {
 	public void setPostNo(int postNo) {
 		this.postNo = postNo;
 	}
-	public String getName() {
-		return name;
+	public String getId() {
+		return id;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setId(String id) {
+		this.id = id;
 	}
+	
+	
 	
 	
 }

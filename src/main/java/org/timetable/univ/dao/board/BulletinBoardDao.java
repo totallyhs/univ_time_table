@@ -10,6 +10,7 @@ import org.timetable.univ.model.vo.BoardVo;
 import org.timetable.univ.model.vo.CommentsVo;
 import org.timetable.univ.model.vo.PostFileVo;
 import org.timetable.univ.model.vo.PostVo;
+import org.timetable.univ.model.vo.PostlikeVo;
 
 @Repository
 public class BulletinBoardDao {
@@ -39,6 +40,11 @@ public class BulletinBoardDao {
 		return template.selectList("chs_bulletinboard.boardpage",map);
 	}
 	
+	public int replyCount(int no) {
+		return template.selectOne("chs_bulletinboard.replycount", no);
+	}
+	
+	
 	public int boardHit(Map map) {
 		return template.update("chs_bulletinboard.boardhit",map);
 	}
@@ -56,6 +62,10 @@ public class BulletinBoardDao {
 		return template.update("chs_bulletinboard.replydelete",map)==1?true:false;
 	}
 	
+	public boolean postDelete(Map map) {
+		return template.update("chs_bulletinboard.postdelete",map)==1?true:false;
+	}
+	
 	
 	// file 
 	public boolean fileUpload(PostFileVo fvo) {
@@ -70,5 +80,20 @@ public class BulletinBoardDao {
 		return template.selectList("chs_bulletinboard.fileview",postno);
 	}
 	
-
+	public boolean postLike(PostlikeVo vo) {
+		return template.insert("chs_bulletinboard.postlike",vo)==1?true:false;
+	}
+	
+	public List<PostlikeVo> likeList(int postno){
+		return template.selectList("chs_bulletinboard.likelist",postno);
+	}
+	
+	public int PostLikeCount(int postno) {
+		return template.selectOne("chs_bulletinboard.postlikecount",postno);
+	}
+	
+	public boolean reWriteUpdate(Map map) {
+		return template.update("chs_bulletinboard.rewriteupdate",map)==1?true:false;
+	}
+	
 }

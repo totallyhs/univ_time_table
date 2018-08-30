@@ -47,7 +47,9 @@
       					<div class="panel panel-default">
    					   		  <div class="panel-body">
    					   		  	<c:forEach items="${files }" var="f">
-   					   		  		 <c:out value="${f.name }" escapeXml="true"/>
+   					   		  		<a href="${f.filePath }" download>
+   					   		  		 <c:out value="${f.fileName }" escapeXml="true"/>
+   					   		  		</a>
    					   		  		 <br/>
    					   		  	</c:forEach>
 

@@ -43,7 +43,7 @@ public class UploadService {
 	
 	public MailFileVo mailFileUploadHanlde(MultipartFile file, int mailno) throws Exception {
 		MailFileVo mailFileVo = new MailFileVo();
-		File dir = new File(ctx.getRealPath("/mail/"), String.valueOf(mailno));
+		File dir = new File(ctx.getRealPath("/mail"), String.valueOf(mailno));
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
@@ -56,15 +56,12 @@ public class UploadService {
 		File dest = new File(dir, fileName); //
 		file.transferTo(dest);
 		
-		mailFileVo.setFileName(fileName);
-		System.out.println(fileName);
-		mailFileVo.setFilePath(ctx.getContextPath() + "/mail/" + mailno + "/" + fileName);
-		System.out.println(mailFileVo.getFilePath());
-		mailFileVo.setFileSize((double)file.getSize());
-		System.out.println(mailFileVo.getFileSize());
-		mailFileVo.setMailNo(mailno);
-		System.out.println(mailno);
 		mailFileVo.setNo(no);
+		mailFileVo.setMailNo(mailno);
+		mailFileVo.setFileSize(file.getSize());
+		mailFileVo.setFilePath(ctx.getContextPath() + "/mail/" + mailno + "/" + fileName);
+		mailFileVo.setFileName(fileName);
+		System.out.println(mailFileVo.toString());
 		
 		return mailFileVo;
 		

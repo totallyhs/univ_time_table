@@ -80,17 +80,16 @@ public class MailController {
 		boolean mailFileSuccess = false;
 		if (!files[0].isEmpty()) {
 			for (int i=0; i<files.length; i++) {
-				MailFileVo mailFileVo = null;
-				try {
-					mailFileVo = uploadService.mailFileUploadHanlde(files[i], mailVo.getNo());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				boolean succ = shsMailDao.saveMailFiles(mailFileVo);
-				if (succ) {
-					successCnt++;
-				}
+					MailFileVo mailFileVo = null;
+					try {
+						mailFileVo = uploadService.mailFileUploadHanlde(files[i], mailVo.getNo());
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					boolean succ = shsMailDao.saveMailFiles(mailFileVo);
+					if (succ) {
+						successCnt++;
+					}
 			}
 			System.out.println("mail files save success = " + (successCnt == files.length));
 			if (successCnt == files.length) {
@@ -105,6 +104,8 @@ public class MailController {
 		} else{
 			webRequest.setAttribute("success", false, WebRequest.SCOPE_REQUEST);
 		}
+		
+		System.out.println(webRequest.getAttribute("success", WebRequest.SCOPE_REQUEST));
 		
 		return "mail.compose";
 	}

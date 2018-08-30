@@ -34,13 +34,13 @@
 	</select>
 	
 	<select id="getFilesByMailNo" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.MailFileVo">
-		select * from mailfile where mailno=#{mailno}
+		select * from mailfile where mailno=#{mailNo}
 	</select>
 	
 	
 	<!-- insert Files -->
 	<insert id="saveMailFiles" parameterType="org.timetable.univ.model.vo.MailFileVo">
-		insert into mailfile values(#{no}, #{mailNo}, #{fileSize}, #{filePath}, #{fileName})
+		insert into mailfile values(#{no}, #{mailNo}, #{filePath}, #{fileSize}, #{fileName})
 	</insert>
 	
 	

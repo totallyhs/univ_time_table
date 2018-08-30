@@ -14,7 +14,6 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-  <script src="/js/mail_compose.js"></script>
 	
 	<!-- navbar -->
 	<link href="/css/navbar.css" rel="stylesheet" type="text/css"/>
@@ -23,20 +22,16 @@
 	<link href="/css/inbox.css" rel="stylesheet" type="text/css"/>
 	
 	<!-- compose
-	<link href="/css/mail_compose.css" rel="stylesheet" type="text/css"/> -->
+	<link href="/css/maial_compose.css" rel="stylesheet" type="text/css"/> -->
+	
+	<!-- fileupload -->
+	<link href="/css/mail-fileupload.css" rel="stylesheet" type="text/css"/>
+	<!--  <script src="/js/mail-fileupload.js"></script>-->
 
 </head>
 <body style="margin-top: 0px;">
 <div class="container-fluid">
-	<c:choose>
-		<c:when test="${logged }">
-			<tiles:insertAttribute name="navprofile"/>
-		</c:when>
-		<c:otherwise>
-			<tiles:insertAttribute name="navlogin"/>
-		</c:otherwise>
-	
-	</c:choose>	
+	<tiles:insertAttribute name="nav"/>
 </div>
 	
 	<div class="container">
@@ -44,7 +39,7 @@
         <div class="col-sm-3 col-md-2">
        	  <tiles:insertAttribute name="mail_menu"/>
        	 </div>
-		<!-- inbox or compose-->
+		<!-- inbox or compose or view-->
 		<div class="col-sm-9 col-md-10">
 		<c:choose>
 			<c:when test="${fn:endsWith(requestScope.uri, 'inbox') }">
@@ -53,6 +48,9 @@
 			<c:when test="${fn:endsWith(requestScope.uri, 'compose') }">
 				<tiles:insertAttribute name="compose"/>
 			</c:when>	
+			<c:when test="${fn:endsWith(requestScope.uri, 'view') }">
+				<tiles:insertAttribute name="view"/>
+			</c:when>
 		</c:choose>
 		</div>
       </div>

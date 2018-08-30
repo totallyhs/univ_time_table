@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shs_mail">
+	<!-- select MAIL -->
+	<select id="getMailSeq" resultType="java.lang.Integer">
+		select mail_seq.nextval from dual
+	</select>
+	
+	<select id="getAllMails" resultType="org.timetable.univ.model.vo.MailVo">
+		select * from mail order by no desc
+	</select>
+	
+	<select id="getAllMailsWithFilesCount" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select m.*, mf.c from 
+			(select * from mail where receiver=#{receiver}) m 
+			left join (select count(*) c, mailno from mailfile group by mailno) mf on m.no = mf.mailno
+	</select>
+	
+	<select id="getMailByNo" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.MailVo">
+		select * from mail where no=#{no}
+	</select>
+	
+	<!-- insert MAIL -->
+	<insert id="saveMail" parameterType="org.timetable.univ.model.vo.MailVo">
+		insert into mail values(#{no}, #{sender}, #{receiver}, #{title}, #{contents}, #{sentDate}, #{seen})
+	</insert>
+	
+	
+	<!-- select Files -->
+	<select id="getMailfileSeq" resultType="java.lang.Integer">
+		select mailfile_seq.nextval from dual
+	</select>
+	
+	<select id="getFilesByMailNo" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.MailFileVo">
+		select * from mailfile where mailno=#{mailNo}
+	</select>
+	
+	
+	<!-- insert Files -->
+	<insert id="saveMailFiles" parameterType="org.timetable.univ.model.vo.MailFileVo">
+		insert into mailfile values(#{no}, #{mailNo}, #{filePath}, #{fileSize}, #{fileName})
+	</insert>
+	
+	
+</mapper>

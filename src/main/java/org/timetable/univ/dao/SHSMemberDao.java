@@ -1,5 +1,6 @@
 package org.timetable.univ.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -20,5 +21,9 @@ public class SHSMemberDao {
 	public MemberVo findByIdAndPassMap(Map<String, String> data) {
 		return template.selectOne("shs_member.findByIdAndPassMap", data);
 		
+	}
+	
+	public List<MemberVo> findAlikeId(String id) {
+		return template.selectList("shs_member.findAlikeId", "%" + id + "%");
 	}
 }

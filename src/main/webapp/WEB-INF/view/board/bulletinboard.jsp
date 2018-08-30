@@ -32,7 +32,7 @@
 		
   			<tr>
   				<th>${postlist.no }</th>
-  				<th><a href="boardview?no=${postlist.no }">${postlist.subject }</a></th>
+  				<th><a href="boardview?no=${postlist.no }">${postlist.subject } [${postlist.count }]</a></th>
   				<th>${postlist.writer }</th>
   				<th><fmt:formatDate value="${postlist.writtenDate }" pattern="yyyy-MM-dd [HH:MM]"/></th>
   				<th>${postlist.hit }</th>

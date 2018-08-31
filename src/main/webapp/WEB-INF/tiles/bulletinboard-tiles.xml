@@ -25,4 +25,9 @@
 		<put-attribute name="boardviewUI" value="/WEB-INF/view/board/boardview.jsp"/>
 	</definition>
 	
+	<definition name="rewrite" template="WEB-INF/view/layout/board/rewrite_layout.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
+		<put-attribute name="rewriteUI" value="/WEB-INF/view/board/rewrite.jsp"/>
+	</definition>
+	
 </tiles-definitions>

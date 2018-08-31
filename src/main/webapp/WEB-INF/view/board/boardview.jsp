@@ -8,6 +8,7 @@
 <html lang="en">
 <head>
   <title>Bootstrap Example</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -26,6 +27,10 @@
 	</c:when>
 	<c:otherwise>
 		<div class="container">
+			<c:if test="${sessionScope.memberVo.nickname eq  PostVo.writer}">
+ 			<a href="/postdelete?no=${boardno }&postno=${PostVo.no}"><button type="submit" class="[ btn btn-success ]">개시글 삭제</button></a><br/><br/>
+ 			<a href="/rewrite?boardno=${boardno }&postno=${PostVo.no}"><button type="submit" class="[ btn btn-success ]">개시글 수정</button></a>
+ 			</c:if>
 	<h2>${PostVo.no }postvo.no test</h2>
   	<h2>${PostVo.writer }</h2> <br/>
   	작성일 : <fmt:formatDate value="${PostVo.writtenDate }" pattern="yyyy-MM-dd"/>
@@ -36,6 +41,47 @@
 				</div>
  			</div>
 		</div> 
+		<br/>
+		
+		<c:forEach var="file" items="${flist }">
+			<a href="${file.filePath }" download>${file.fileName }</a><br/>
+		</c:forEach>
+		<br/>
+		
+
+
+<button>
+<span onclick="like();" id="like" class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary">
+${postlike }
+</span>
+</button><br/>
+
+<script>
+	function like(){
+				var xhr = new XMLHttpRequest();
+			 	 xhr.open("get", "/postlike?no=${PostVo.no}&id=${sessionScope.memberVo.id}",true);
+				xhr.onreadystatechange =function() {
+					if(xhr.readyState==4) {
+						var result = JSON.parse(xhr.responseText);
+						if(result.result){
+							$("#like").html(result.cnt);
+						}else{
+							$("#like").html(result.cnt);
+						}
+						
+					}
+				}
+				xhr.send();  
+	}
+</script>
+			
+		
+		
+		
+		
+		
+		
+		
 	
 	<form action="/boardview" method="post">
 	<div class="container">
@@ -57,9 +103,9 @@
                             <div class="col-xs-2 col-md-1">
                                 <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
                             <div class="col-xs-10 col-md-11">
-                                <div> 작성자 : ${reply.commentator }
+                                <div>${reply.commentator }
                                     <div class="mic-info">
-                                        댓글날짜 : <fmt:formatDate value="${reply.writtenDate }" pattern="yyyy-MM-dd [HH:MM]"/>
+                        <fmt:formatDate value="${reply.writtenDate }" pattern="yyyy-MM-dd [HH:MM]"/>
                                     </div>
                                 </div>
                                 <div class="comment-text"> ${reply.content }
@@ -96,22 +142,6 @@
         </div>
 </form>	
 <a href="bulletinboard?no=${boardno }"><button type="submit" class="[ btn btn-success ]">목록으로</button></a>
-
-
-<c:forEach var="file" items="${flist }">
-	<a href="${file.filePath }" download>${file.fileName }</a>
-</c:forEach>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

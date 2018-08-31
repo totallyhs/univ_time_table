@@ -1,5 +1,6 @@
 package org.timetable.univ.tiles.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -10,12 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.timetable.univ.dao.SHSDepartmentDao;
+import org.timetable.univ.dao.admin.CHSAdminDao;
 import org.timetable.univ.dao.admin.CSMAdminDao;
 import org.timetable.univ.model.vo.DepartmentVo;
+import org.timetable.univ.model.vo.MemberVo;
 import org.timetable.univ.model.vo.SubjectVo;
 
 @Controller
@@ -23,6 +25,9 @@ import org.timetable.univ.model.vo.SubjectVo;
 public class CSMAdminPageController {
 	@Autowired
 	CSMAdminDao admindao;
+	
+	@Autowired
+	CHSAdminDao CHSAdminDao;
 	
 	@Autowired
 	SHSDepartmentDao shsDepartmentDao;
@@ -43,7 +48,18 @@ public class CSMAdminPageController {
 		
 		return "admin.dashboard";
 	}
-	
+//	// 관리자 member 처리
+//	@RequestMapping("/member/list")
+//	public String adminMemberHandler(WebRequest webRequest) {
+//		
+//		webRequest.setAttribute("content","members.list", WebRequest.SCOPE_REQUEST);
+//		List<MemberVo> list = new ArrayList();
+//		list = CHSAdminDao.memberList();
+//		webRequest.setAttribute("memberlist", list, WebRequest.SCOPE_REQUEST);
+//		
+//		return "admin.members.list";
+//	}
+
 	@GetMapping("/subjects/add")
 	public String adminSubjectsHandle(WebRequest webRequest) {
 		webRequest.setAttribute("content", "subjects", WebRequest.SCOPE_REQUEST);

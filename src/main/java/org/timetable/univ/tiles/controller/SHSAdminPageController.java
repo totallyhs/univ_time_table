@@ -52,9 +52,6 @@ public class SHSAdminPageController {
 	}
 	
 	
-	
-	
-	
 	@GetMapping("/classes/add")
 	public String adminClassesAddGetHandle(WebRequest webRequest) {
 		webRequest.setAttribute("content", "classes", WebRequest.SCOPE_REQUEST);

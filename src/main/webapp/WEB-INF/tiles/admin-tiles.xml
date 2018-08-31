@@ -18,6 +18,19 @@
 	<definition name="admin.subjects.list" extends="admin">
 		<put-attribute name="subjects_list" value="/WEB-INF/view/courses/subjects_list.jsp"/>
 	</definition>
+	
+	<!-- member list -->
+	<definition name="admin.members.list" extends="admin">
+		<put-attribute name="members_list" value="/WEB-INF/view/courses/members_list.jsp"/>
+	</definition>
+	
+	<definition name="admin.members.delete" extends="admin">
+		<put-attribute name="members_delete" value="/WEB-INF/view/admin/members_delete_page.jsp"/>
+	</definition>
+	
+	<definition name="admin.members.delete.many" extends="admin">
+		<put-attribute name="members_delete_many" value="/WEB-INF/view/admin/members_delete_many_page.jsp"/>
+	</definition>
  	
 	<definition name="admin.subjects" extends="admin">
 		<put-attribute name="subjects_adding" value="/WEB-INF/view/admin/subjects_adding_page.jsp"/>
@@ -34,7 +47,8 @@
 	<definition name="admin.subjects.delete" extends="admin">
 		<put-attribute name="subjects_delete" value="/WEB-INF/view/admin/subjects_delete_page.jsp"/>
 	</definition>
-
+	
+	
 	<definition name="admin.subjects.delete.many" extends="admin">
 		<put-attribute name="subjects_delete_many" value="/WEB-INF/view/admin/subjects_delete_many_page.jsp"/>
 	</definition>

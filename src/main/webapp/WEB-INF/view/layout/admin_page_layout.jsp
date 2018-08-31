@@ -62,6 +62,18 @@
 							<c:when test="${content eq 'classes' }">
 								<tiles:insertAttribute name="classes_adding"/>
 							</c:when>
+							<c:when test="${content eq 'members.list' }">
+								<tiles:insertAttribute name="members_list"/>
+							</c:when>
+							
+							<c:when test="${content eq 'members.delete' }">
+								<tiles:insertAttribute name="members_delete"/>
+							</c:when>
+							
+							<c:when test="${content eq 'members.delete.many' }">
+								<tiles:insertAttribute name="members_delete_many"/>
+							</c:when>
+							
 							<c:when test="${content eq 'subjects.update' }">
 								<tiles:insertAttribute name="subjects_update"/>
 							</c:when>

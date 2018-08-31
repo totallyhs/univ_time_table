@@ -10,11 +10,16 @@
     <c:if test="${sessionScope.memberVo.id eq 'admin' }">
     	<li><a href="${pageContext.servletContext.contextPath }/admin/dashboard">관리자</a></li>
     </c:if>
-    <li><a href="/bulletinboard?no=10">자유게시판</a></li>
-    <li><a href="/courses/subject/list">과목</a></li>
     <li><a href="/timetable/search">시간표 만들기</a></li>
     <li><a href="${pageContext.servletContext.contextPath }/bulletinboard?no=10">자유게시판</a></li>
-    <li><a href="${pageContext.servletContext.contextPath }/courses/subject/list">과목</a></li>
+    <c:choose>
+    	<c:when test="${sessionScope.memberVo.id eq 'admin' }">
+    		<li><a href="${pageContext.servletContext.contextPath }/admin/subjects/list">과목</a></li>
+    	</c:when>
+    	<c:otherwise>
+		    <li><a href="${pageContext.servletContext.contextPath }/courses/subject/list">과목</a></li> 	
+    	</c:otherwise>
+    </c:choose>
     <li><a href="${pageContext.servletContext.contextPath }/mail/inbox">쪽지</a></li>
     <li><a href="#">News</a></li>
     <li><a href="#">Contact</a></li>

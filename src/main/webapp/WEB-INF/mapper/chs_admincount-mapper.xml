@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="chs_admincount">
+ 	<select id="usercount" resultType="java.lang.Integer">
+ 		select count(*) from member  
+ 	</select>
+ 
+ 	<select id="postcount" resultType="java.lang.Integer">
+ 		select count(*) from post
+ 	</select>
+ 	
+ 	<select id="replycount" resultType="java.lang.Integer">
+ 		select count(*) from comments
+ 	</select>
+ </mapper>

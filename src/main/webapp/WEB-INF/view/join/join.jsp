@@ -74,12 +74,11 @@
 					if (data == null) {
 						sid.style.color = "blue";
 						sid.innerHTML = "사용가능한 멋진 아이디 입니다!";
-						var a = button.disabled;
 						
-						if(a){
-							a=true;
+						if(button.disabled){
+							button.disabled=true;
 						}else{
-							a=false;
+							button.disabled=false;
 						}
 					} else {
 						sid.style.color = "red";
@@ -108,12 +107,10 @@
 					if (data == null) {
 						nickName.style.color = "blue";
 						nickName.innerHTML = "사용 가능한 멋진 닉네임 입니다.";
-						var a = button.disabled;
-						
-						if(a){
-							a=true;
+						if(button.disabled){
+							button.disabled=true;
 						}else{
-							a=false;
+							button.disabled=false;
 						}
 					} else {
 						nickName.style.color = "red";
@@ -136,12 +133,11 @@
 				button.disabled = true;
 			}else {
 				pattensMsg.innerHTML = "";
-var a = button.disabled;
 				
-				if(a){
-					a=true;
+				if(button.disabled){
+					button.disabled=true;
 				}else{
-					a=false;
+					button.disabled=false;
 				}
 			}
 		});
@@ -154,16 +150,14 @@ var a = button.disabled;
 			
 			if (pass != passCheck) {
 				passmsg.innerHTML ="비밀번호를 다시 확인 해주세요.";
-				var a = button.disabled;
 				button.disabled = true;
 			} else {
 				passmsg.innerHTML = "";
-				var a = button.disabled;
 				
-				if(a){
-					a=true;
+				if(button.disabled){
+					button.disabled=true;
 				}else{
-					a=false;
+					button.disabled=false;
 				}
 			}
 		});

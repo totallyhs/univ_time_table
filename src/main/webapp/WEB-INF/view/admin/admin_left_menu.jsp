@@ -7,18 +7,18 @@
       <a href="/admin/dashboard" class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
         Dashboard <span class="badge">12</span>
       </a>
-      <a href="pages.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages<span class="badge">25</span></a>
-      <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts<span class="badge">126</span></a>
-      <a href="users.html" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">12</span></a>
+      <a href="pages.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages</a>
+      <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts</a>
+      <a href="/admin/members/list" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a>
       <a href="#" class="list-group-item" id="timetable">
-      	<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Timetable <span class="badge">12</span>
+      	<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Timetable <span class="badge"></span>
       </a>
       <div id="timetableClickDiv" style="display: none;">
       	<a href="/admin/subjects/add" class="list-group-item">
-      		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Subjects <span class="badge">11</span>	
+      		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Subjects <span class="badge"></span>	
       	</a>
       	<a href="/admin/classes/add" class="list-group-item">
-      		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Classes <span class="badge">20</span>	
+      		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Classes <span class="badge"></span>	
       	</a>
       </div>
 </div>

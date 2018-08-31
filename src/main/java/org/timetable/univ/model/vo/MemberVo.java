@@ -13,7 +13,7 @@ public class MemberVo {
 	private Date lastlogin;
 	private String photo;
 	private String email;
-	
+	private int no;
 	
 	public String getId() {
 		return id;
@@ -68,6 +68,12 @@ public class MemberVo {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
 	}
 	
 	

@@ -15,40 +15,49 @@
                 </div>
             </div>
             <!-- form -->
-            <form action="/admin/subjects/delete/many" method="get" autocomplete="off">            
+            <form action="/admin/members/delete/many" method="get" autocomplete="off">            
            	 <table class="table table-hover">	<!-- table -->
            	     <thead>
            	         <tr class="filters">
            	         	<c:if test="${sessionScope.memberVo.id  eq 'admin'}">
-           	         		<th><input type="checkbox" id="checkboxAll"></th> 
+           	         		<th><input type="checkbox" id="checkboxAll" ></th> 
            	         	</c:if>
-           	             <th><input type="text" class="form-control" placeholder="학수번호" disabled></th>
-           	             <th><input type="text" class="form-control" placeholder="과목명" disabled></th>
-           	             <th><input type="text" class="form-control" placeholder="학점수" disabled></th>
-           	             <th><input type="text" class="form-control" placeholder="학년" disabled></th>
-           	             <th><input type="text" class="form-control" placeholder="전공" disabled></th>
+           	             <th><input type="text" class="form-control" placeholder="ID" disabled></th>
+           	             <th><input type="text" class="form-control" placeholder="PASSWORD" disabled></th>
+           	             <th><input type="text" class="form-control" placeholder="NAME" disabled></th>
+           	             <th><input type="text" class="form-control" placeholder="NICKNAME" disabled></th>
+           	             <th><input type="text" class="form-control" placeholder="DEPARTMENT" disabled></th>
+           	             <th><input type="text" class="form-control" placeholder="JOINDATE" disabled></th>
+           	             <th><input type="text" class="form-control" placeholder="LASTLOGIN" disabled></th>
+           	             <th><input type="text" class="form-control" placeholder="PHOTO" disabled></th>
+           	             <th><input type="text" class="form-control" placeholder="EMAIL" disabled></th>
+           	             <th><input type="text" class="form-control" placeholder="NO" disabled></th>
+           	             
            	             <c:if test="${sessionScope.memberVo.id  eq 'admin'}">
            	             	<th colspan="2"><button type="submit" class="btn btn-primary">선택삭제</button></th>
            	             </c:if>
            	         </tr>
            	     </thead>
            	     <tbody>
-           	     <c:forEach items="${requestScope.subjectsList }" var="subj">
-           	     	<tr class="subjectrow" id="${subj.NO }">
+           	     <c:forEach items="${requestScope.memberlist }" var="member">
+           	     	<tr class="subjectrow" id="${member.id }">
            	     		<c:if test="${sessionScope.memberVo.id  eq 'admin'}">
-           	         		<td><input type="checkbox" class="checkbox" value="${subj.NO }"></td> 
+           	         		<td><input type="checkbox" class="checkbox" value="${member.id }"></td> 
            	        	</c:if>
-               	 		<td style="display: none;" id="subjectNO"></td>
-               	 		<td>${subj.NO }</td>
-               	 		<td>${subj.NAME }</td>
-               			<td>${subj.UNITS }</td>
-                		<td>${subj.GRADE }</td>
-                		<td>${subj.DEPARTMENTNAME }</td>
+               	 		<td style="display: none;" id="memberNo"></td>
+               	 		<td>${member.id }</td>
+               	 		<td>${member.pass }</td>
+               			<td>${member.name }</td>
+                		<td>${member.nickname }</td>
+                		<td>${member.department }</td>
+                		<td><fmt:formatDate value="${member.joindate }" pattern="yyyy-MM-dd"/></td>
+                		<td><fmt:formatDate value="${member.lastlogin }" pattern="yyyy-MM-dd"/></td>
+                		<td>${member.photo }</td>
+                		<td>${member.email }</td>
+                		<td>${member.no }</td>
+                		
                 		<c:if test="${sessionScope.memberVo.id  eq 'admin'}">
-                			<td><a href="/admin/subjects/update?no=${subj.NO }">
-                				<button type="button" class="btn btn-primary">수정</button>
-                			</a></td>
-                			<td><a href="/admin/subjects/delete?no=${subj.NO }">
+                			<td><a href="/admin/members/delete?no=${member.no }">
                 				<button type="button" class="btn btn-primary">삭제</button>
                 			</a></td>
                 		</c:if>

@@ -45,7 +45,7 @@ table {
   color: #7A7A7A;
 }
 table tr:nth-child(2n) {
-  background: #eff0f1;
+  background: #fff;
 }
 table tr:nth-child(2n+3) {
   background: #fff;

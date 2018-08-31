@@ -26,19 +26,15 @@
 		<tiles:insertAttribute name="navbar"/>	
 	</div>
 	
+	<div class="container" id="timetable" style="margin: 0px;">
 	<c:choose>
-	<c:when test="${content eq 'result' }">
-	<div class="container" id="timetable">
-		<tiles:insertAttribute name="resulttimetableUI"/>
-	</div>
-	</c:when>
-	<c:when test="${content eq 'search' }">
-	<div class="container" id="timetable">
-		<tiles:insertAttribute name="searchtimetableUI"/>
-	</div>
-	</c:when>
-	
-
+		<c:when test="${content eq 'result' }">
+			<tiles:insertAttribute name="resulttimetableUI"/>
+		</c:when>
+		<c:when test="${content eq 'search' }">
+			<tiles:insertAttribute name="searchtimetableUI"/>
+		</c:when>	
 	</c:choose>
+	</div>
 </body>
 </html>

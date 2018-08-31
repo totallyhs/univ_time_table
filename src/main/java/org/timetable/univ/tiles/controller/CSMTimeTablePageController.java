@@ -68,7 +68,7 @@ public class CSMTimeTablePageController {
 		}
 		mav.addObject("subjectList", subjectList);
 		// mav.addObject("classMap", classMap);
-		mav.setViewName("timetable");
+		mav.setViewName("timetable.edited");
 		return mav;
 	}
 	

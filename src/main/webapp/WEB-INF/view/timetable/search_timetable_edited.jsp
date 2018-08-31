@@ -35,7 +35,6 @@
 	color: white;
 }
 </style>
-
 <!-- / College Timetable -->
 <!-- 시간표 만들기 중앙 타이틀 -->
 <div class="row">
@@ -53,13 +52,15 @@
 	<div class="box box-b col-sm-9">
 		<h2>과목 리스트</h2>
 <!--BEGIN HEAD-->
-	<small>
 	<div id="container" style="width:40%; margin-left: 0px;">
 	<div id="accordion" style="width:50%;">
 <!--END HEAD-->
 
-<c:forEach var="subject" items="${subjectList }">
-	<div class='${subject.no }' style="min-width: 230px;">
+<c:forEach var="subject" items="${subjectList }" varStatus="subjStatus">
+	<c:if test="${subjStatus.index%3 == 0 }">
+		<div class="row">
+	</c:if>
+	<div class='${subject.no } col-sm-4' style="min-width: 200px;">
 		<div class="panel panel-primary border-success mb-3 text-center">
 			<div class="panel-heading">
 				<a class="collapsed text-center" data-toggle="collapse" 
@@ -73,9 +74,9 @@
 					<table class="table table-hover group table-striped" style="margin: 0px;">
 						<thead style="color: gray;">
 							<tr>
-								<th>수업번호</th>
-								<th>교수님</th>
-								<th>시간</th>
+								<th style="width:40%;">수업번호</th>
+								<th style="width:20%; padding-left: 0px;">교수님</th>
+								<th style="width:40%;">시간</th>
 							</tr>
 						</thead>
 	  					<tbody>
@@ -84,21 +85,21 @@
 		  							<c:when test="${status.first }">
 		  								<tr data="${cl.no }" id='${cl.id }-${cl.day }${cl.starttime }' class='${cl.no } class'>
 		  									<td style="padding-left: 0; padding-right: 1.5em;"><input type="checkbox"/>&nbsp; ${cl.no }</td>
-					  						<td>${cl.professor }</td>
+					  						<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  						<td><span class="day">(${cl.day})</span>${cl.starttime }~${cl.endtime }</td>
 					  					</tr>
 	  								</c:when>
 	  								<c:when test="${cl.no == subject.classList[status.index - 1].no }">
 	  									<tr data="${cl.no }" id='${cl.id }-${cl.day }${cl.starttime }' class='${cl.no } class'>
 		  									<td>  ${cl.no }</td>
-					  						<td>${cl.professor }</td>
+					  						<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  						<td><span class="day">(${cl.day})</span>${cl.starttime }~${cl.endtime }</td>
 					  					</tr>
 	  								</c:when>
 	  								<c:when test="${cl.no != subject.classList[status.index - 1].no }">
 	  									<tr data="${cl.no }" id='${cl.id }-${cl.day }${cl.starttime }' class='${cl.no } class'>
 		  									<td style="padding-left: 0; padding-right: 1.5em;"><input type="checkbox"/>&nbsp; ${cl.no }</td>
-					  						<td>${cl.professor }</td>
+					  						<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  						<td><span class="day">(${cl.day})</span>${cl.starttime }~${cl.endtime }</td>
 					  					</tr>
 	  								</c:when>
@@ -115,11 +116,14 @@
 			</div> <!-- collapseFIRST -->
 		</div>
 	</div>
+	<c:if test="${subjStatus.index%3 == 2 }">
+		</div>
+	</c:if>
 </c:forEach>
+	
 </div>
 </div>
-</small>
-	</div>
+	</div>	<!-- col-sm-9 -->
 		
 	<div class="box box-c col-sm-3">
 		<table border='0' cellpadding='0' cellspacing='0' style="max-height: 700; max-width: 700px; text-align: center;">
@@ -152,7 +156,6 @@
 			</c:forEach>
 		</table>
 	</div>
-</div>
 
 <button id='example' >버튼</button>
 <script>

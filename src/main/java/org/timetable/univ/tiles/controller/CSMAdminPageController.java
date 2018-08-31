@@ -45,6 +45,12 @@ public class CSMAdminPageController {
 	@RequestMapping("/dashboard")
 	public String adminDashboardHandle(WebRequest webRequest) {
 		webRequest.setAttribute("content", "dashboard", WebRequest.SCOPE_REQUEST);
+		int usercount = CHSAdminDao.userCount();
+		webRequest.setAttribute("usercount", usercount, webRequest.SCOPE_REQUEST);
+		int postcount = CHSAdminDao.postCount();
+		webRequest.setAttribute("postcount", postcount, webRequest.SCOPE_REQUEST);
+		int replycount = CHSAdminDao.replyCount();
+		webRequest.setAttribute("replycount", replycount, webRequest.SCOPE_REQUEST);
 		
 		return "admin.dashboard";
 	}

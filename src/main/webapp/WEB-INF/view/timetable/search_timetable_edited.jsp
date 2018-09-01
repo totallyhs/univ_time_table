@@ -78,7 +78,7 @@
 											<thead style="color: gray;">
 												<tr>
 													<th style="width:40%; padding-left: 0; padding-right: 1.5em;">
-														<input type="checkbox" class='${classs.no }' id='${classs.no }' />수업번호
+														<input type="checkbox" class='${classs.no } subjcheckbox' id='${classs.no }' />수업번호
 													</th>
 													<th style="width:20%; padding-left: 0px;">교수님</th>
 													<th style="width:40%;">시간</th>
@@ -88,9 +88,9 @@
 	  											<c:forEach var="cl" items="${subject.classList }" varStatus="status">
 	  												<c:choose>
 		  												<c:when test="${status.first }">
-		  													<tr data="${cl.no }" id='${cl.id }' class='${cl.no } class'>
+		  													<tr data="${cl.no }" id='${cl.id }' class='${cl.no } clrow'>
 		  														<td style="padding-left: 0; padding-right: 1.5em;">
-		  															<input type="checkbox" class="clcheckbox" value="${cl.no }"/>&nbsp; ${cl.no }
+		  															<input type="radio" name="${subject.no }" class="clcheckbox" value="${cl.no }"/>&nbsp; ${cl.no }
 		  														</td>
 					  											<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  											<td>
@@ -100,7 +100,7 @@
 					  										</tr>
 	  													</c:when>
 	  													<c:when test="${cl.no == subject.classList[status.index - 1].no }">
-	  														<tr data="${cl.no }" id='${cl.id }' class='${cl.no } class'>
+	  														<tr data="${cl.no }" id='${cl.id }' class='${cl.no } clrow'>
 		  														<td>  ${cl.no }</td>
 					  											<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  											<td>
@@ -110,8 +110,10 @@
 					  										</tr>
 	  													</c:when>
 	  													<c:when test="${cl.no != subject.classList[status.index - 1].no }">
-	  														<tr data="${cl.no }" id='${cl.id }' class='${cl.no } class'>
-		  														<td style="padding-left: 0; padding-right: 1.5em;"><input type="checkbox"/>&nbsp; ${cl.no }</td>
+	  														<tr data="${cl.no }" id='${cl.id }' class='${cl.no } clrow'>
+		  														<td style="padding-left: 0; padding-right: 1.5em;">
+		  															<input type="radio" name="${subject.no }" class="clcheckbox" value="${cl.no }"/>&nbsp; ${cl.no }
+		  														</td>
 					  											<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
@@ -192,7 +194,6 @@
 				"end" : end,
 				"box" : "[" + start + "," + end + "]"
 		};
-		console.log(json);
 		return json;
 	}
 	
@@ -216,7 +217,7 @@
 				id.css("backgroundColor","green");											
 			}else if("rgb(0, 0, 255)"===id.css("backgroundColor")){
 				id.css("backgroundColor","blue");
-			}else if("rgb(255, 255, 0)"===$("#"+i).css("backgroundColor")){
+			}else if("rgb(255, 255, 0)"===id.css("backgroundColor")){
 				id.css("backgroundColor","blue");
 			}else{
 				id.css("backgroundColor", "white");
@@ -224,7 +225,8 @@
 		}
 	}
 	
-	$(".class").on("mouseover", function() {
+	$(".clrow").on("mouseover", function() {
+		console.log("onmouseover");
 		var no = $(this).attr("data");
 		
 		$("." + no).each(function() {
@@ -234,6 +236,7 @@
 			onMouseOverAction(classJson.start, classJson.end, classJson.day);
 		});
 	}).on("mouseout", function() {
+		console.log("onmouseout")
 		var no = $(this).attr("data");
 			
 		$("." + no).each(function() {
@@ -243,6 +246,39 @@
 			onMouseOutAction(classJson.start, classJson.end, classJson.day);
 		});
 	});
+	
+	var clcheckboxOnClickAction = function(start, end, day, checked, id) {
+		console.log("clcheckbox checked : " + checked);
+		for (var i = start; i <= end; i++) {
+			var boxId = $("#"+i +"-" + day);
+			if (checked) {
+				boxId.css("backgroundColor", "blue");
+				$("#" + id).removeClass('clrow');
+				$("#" + id).off('mouseover');
+				$("#" + id).off('mouseout');
+			} else {
+				boxId.css("backgroundColor", "green");
+				$("#" + id).addClass('clrow');
+				$("#" + id).on('mouseover');
+				$("#" + id).on('mouseout');
+			}
+		}
+	}
+	
+	$(".clcheckbox").on("click", function() {
+		console.log("clcheckbox clicked");
+		var no = $(this).val();
+		var checked = $(this).is(":checked");
+		
+		$("." + no).each(function() {
+			console.log(".no each");
+			var id = $(this).attr("id");
+			var classJson = getClassInfo(id);
+			
+			clcheckboxOnClickAction(classJson.start, classJson.end, classJson.day, checked, id);
+		});
+	});
+	
 	
 	
 	

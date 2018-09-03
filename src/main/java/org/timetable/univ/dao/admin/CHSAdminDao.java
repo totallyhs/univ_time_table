@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.timetable.univ.model.vo.MemberVo;
+import org.timetable.univ.model.vo.PostVo;
 
 @Repository
 public class CHSAdminDao {
@@ -42,5 +43,61 @@ public class CHSAdminDao {
 	public int replyCount() {
 		return template.selectOne("chs_admincount.replycount");
 	}
+	
+	public List<PostVo> postList(int boardno){
+		return template.selectList("chs_admin.boardpostlist",boardno);
+	}
+	
+	public boolean postDelete(int no) {
+		return template.delete("chs_admin.postdelete",no)==1?true:false;
+	}
+	
+	public boolean postDeleteMany(int postno) {
+		return template.delete("chs_admin.postdeletemany",postno)==1?true:false;
+	}
+	
+	
+	//자유게시판 검색
+	public List<PostVo> boardSubjectList(String subject){
+		return template.selectList("chs_admin.boardsubjectlist",subject);
+	}
+	
+	public List<PostVo> boardNoList(int no){
+		return template.selectList("chs_admin.boardnolist",no);
+	}
+	
+	public List<PostVo> boardPublishedList(String published){
+		return template.selectList("chs_admin.boardpublishedlist",published);
+	}
+	
+	public List<PostVo> boardContentList(String content){
+		return template.selectList("chs_admin.boardcontentlist",content);
+	}
+	
+	public List<PostVo> boardWriterList(String writer){
+		return template.selectList("chs_admin.boardwriterlist",writer);
+	}
+	// 동아리게시판 검색
+
+	public List<PostVo> CircleboardSubjectList(String subject){
+		return template.selectList("chs_admin.circleboardsubjectlist",subject);
+	}
+	
+	public List<PostVo> CircleboardNoList(int no){
+		return template.selectList("chs_admin.circleboardnolist",no);
+	}
+	
+	public List<PostVo> CircleboardPublishedList(String published){
+		return template.selectList("chs_admin.circleboardpublishedlist",published);
+	}
+	
+	public List<PostVo> CircleboardContentList(String content){
+		return template.selectList("chs_admin.circleboardcontentlist",content);
+	}
+	
+	public List<PostVo> CircleboardWriterList(String writer){
+		return template.selectList("chs_admin.circleboardwriterlist",writer);
+	}
+
 	
 }

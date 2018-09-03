@@ -5,10 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="list-group">
       <a href="/admin/dashboard" class="list-group-item active main-color-bg"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-        Dashboard <span class="badge">12</span>
+        Dashboard <span class="badge"></span>
       </a>
-      <a href="pages.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Pages</a>
-      <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts</a>
+      <a href="/admin/posts/list" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> BoardPosts</a>
+      <a href="/admin/circleposts/list" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> CirclePosts</a>
       <a href="/admin/members/list" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a>
       <a href="#" class="list-group-item" id="timetable">
       	<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Timetable <span class="badge"></span>

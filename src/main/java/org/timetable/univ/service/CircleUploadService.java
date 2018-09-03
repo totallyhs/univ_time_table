@@ -12,7 +12,7 @@ import org.timetable.univ.model.vo.MailFileVo;
 import org.timetable.univ.model.vo.PostFileVo;
 
 @Service
-public class UploadService {
+public class CircleUploadService {
 
 	
 	@Autowired
@@ -23,8 +23,8 @@ public class UploadService {
 	
 	public PostFileVo uploadHandle(MultipartFile files,int postno) throws Exception {
 		PostFileVo vo = new PostFileVo();
-		File dir = new File(ctx.getRealPath("/bulletinboardwrite"), String.valueOf(postno));
-		System.out.println(ctx.getRealPath("/bulletinboardwrite"));
+		File dir = new File(ctx.getRealPath("/circleboardwrite"), String.valueOf(postno));
+		System.out.println(ctx.getRealPath("/circleboardwrite"));
 		if(!dir.exists()) {
 			dir.mkdirs();
 		}
@@ -34,7 +34,7 @@ public class UploadService {
 			vo.setFileName(files.getOriginalFilename());
 			vo.setPostNo(postno);
 			vo.setDownloadCnt(0);
-			vo.setFilePath("/bulletinboardwrite/"+postno+"/"+files.getOriginalFilename());
+			vo.setFilePath("/circleboardwrite/"+postno+"/"+files.getOriginalFilename());
 			vo.setFileSize(files.getSize());
 			System.out.println(vo);
 			

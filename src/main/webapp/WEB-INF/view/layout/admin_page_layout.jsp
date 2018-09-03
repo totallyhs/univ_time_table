@@ -62,6 +62,18 @@
 							<c:when test="${content eq 'classes' }">
 								<tiles:insertAttribute name="classes_adding"/>
 							</c:when>
+							<c:when test="${content eq 'posts.list' }">
+								<tiles:insertAttribute name="posts_list"/>
+							</c:when>
+							
+							<c:when test="${content eq 'posts.delete' }">
+								<tiles:insertAttribute name="posts_delete"/>
+							</c:when>
+							
+							<c:when test="${content eq 'posts.delete.many' }">
+								<tiles:insertAttribute name="posts_delete_many"/>
+							</c:when>
+							
 							<c:when test="${content eq 'members.list' }">
 								<tiles:insertAttribute name="members_list"/>
 							</c:when>
@@ -83,6 +95,17 @@
 							<c:when test="${content eq 'subjects.delete.many' }">
 								<tiles:insertAttribute name="subjects_delete_many"/>
 							</c:when>
+							
+							<c:when test="${content eq 'posts.find.list' }">
+								<tiles:insertAttribute name="posts_list"/>
+							</c:when>
+							<c:when test="${content eq 'circleposts.list' }">
+								<tiles:insertAttribute name="circleposts_list"/>
+							</c:when>
+							<c:when test="${content eq 'circleposts.find.list' }">
+								<tiles:insertAttribute name="circleposts_list"/>
+							</c:when>
+							
 						</c:choose>
 					
 					</div>

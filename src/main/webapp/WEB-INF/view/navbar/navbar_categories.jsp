@@ -12,6 +12,7 @@
     </c:if>
     <li><a href="/timetable/search">시간표 만들기</a></li>
     <li><a href="${pageContext.servletContext.contextPath }/bulletinboard?no=10">자유게시판</a></li>
+    <li><a href="${pageContext.servletContext.contextPath }/circleboard?no=40">동아리게시판</a></li>
     <c:choose>
     	<c:when test="${sessionScope.memberVo.id eq 'admin' }">
     		<li><a href="${pageContext.servletContext.contextPath }/admin/subjects/list">과목</a></li>

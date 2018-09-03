@@ -19,17 +19,17 @@
 	<c:otherwise>
 	<div class="col-lg-12 well">
 		<div class="row">
-			<form action="/admin/members/delete" method="post">
+			<form action="/admin/posts/delete" method="post">
 				<div class="col-sm-12">
 					<div class="row">
 						<ul>
-							<li>${requestScope.memberVo.id } 를 삭제 하시겠습니까?
-								<input type="hidden" name="no" value="${requestScope.memberVo.no }"/>
+							<li>${requestScope.postno } 를 삭제 하시겠습니까?
+								<input type="hidden" name="no" value="${requestScope.postno }"/>
 							</li>
 						</ul>
 						
 					<button type="submit" class="btn btn-lg btn-info">삭제</button>
-					<a href="/admin/members/list">
+					<a href="/admin/posts/list">
 						<button type="button" class="btn btn-lg btn-info" id="cancelBtn">취소</button>
 					</a>
 				</div>

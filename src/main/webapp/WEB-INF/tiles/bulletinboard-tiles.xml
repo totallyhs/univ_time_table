@@ -8,13 +8,7 @@
 		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
 		<put-attribute name="bulletinboardUI" value="/WEB-INF/view/board/bulletinboard.jsp"/>
 	</definition>
-	<!-- 
-	<definition name="bulletinboard" template="/WEB-INF/view/layout/board/bulletinboard_layout.jsp">
-		<put-attribute name="navlogin" value="/WEB-INF/view/navbar/sign_in_nav.jsp"/>
-		<put-attribute name="navprofile" value="/WEB-INF/view/navbar/profile_navbar.jsp"/>
-		<put-attribute name="boardUI" expression="${board}"/>
-	</definition>
-	-->
+
 	<definition name="boardwrite" template="WEB-INF/view/layout/board/boardwrite_layout.jsp">
 		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
 		<put-attribute name="boardwriteUI" value="/WEB-INF/view/board/boardwrite.jsp"/>

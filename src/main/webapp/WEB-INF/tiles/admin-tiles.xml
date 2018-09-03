@@ -19,6 +19,24 @@
 		<put-attribute name="subjects_list" value="/WEB-INF/view/courses/subjects_list.jsp"/>
 	</definition>
 	
+	<!-- post list -->
+	<definition name="admin.posts.list" extends="admin">
+		<put-attribute name="posts_list" value="/WEB-INF/view/courses/posts_list.jsp"/>
+	</definition>
+	
+	<definition name="admin.posts.delete" extends="admin">
+		<put-attribute name="posts_delete" value="/WEB-INF/view/admin/posts_delete_page.jsp"/>
+	</definition>
+	
+	<definition name="admin.posts.delete.many" extends="admin">
+		<put-attribute name="posts_delete_many" value="/WEB-INF/view/admin/posts_delete_many_page.jsp"/>
+	</definition>
+	
+	<!-- circlepost list -->
+		<definition name="admin.circleposts.list" extends="admin">
+		<put-attribute name="circleposts_list" value="/WEB-INF/view/courses/circleposts_list.jsp"/>
+	</definition>
+	
 	<!-- member list -->
 	<definition name="admin.members.list" extends="admin">
 		<put-attribute name="members_list" value="/WEB-INF/view/courses/members_list.jsp"/>

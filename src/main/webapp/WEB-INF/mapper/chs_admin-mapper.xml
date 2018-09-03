@@ -19,5 +19,60 @@
   	<delete id="memberdeletemany" parameterType="java.lang.String">
   		delete from member where name = #{name}
   	</delete>
-  
+  	
+  	
+  	<select id="boardpostlist" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.PostVo">
+  		select * from post where boardno = #{boardno}
+  	</select>
+  	
+  	<delete id="postdelete" parameterType="java.lang.Integer">
+  		delete from post where no = #{no}
+  	</delete>
+  	
+  	<delete id="postdeletemany" parameterType="java.lang.Integer">
+  		delete from post where no = #{no}
+  	</delete>
+  	
+  	
+  	<!-- board find -->
+  	<select id="boardsubjectlist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.PostVo">
+  		select * from post where subject like #{subject} and boardno = 10
+  	</select>
+  	
+  	<select id="boardnolist" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.PostVo">
+  		select * from post where no = #{no} and boardno = 10
+  	</select>
+  	
+  	<select id="boardpublishedlist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.PostVo">
+  		select * from post where published = #{published} and boardno = 10
+  	</select>
+  	
+  	<select id="boardcontentlist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.PostVo">
+  		select * from post where content like #{content} and boardno = 10
+  	</select>
+  	
+  	<select id="boardwriterlist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.PostVo">
+  		select * from post where writer like #{writer} and boardno = 10
+  	</select>
+  	
+  	<!-- circleboard -->
+  	<select id="circleboardsubjectlist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.PostVo">
+  		select * from post where subject like #{subject} and boardno = 40
+  	</select>
+  	
+  	<select id="circleboardnolist" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.PostVo">
+  		select * from post where no = #{no} and boardno = 40
+  	</select>
+  	
+  	<select id="circleboardpublishedlist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.PostVo">
+  		select * from post where published = #{published} and boardno = 40
+  	</select>
+  	
+  	<select id="circleboardcontentlist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.PostVo">
+  		select * from post where content like #{content} and boardno = 40
+  	</select>
+  	
+  	<select id="circleboardwriterlist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.PostVo">
+  		select * from post where writer like #{writer} and boardno = 40
+  	</select>
   </mapper>

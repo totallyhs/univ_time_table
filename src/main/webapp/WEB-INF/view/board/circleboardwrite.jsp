@@ -25,19 +25,21 @@
 		<h2>로그인을 부탁드립니다.</h2>
 	</c:when>
 	<c:otherwise>
-			<form action="/rewrite?no=${PostVo.no }" method="post" 
+			<form action="/circleboardwrite" method="post" 
 			enctype="multipart/form-data" autocomplete="off">
 		<div class="container">
 			<h2>${board }</h2>
 			<div class="form-group">
-				<label for="subject">제목</label> <input type="text" value="${PostVo.subject }"
-					class="form-control" id="subject" maxlength="50" name="subject">
+			<input type="hidden" name="boardNo" value="${boardNo }">
+				<label for="subject">제목</label> <input type="text"
+					class="form-control" id="subject" maxlength="50" name="subject"
+					placeholder="제목을 입력하세요.">
 			</div>			
 			
 			<div class="form-group">
 				<label for="content">내용</label>
 				  <textarea class="form-control" id="content" name="content" rows="20"
-					onkeyup="fnChkByte(this, '2000')" required="required">${PostVo.content }</textarea>
+					onkeyup="fnChkByte(this, '2000')" required="required"></textarea>
 				<span id="byteInfo">0</span>/2000Byte
 			</div>
 
@@ -46,12 +48,8 @@
 			
 			<!-- 파일 -->
 			<b>첨부파일</b> 
-			<input type="file" name="fileupload" multiple style="width: 430px;"
-			/>
-			<c:forEach var="file" items="${flist }">
-				
-				<a href="${file.filePath }" target="_blank">${file.fileName }</a><br/>
-			</c:forEach>
+			<input type="file" name="fileupload" multiple style="width: 430px;"/>
+			
 			
 			
 			</form>

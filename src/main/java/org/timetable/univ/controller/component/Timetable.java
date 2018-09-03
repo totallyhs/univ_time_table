@@ -1,5 +1,7 @@
 package org.timetable.univ.controller.component;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +25,7 @@ public class Timetable {
 	public Map<String, List<ClassVo>> checkedSubjectClassMap;
 	
 	// subejctno
-	public List<String> userUsingAlgorithme;
+	public List<String> userUsingAlgorithm;
 	
 	// Fixed timetable
 	public List<Map<Integer, List<ClassVo>>> fixedTimetableList;
@@ -31,6 +33,25 @@ public class Timetable {
 	// 학점수
 	// 시간 => SQL 
 	
+	
+	public Timetable() {
+		// MajorSubjectMap
+		MajorSubjectMap = new HashMap<String, List<ClassVo>>();
+		
+		// CultureSubjectMap
+		CultureSubjectMap = new HashMap<Integer, ClassVo>();
+		
+		// checkedSubjectClassMap
+		checkedSubjectClassMap = new HashMap<String, List<ClassVo>>();
+		
+		// userUsingAlgorithm
+		userUsingAlgorithm = new ArrayList<String>();
+		
+		// fixedTimetableList
+		fixedTimetableList = new ArrayList<Map<Integer, List<ClassVo>>>();
+
+		
+	}
 	
 	
 }

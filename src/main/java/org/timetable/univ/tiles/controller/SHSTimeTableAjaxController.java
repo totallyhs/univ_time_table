@@ -1,19 +1,31 @@
 package org.timetable.univ.tiles.controller;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.timetable.univ.controller.component.Timetable;
+import org.timetable.univ.service.TimetableService;
 
 @Controller
 @RequestMapping("/timetable/ajax")
 public class SHSTimeTableAjaxController {
 
+	@Autowired
+	TimetableService timetableService;
 	
-	@RequestMapping(path="/checkbox", produces="application/json;charset=utf-8")
+	@RequestMapping(path="/checkboxchecked", produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String timetableCheckboxAjaxHandle(@RequestParam String json) {
+	public String timetableCheckboxAjaxHandle(@RequestParam String json, HttpSession session) {
+		Timetable timetable = (Timetable)session.getAttribute("timetable");
+		String jsonResult = timetableService.checkboxChecked(json, timetable);
 		
-		return null;
+		return jsonResult;
 	}
 }

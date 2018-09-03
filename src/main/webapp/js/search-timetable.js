@@ -3,7 +3,7 @@
  */
 	// getClassInfo
 	var getClassInfo = function(id) {
-		var subjectno = $("#" + id + "subject");
+		var subjectno = $("#" + id + "subject").val();
 		var no = $("#" + id).attr("data");
 		var day = $("#"+ id + "day").html();
 		var starttime = $("#" + id + "starttime").html();
@@ -18,7 +18,9 @@
 				"id" : id,
 				"no" : no,
 				"day" : day,
+				"starttime" : starttime,
 				"start" : start,
+				"endtime" : endtime,
 				"end" : end,
 		};
 		return json;
@@ -84,62 +86,79 @@
 		}
 	}
 	
+	
+	
 	// checkbox on click
 	$(".clcheckbox").on("click", function() {
 		console.log("clcheckbox clicked");
+		// no == class no
 		var no = $(this).val();
+		
+		// name == subject no
+		var subjectno = $(this).attr("name");
+		
 		var checked = $(this).is(":checked");
 		
+		// set disable or able checkbox
+		setDisablePropOfThisSubject(subjectno, checked);
 		
-		
+		var jsonList = [];
 		$("." + no).each(function() {
-			console.log(".no each");
 			var id = $(this).attr("id");
 			var classJson = getClassInfo(id);
 			
-			clcheckboxOnClickAction(classJson, checked);
-		});
-	});
-	
-	// checkbox on click ajax
-	var checkboxclickajax = function(json) {
-		$.ajax({
-			"url" : "/timetable/ajax/checkbox",
-			"method" : "post",
-			"data" : {
-				"info" : JSON.stringify(json)
-			}
-		}).done(function(r) {
-			
+			jsonList.push(classJson);
 		});
 		
-	}
+		checkboxCheckedClickAjax(jsonList);
+		
+	});
 	
-	
-	var clcheckboxOnClickAction = function(start, end, day, checked, id) {
-		console.log("clcheckbox checked : " + checked);
-		for (var i = start; i <= end; i++) {
-			var boxId = $("#"+i +"-" + day);
-			if (checked) {
-				boxId.css("backgroundColor", "blue");
-				$("#" + id).removeClass('clrow');
-				$("#" + id).off('mouseover');
-				$("#" + id).off('mouseout');
-			} else {
-				boxId.css("backgroundColor", "green");
-				$("#" + id).addClass('clrow');
-				$("#" + id).on('mouseover');
-				$("#" + id).on('mouseout');
-			}
+	var setDisablePropOfThisSubject = function(subjectno, checked) {
+		if (checked) {
+			$("." + subjectno + "cl").each(function() {
+				if (!$(this).is(":checked")) {
+					$(this).prop("disabled", true);
+				}
+			});
+		} else {
+			$("." + subjectno + "cl").each(function() {
+				$(this).prop("disabled", false);
+			})
 		}
 	}
 	
 	
+	// checkbox on click ajax
+	var checkboxCheckedClickAjax = function(json) {
+		// json is list<json> here
+		$.ajax({
+			"url" : "/timetable/ajax/checkboxchecked",
+			"method" : "post",
+			"data" : {
+				"json" : JSON.stringify(json)
+			}
+		}).done(function(r) {
+			for (var i=0; i<r.length; i++) {
+				resultJson = r[i];
+				// id disable mouseover and mouseout
+				var id = resultJson.id;
+					$("#" + id).removeClass('clrow');
+					$("#" + id).off('mouseover');
+					$("#" + id).off('mouseout');
+				// set backgroundcolor
+				var list = resultJson.boxes;
+					for (var j=0; j<list.length; j++) {
+						$("#" + list[j]).css("backgroundColor", "blue");
+					}
+			}
+		});
+		
+	}
 	
-	
-	var setBackgroundColorOnRadioClick = function(json, checked) {
+	var setBackgroundColorOnCheckboxClick = function(json, checked) {
 		for (var i = json.start; i <= json.end; i++) {
-			var boxId = $("#"+i +"-" + day);
+			var boxId = $("#"+i +"-" + json.day);
 			if (checked) {
 				boxId.css("backgroundColor", "blue");
 				$("#" + id).removeClass('clrow');
@@ -172,6 +191,26 @@
 	}
 	
 	
+	
+	/*
+	var clcheckboxOnClickAction = function(json, checked) {
+		console.log("clcheckbox checked : " + checked);
+		for (var i = json.start; i <= json.end; i++) {
+			var boxId = $("#"+i +"-" + json.day);
+			if (checked) {
+				boxId.css("backgroundColor", "blue");
+				$("#" + id).removeClass('clrow');
+				$("#" + id).off('mouseover');
+				$("#" + id).off('mouseout');
+			} else {
+				boxId.css("backgroundColor", "green");
+				$("#" + id).addClass('clrow');
+				$("#" + id).on('mouseover');
+				$("#" + id).on('mouseout');
+			}
+		}
+	}
+	*/
 	
 	
 	

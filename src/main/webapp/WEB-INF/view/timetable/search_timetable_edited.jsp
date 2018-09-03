@@ -99,6 +99,7 @@
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
+					  												<input type="hidden" id="${cl.id }subject" value="${subject.no}"/>
 					  											</td>
 					  										</tr>
 	  													</c:when>
@@ -109,6 +110,7 @@
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
+					  												<input type="hidden" id="${cl.id }subject" value="${subject.no}"/>
 					  											</td>
 					  										</tr>
 	  													</c:when>
@@ -121,6 +123,7 @@
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
+					  												<input type="hidden" id="${cl.id }subject" value="${subject.no}"/>
 					  											</td>
 					  										</tr>
 	  													</c:when>

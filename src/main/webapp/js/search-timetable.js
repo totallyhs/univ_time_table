@@ -3,6 +3,7 @@
  */
 	// getClassInfo
 	var getClassInfo = function(id) {
+		var subjectno = $("#" + id + "subject");
 		var no = $("#" + id).attr("data");
 		var day = $("#"+ id + "day").html();
 		var starttime = $("#" + id + "starttime").html();
@@ -13,12 +14,12 @@
 		var end = Math.floor((endtime-850)/50);
 		
 		var json = {
+				"subjectno" : subjectno, 
 				"id" : id,
 				"no" : no,
 				"day" : day,
 				"start" : start,
 				"end" : end,
-				"box" : "[" + start + "," + end + "]"
 		};
 		return json;
 	}

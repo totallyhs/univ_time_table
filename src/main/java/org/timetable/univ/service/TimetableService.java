@@ -14,13 +14,11 @@ public class TimetableService {
 	@Autowired
 	Gson gson;
 	
-	@Autowired
-	Timetable timetable;
-	
-	public void checkboxCheck(Map jsonMap) {
+	public void checkboxCheck(String json, Timetable timetable) {
+		
 		boolean[][] table = timetable.table;
 		
-		int classNo = (Integer)jsonMap.get("no");
+		
 		
 		
 	}

@@ -4,6 +4,7 @@
 	// getClassInfo
 	var getClassInfo = function(id) {
 		var subjectno = $("#" + id + "subject").val();
+		var units = $("#" + id + "units").val();
 		var no = $("#" + id).attr("data");
 		var day = $("#"+ id + "day").html();
 		var starttime = $("#" + id + "starttime").html();
@@ -14,7 +15,8 @@
 		var end = Math.floor((endtime-850)/50);
 		
 		var json = {
-				"subjectno" : subjectno, 
+				"subjectno" : subjectno,
+				"units" : units,
 				"id" : id,
 				"no" : no,
 				"day" : day,
@@ -57,8 +59,10 @@
 			var id = $("#"+i +"-" + json.day);
 			if("rgb(0, 128, 0)"===id.css("backgroundColor")){
 				id.css("backgroundColor","red");
+				$("#" + json.no + "checkbox").prop("disabled", true);
 			}else if("rgb(0, 0, 255)"===id.css("backgroundColor")){
 				id.css("backgroundColor","yellow");
+				$("#" + json.no + "checkbox").prop("disabled", true);
 			}else{
 				id.css("backgroundColor", "green");
 			}
@@ -151,7 +155,10 @@
 					for (var j=0; j<list.length; j++) {
 						$("#" + list[j]).css("backgroundColor", "blue");
 					}
-			}
+			} // for
+			var sumUnits = parseInt($("#sumUnits").html());
+			sumUnits += resultJson.units;
+			$("#sumUnits").html(sumUnits);
 		});
 		
 	}

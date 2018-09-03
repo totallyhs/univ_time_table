@@ -70,7 +70,7 @@
 									<div class="panel-heading">
 										<a class="collapsed text-center" data-toggle="collapse" 
 											href="#${subject.no }FIRST" style="text-decoration: none;">
-											<span class="card-title text-dark sname">${subject.name }</span>
+											<span class="card-title text-dark sname">${subject.name } <small>(${subject.units })</small></span>
 											<span class="card-subtitle mb-2 text-muted sno">학수번호 : ${subject.no }</span>
 										</a>
 									</div> <!-- panel-header -->
@@ -93,13 +93,14 @@
 		  												<c:when test="${status.first }">
 		  													<tr data="${cl.no }" id='${cl.id }' class='${cl.no } clrow'>
 		  														<td style="padding-left: 0; padding-right: 1.5em;">
-		  															<input type="checkbox" name="${subject.no }" class="clcheckbox ${subject.no }cl" value="${cl.no }"/>&nbsp; ${cl.no }
+		  															<input type="checkbox" id="${cl.no }checkbox" name="${subject.no }" class="clcheckbox ${subject.no }cl" value="${cl.no }"/>&nbsp; ${cl.no }
 		  														</td>
 					  											<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
 					  												<input type="hidden" id="${cl.id }subject" value="${subject.no}"/>
+					  												<input type="hidden" id="${cl.id }units" value="${subject.units }"/>
 					  											</td>
 					  										</tr>
 	  													</c:when>
@@ -111,19 +112,21 @@
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
 					  												<input type="hidden" id="${cl.id }subject" value="${subject.no}"/>
+					  												<input type="hidden" id="${cl.id }units" value="${subject.units }"/>
 					  											</td>
 					  										</tr>
 	  													</c:when>
 	  													<c:when test="${cl.no != subject.classList[status.index - 1].no }">
 	  														<tr data="${cl.no }" id='${cl.id }' class='${cl.no } clrow'>
 		  														<td style="padding-left: 0; padding-right: 1.5em;">
-		  															<input type="checkbox" name="${subject.no }" class="clcheckbox ${subject.no }cl" value="${cl.no }"/>&nbsp; ${cl.no }
+		  															<input type="checkbox" id="${cl.no }checkbox" name="${subject.no }" class="clcheckbox ${subject.no }cl" value="${cl.no }"/>&nbsp; ${cl.no }
 		  														</td>
 					  											<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
 					  												<input type="hidden" id="${cl.id }subject" value="${subject.no}"/>
+					  												<input type="hidden" id="${cl.id }units" value="${subject.units }"/>
 					  											</td>
 					  										</tr>
 	  													</c:when>
@@ -152,6 +155,7 @@
 </div>	<!-- col-sm-9 -->
 		
 	<div class="col-sm-4">
+		<p>총 학점 : <span id="sumUnits">0</span> </p>
 		<table border='0' cellpadding='0' cellspacing='0' style="max-height: 700; max-width: 700px; text-align: center;">
 			<tr class='days' style="width: 100%;" align="center">
 				<th style="width: 15%;"></th>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>	
+	<!-- circle board -->
+	
+	<definition name="circleboard" template="/WEB-INF/view/layout/board/circleboard_layout.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
+		<put-attribute name="circleboardUI" value="/WEB-INF/view/board/circleboard.jsp"/>
+	</definition>
+
+	<definition name="circleboardwrite" template="WEB-INF/view/layout/board/circleboardwrite_layout.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
+		<put-attribute name="circleboardwriteUI" value="/WEB-INF/view/board/circleboardwrite.jsp"/>
+	</definition>
+	
+	<definition name="circleboardview" template="WEB-INF/view/layout/board/circleboardview_layout.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
+		<put-attribute name="circleboardviewUI" value="/WEB-INF/view/board/circleboardview.jsp"/>
+	</definition>
+	
+	<definition name="circlerewrite" template="WEB-INF/view/layout/board/circlerewrite_layout.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
+		<put-attribute name="circlerewriteUI" value="/WEB-INF/view/board/circlerewrite.jsp"/>
+	</definition>
+</tiles-definitions>

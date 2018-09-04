@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="csm_combi">
+	<!-- subject no 에 해당하는 class no 뽑기-->
+	<select id="subjectClassNoList" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select no from class where subjectno=#{subjectno}
+	</select>
+	
+	<!-- class no 에 해당하는 class들 -->
+	<select id="classList" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.ClassVo">
+		select * from class where no = #{no}
+	</select>
+	
+	<!-- subjectno에 해당하는 모든 class -->
+	<select id="subjectClassList" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.ClassVo">
+		select * from class where subjectno=#{subjectno}
+	</select>
+	
+	<!-- 교양과목 전체 불러오기 -->
+	<select id="cultivateClasses" resultType="org.timetable.univ.model.vo.ClassVo">
+		select a.* from class a , subject b where department = 0 
+	</select>
+	
+	<!-- 교양과목 학점수 불러오기 -->
+	<select id="cultureUnits" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select units from subject where no = #{subjectno}
+	</select>
+</mapper>

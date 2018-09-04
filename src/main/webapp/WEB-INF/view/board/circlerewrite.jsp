@@ -25,7 +25,7 @@
 		<h2>로그인을 부탁드립니다.</h2>
 	</c:when>
 	<c:otherwise>
-			<form action="/rewrite?no=${PostVo.no }" method="post" 
+			<form action="/circlerewrite?no=${PostVo.no }" method="post" 
 			enctype="multipart/form-data" autocomplete="off">
 		<div class="container">
 			<h2>${board }</h2>

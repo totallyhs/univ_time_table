@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chs_circleboard">
+	<select id="circleboardList" resultType="org.timetable.univ.model.vo.BoardVo">
+		select * from board
+	</select>
+	
+	<select id="circleselectpost" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.PostVo">
+		select * from post where no = #{no}
+	</select>
+
+	
+	<insert id="circleinsertpost" parameterType="org.timetable.univ.model.vo.PostVo">
+		insert into post values(#{no},#{boardNo},#{subject},#{writer},#{content},1,sysdate,#{hit},#{published})
+	</insert>
+	
+	<update id="circleboardhit" parameterType="java.util.Map">
+		update post set hit = #{hitPlus} where no = #{no}
+	</update>
+	
+	<select id="circleboardpage" parameterType="java.util.Map" resultType="org.timetable.univ.model.vo.PostVo">
+	select s.* from (select rownum r,t.* from (select * from post where boardno=#{no} and published='y' order by no desc)t)s where s.r between #{start} and #{end}
+	</select>
+	
+	<select id="circlepagecount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	select count(*) from post where boardno=#{no} and published='y'
+	</select>
+	
+	<select id="circlereplycount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(*) from comments where postno=#{no} and published='y'
+	</select>
+	
+	<insert id="circleinsertreply" parameterType="org.timetable.univ.model.vo.CommentsVo">
+		insert into comments values(comments_seq.nextval,#{postNo},#{commentator},#{content},#{published},1,sysdate)
+	</insert>
+	
+	<select id="circlereplylist" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.CommentsVo">
+		select * from comments where postno = #{postno}
+	</select>
+	
+	<update id="circlereplydelete" parameterType="java.util.Map">
+		update comments set published = #{published} where no=#{no}
+	</update>
+	
+	<update id="circlepostdelete" parameterType="java.util.Map">
+		update post set published = #{published} where no=#{no}
+	</update>
+	
+	<insert id="circlefileupload" parameterType="org.timetable.univ.model.vo.PostFileVo">
+		insert into postfile values(postfile_seq.nextval,#{postNo},#{filePath},#{fileSize},#{downloadCnt},#{fileName})
+	</insert>
+	
+	<select id="circlegetSquence" resultType="java.lang.Integer">
+		select post_seq.nextval from dual
+	</select>
+	
+	<select id="circlefileview" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.PostFileVo">
+		select * from postfile where postno = #{no}
+	</select>
+	
+	<insert id="circlepostlike" parameterType="org.timetable.univ.model.vo.PostlikeVo">
+		insert into postlike values(#{postNo},#{id})
+	</insert>
+	
+	<select id="circlelikelist" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.PostlikeVo">
+		select * from postlike where postno = #{no}
+	</select>
+	
+	<select id="circlepostlikecount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select count(*) from postlike where postno=#{no}
+	</select>
+	
+	<update id="circlerewriteupdate" parameterType="java.util.Map">
+		update post set subject = #{subject}, content = #{content} where no= #{no}
+	</update>
+		
+</mapper>
+
+

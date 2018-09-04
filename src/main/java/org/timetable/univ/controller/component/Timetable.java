@@ -24,10 +24,13 @@ public class Timetable {
 	// check 된 class만 subjectVo.classList에 추가
 	public Map<String, List<ClassVo>> checkedSubjectClassMap;
 	
+	// check 된 class 리스트
+	public Map<Integer, List<ClassVo>> checkedClassMap;
+	
 	// subejctno
 	public List<String> userUsingAlgorithm;
 	
-	// Fixed timetable
+	// After combinantion, possible fixed timetables
 	public List<Map<Integer, List<ClassVo>>> fixedTimetableList;
 	
 	// 학점수
@@ -43,6 +46,9 @@ public class Timetable {
 		
 		// checkedSubjectClassMap
 		checkedSubjectClassMap = new HashMap<String, List<ClassVo>>();
+		
+		// checkedClassMap
+		checkedClassMap = new HashMap<Integer, List<ClassVo>>();
 		
 		// userUsingAlgorithm
 		userUsingAlgorithm = new ArrayList<String>();

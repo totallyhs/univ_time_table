@@ -53,10 +53,18 @@
 <!-- 시간표 && 과목 리스트 row -->
 <div class="row">
 	<div class="col-sm-8">
-		<h2>과목 리스트</h2>
+		<div class="row">
+			<div class="col-sm-4">
+				<h2>과목 리스트</h2>
+			</div>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<button type="button" id="cultureCombineBtn">교양넣기</button>
+			</div>
+		</div>
 		<!--BEGIN HEAD-->
 		<small>
-			<div id="container" style="margin-left: 0px;">
+			<div id="container" style="margin-right: 0px;margin-left: 0px;">
 			<div id="accordion">
 		<!--END HEAD-->
 

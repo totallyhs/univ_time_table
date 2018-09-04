@@ -1,15 +1,18 @@
 package org.timetable.univ.tiles.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.timetable.univ.controller.component.CSMTimetable;
+import org.timetable.univ.controller.component.Timetable;
 import org.timetable.univ.dao.CSMTimeTableDao;
 import org.timetable.univ.dao.SHSSubjectDao;
 import org.timetable.univ.model.vo.ClassVo;
@@ -22,6 +25,9 @@ public class CSMTimeTablePageController {
 	SHSSubjectDao subjectdao;
 	@Autowired
 	CSMTimeTableDao timetabledao;
+	
+	@Autowired
+	CSMTimetable csmTimetable;
 	
 	@RequestMapping("/result")
 	public String timetableResultHandle(WebRequest webRequest) {
@@ -70,6 +76,21 @@ public class CSMTimeTablePageController {
 		// mav.addObject("classMap", classMap);
 		mav.setViewName("timetable.edited");
 		return mav;
+	}
+	
+	
+	
+	@RequestMapping("/culture/combination")
+	public ModelAndView cultureCombinationHandle(@RequestParam int unitssum, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		
+		Timetable timetable = (Timetable)session.getAttribute("timetable");
+		Map<Integer, List<ClassVo>> checkedClassMap = timetable.checkedClassMap;
+		
+		
+		
+		return mav;
+		
 	}
 	
 }

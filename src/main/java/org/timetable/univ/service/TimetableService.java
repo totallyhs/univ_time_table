@@ -30,11 +30,13 @@ public class TimetableService {
 		String subjectNo = (String) ((Map)classJson.get(0)).get("subjetno");
 		System.out.println(classJson);
 		
-		
-
 		// update checkedSubjectClassMap
 		Map<String, List<ClassVo>> checkedSubjectClassMap = timetable.checkedSubjectClassMap;
 		
+		// to update checkedClassMap
+		Map<Integer, List<ClassVo>> checkedClassMap = timetable.checkedClassMap;
+		
+		// to update table
 		boolean[][] table = timetable.table;
 		
 		if (!checkedSubjectClassMap.containsKey(subjectNo)) {
@@ -47,6 +49,7 @@ public class TimetableService {
 			Map<String, Object> jsonMap = (Map<String, Object>) classJson.get(i);
 			int id = Integer.parseInt((String)jsonMap.get("id"));
 			int units = Integer.parseInt((String)jsonMap.get("units"));
+			int classNo = Integer.parseInt((String)jsonMap.get("no"));
 			
 			Map<String, Object> resultMap = new HashMap<String, Object>();
 			resultMap.put("id", id);
@@ -56,11 +59,18 @@ public class TimetableService {
 			ClassVo classVo = new ClassVo();
 				classVo.setId(id);
 				classVo.setDay(Integer.parseInt((String)jsonMap.get("day")));
-				classVo.setNo(Integer.parseInt((String)jsonMap.get("no")));
+				classVo.setNo(classNo);
 				classVo.setStarttime(Integer.parseInt((String)jsonMap.get("starttime")));
 				classVo.setEndtime(Integer.parseInt((String)jsonMap.get("endtime")));
 			
 			checkedSubjectClassMap.get(subjectNo).add(classVo);
+			
+			// set checkedClassMap
+			if (!checkedClassMap.containsKey(classNo)) {
+				List<ClassVo> checkedClassList = new ArrayList<ClassVo>();
+				checkedClassMap.put(classNo, checkedClassList);
+			}
+			checkedClassMap.get(classNo).add(classVo);
 			
 			// update table	and result
 			int start = ((Double)jsonMap.get("start")).intValue();

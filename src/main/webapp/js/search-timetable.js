@@ -198,6 +198,17 @@
 	}
 	
 	
+	$("#cultureCombineBtn").on("click", function() {
+		cultureCombinationBtnClickAction();
+	});
+	
+	// when clicked culture combination btn
+	var cultureCombinationBtnClickAction = function() {
+		var units = $("#sumUnits").html();
+		window.location.href = "/timetable/culture/combination?unitssum=" + units;
+	}
+	
+	
 	
 	/*
 	var clcheckboxOnClickAction = function(json, checked) {

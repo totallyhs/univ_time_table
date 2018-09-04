@@ -20,7 +20,7 @@ public class CSMTimetable {
 		//모든 교양과목 리스트
 		List<ClassVo> cultureSubjectList = combinationdao.getcultivateClasses();
 		
-		//최종 결과 리스트
+		//최종 결과 시간표(리스트)의 리스트
 		List<List<Map<Integer, List<ClassVo>>>> resultList = new ArrayList();
 		
 		//교양과목마다 체크된 과목 리스트와 비교하는 포문
@@ -100,4 +100,11 @@ public class CSMTimetable {
 		return resultList;
 	}
 
+	//선택한 전공랜덤 함수
+	public List<List<Map<Integer, List<ClassVo>>>> majorCombination(List<Map<Integer, List<ClassVo>>> checkedSubjectClassList,int unitssum){
+		
+		
+		
+		return null;
+	}
 }

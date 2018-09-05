@@ -3,6 +3,8 @@ package org.timetable.univ.controller.join;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,6 @@ public class JoinController {
 		mav.setViewName("join");
 		try {
 			List<DepartmentVo> list = memberDao.getDepartment();
-			System.out.println(list);
 			mav.addObject("department", list);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,9 +45,39 @@ public class JoinController {
 			webRequest.setAttribute("memberVo", memberVo, WebRequest.SCOPE_SESSION);
 			mav.setViewName("index");
 		}else {
-			mav.setViewName("join");
+			mav.setViewName("error");
 		}
 		return mav;
 	}
-	
+	// 회원정보 수정 컨트롤러
+	@PostMapping("/edit")
+	public ModelAndView editMembersHandle(@RequestParam Map<String,String> map,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		// 회원 정보 수정 판단 컨트롤
+		MemberVo vo = (MemberVo) session.getAttribute("memberVo");
+		int r = memberDao.updateMember(map);
+		if (r == 1) {
+			mav.setViewName("index");
+		}else {
+			mav.setViewName("error");
+		}
+		return mav;
+	}
+	// 회원 정보 수정 페이지 보여주는 컨트롤러
+	@GetMapping("/editview")
+	public ModelAndView editDepartmentHandle(HttpSession session) {
+		MemberVo vo = (MemberVo) session.getAttribute("memberVo");
+		String id = vo.getId();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("editview");
+		MemberVo memberinfo = memberDao.getMemberinfo(id);
+		mav.addObject("memberinfo", memberinfo);
+		try {
+			List<DepartmentVo> list = memberDao.getDepartment();
+			mav.addObject("department", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mav;
+	}
 }

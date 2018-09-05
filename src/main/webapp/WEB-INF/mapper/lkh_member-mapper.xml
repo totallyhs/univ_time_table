@@ -23,4 +23,11 @@
 	<select id = "findByIdandPass" parameterType="java.util.HashMap" resultType="org.timetable.univ.model.vo.MemberVo">
     	select * from member where id=#{id} and pass=#{pass}
 	</select>
+	<!-- 회원정보 수정시 불러올 회원정보 쿼리문 -->
+	<select id="Memberinfo" parameterType="string" resultType="org.timetable.univ.model.vo.MemberVo" >
+		select * from member where id = #{id}
+	</select>
+	<update id="EditMember" parameterType="hashmap">
+		update member set pass = #{pass}, nickname = #{nickname}, department =#{department}, email = #{email} where no = #{no}
+	</update>
 </mapper>

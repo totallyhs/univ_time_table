@@ -37,4 +37,11 @@ public class LKHMemberDao {
 	public MemberVo findByIdandPass(Map data) {
 		return template.selectOne("LKH-Member.findByIdandPass", data);
 	}
+	public MemberVo getMemberinfo(String id) {
+		MemberVo memberinfo = template.selectOne("LKH-Member.Memberinfo", id);
+		return memberinfo;
+	}
+	public int updateMember(Map<String, String> map) {
+		return template.update("LKH-Member.EditMember", map);
+	}
 }

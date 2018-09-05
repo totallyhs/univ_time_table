@@ -2,11 +2,14 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
 "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-<!-- 타일즈 겁데기 설정 -->
+	<!-- 회원가입 타일즈 설정 -->
 	<definition name="join" template="/WEB-INF/view/layout/join_layout.jsp">
 		<!-- 타일즈 겁데기 안에 넣을 페이지 요소들 추가 -->
 		<put-attribute name="joinlogo" value="/WEB-INF/view/join/join_logo.jsp"/>
 		<put-attribute name="joinpage" value="/WEB-INF/view/join/join.jsp"/>
 	</definition>
-	
+	<!-- 회원 정보수정 타일즈 설정 -->
+	<definition name="editview" template="/WEB-INF/view/layout/editmembers_layout.jsp">
+	<put-attribute name="editpage" value="/WEB-INF/view/join/editmembers.jsp"/>
+	</definition>
 </tiles-definitions>

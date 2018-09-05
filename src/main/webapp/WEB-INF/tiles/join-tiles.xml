@@ -12,4 +12,5 @@
 	<definition name="editview" template="/WEB-INF/view/layout/editmembers_layout.jsp">
 	<put-attribute name="editpage" value="/WEB-INF/view/join/editmembers.jsp"/>
 	</definition>
+	<!-- 회원 정보 타일즈 설정 -->
 </tiles-definitions>

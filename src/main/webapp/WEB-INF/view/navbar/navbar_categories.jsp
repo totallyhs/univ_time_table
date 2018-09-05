@@ -54,8 +54,8 @@
      <c:otherwise>
        <ul class="collapse nav navbar-nav nav-collapse slide-down" role="search" id="nav-collapse2">
              <li><a href="/login/logout">Logout</a></li>
-             <li><a href="/editview?id=">My profile</a></li>
-             <li><a href="#">Settings</a></li>
+             <li><a href="#">My profile</a></li>
+             <li><a href="/editview?id=">Settings</a></li>
       </ul>
     </c:otherwise>          
   </c:choose>

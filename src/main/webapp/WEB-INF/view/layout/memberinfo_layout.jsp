@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div>
-		<tiles:insertAttribute name="editpage"/>
+		<tiles:insertAttribute name="memberInfoView"/>
 	</div>
 </body>
 </html>

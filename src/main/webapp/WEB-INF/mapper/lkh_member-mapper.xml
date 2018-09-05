@@ -13,12 +13,12 @@
 		select * from department order by no asc
 	</select>
 	<!-- 회원 가입시 ID 중복 체크 쿼리문 -->
-	<select id = "getIdCheck" parameterType = "java.lang.String" resultType="org.timetable.univ.model.vo.MemberVo">
-    	select id from member where id = #{id}
+	<select id = "getIdCheck" parameterType = "string" resultType="integer">
+    	select count(*) from MEMBER where id= #{id}
 	</select>
 	<!-- 회원 가입시 닉네임 중복 체크 쿼리문 -->
-	<select id = "getNickNameCheck" resultType="org.timetable.univ.model.vo.MemberVo">
-    	select nickname from member where nickname = #{nick}
+	<select id = "getNickNameCheck" parameterType="string" resultType="integer">
+    	select count(*) from MEMBER where nickname= #{nick}
 	</select>
 	<select id = "findByIdandPass" parameterType="java.util.HashMap" resultType="org.timetable.univ.model.vo.MemberVo">
     	select * from member where id=#{id} and pass=#{pass}

@@ -3,15 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<meta charset="UTF-8">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<title></title>
-</head>
 <body>
+	<c:choose>
+		<c:when test="${sessionScope.memberVo eq null }">
+			로그인을 해주세요.
+		</c:when>
+		<c:otherwise>
 	<div class="container" style="padding-top: 60px;">
   <h1 class="page-header">회원정보 수정</h1>
       </div>
@@ -31,8 +28,9 @@
         <div class="form-group">
           <label class="col-md-3 control-label">NickName:</label>
           <div class="col-md-8">
-            <input class="form-control" name="nickname" type="text" placeholder="사용할 닉네임을 입력 해주세요"
+            <input class="form-control" id="nickcheck" name="nickname" type="text" placeholder="사용할 닉네임을 입력 해주세요"
             required="required">
+            <span id="nickmsg"></span>
           </div>
         </div>
         <div class="form-group">
@@ -82,8 +80,39 @@
         </div>
         <input type="hidden" name="no" value="${memberinfo.no }">
       </form>
-</body>
+      </c:otherwise>
+	</c:choose>
 <script>
+$("#nickcheck").on("change", function() {
+	$.ajax({
+		url : "/joinNickCheck", // 중복체크할 경로
+		type : "POST",
+		data : {
+			nickname : $(this).val()
+		},
+		success : function(data) {
+			console.log(data); //데이터 확인용
+			// 데이터에 널값이 들어오면 닉네임 사용가능 수정버튼 활성화
+			// 아니면 닉네임 사용 불가능 수정버튼 비활성화
+			var nickName = document.getElementById("nickmsg");
+			var button = document.getElementById("button");
+			if (data == null) {
+				nickName.style.color = "blue";
+				nickName.innerHTML = "사용 가능한 멋진 닉네임 입니다.";
+				if(button.disabled){
+					button.disabled=true;
+				}else{
+					button.disabled=false;
+				}
+			} else {
+				nickName.style.color = "red";
+				nickName.innerHTML = "중복된 닉네임이 존재 합니다.";
+				button.disabled = true;
+			}
+		}
+	})
+});
+
 $("#pass").on("change", function() {
 	var pass = $("#pass").val();
 	var pattensMsg = document.getElementById("pattensMsg");

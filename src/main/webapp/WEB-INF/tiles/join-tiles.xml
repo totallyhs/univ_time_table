@@ -13,4 +13,7 @@
 	<put-attribute name="editpage" value="/WEB-INF/view/join/editmembers.jsp"/>
 	</definition>
 	<!-- 회원 정보 타일즈 설정 -->
+	<definition name="memberinfo" template="/WEB-INF/view/layout/memberinfo_layout.jsp">
+	<put-attribute name="memberInfoView" value="/WEB-INF/view/join/memberinfo.jsp"/>
+	</definition>
 </tiles-definitions>

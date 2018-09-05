@@ -62,6 +62,7 @@
 			$.ajax({
 				url : "/joinIdCheck", // 중복체크할 경로
 				type : "POST",
+				
 				data : {
 					id : $(this).val()
 				},
@@ -71,7 +72,7 @@
 					// 아니면 아이디 사용 불가능 가입버튼 비활성화
 					var sid = document.getElementById("IdCheck");
 					var button = document.getElementById("joinbt");
-					if (data == null) {
+					if (data == 0) {
 						sid.style.color = "blue";
 						sid.innerHTML = "사용가능한 멋진 아이디 입니다!";
 						
@@ -104,7 +105,7 @@
 					// 아니면 닉네임 사용 불가능 가입버튼 비활성화
 					var nickName = document.getElementById("nickmsg");
 					var button = document.getElementById("joinbt");
-					if (data == null) {
+					if (data == 0) {
 						nickName.style.color = "blue";
 						nickName.innerHTML = "사용 가능한 멋진 닉네임 입니다.";
 						if(button.disabled){

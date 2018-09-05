@@ -24,13 +24,13 @@ public class LKHMemberDao {
 		return list;
 	}
 	// 맵퍼로 아이디 정보 하나 요청 메소드
-	public MemberVo getIdCheck(String id) {
-		MemberVo maberId = template.selectOne("LKH-Member.getIdCheck", id);
+	public int getIdCheck(String id) {
+		int maberId = template.selectOne("LKH-Member.getIdCheck", id);
 		return maberId;
 	}
 	// 맵퍼로 닉네임 정보 하나 요청하는 메소드
-	public MemberVo getNickNameCheck(String nick) {
-		MemberVo maberNick = template.selectOne("LKH-Member.getIdCheck", nick);
+	public int getNickNameCheck(String nick) {
+		int maberNick = template.selectOne("LKH-Member.getNickNameCheck", nick);
 		return maberNick;
 	}
 	// 맵퍼에서 가입 정보값 받아 오는 메소드

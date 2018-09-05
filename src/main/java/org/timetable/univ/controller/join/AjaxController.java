@@ -2,6 +2,8 @@ package org.timetable.univ.controller.join;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +26,8 @@ public class AjaxController {
 	@ResponseBody
 	public String idCheckAjaxHandle(@RequestParam String id ) {
 		System.out.println("param : " + id);
-		MemberVo MemberId = memberDao.getIdCheck(id);
+		int MemberId = memberDao.getIdCheck(id);
+		System.out.println(MemberId);
 		String json = gson.toJson(MemberId);
 		return json;
 	}
@@ -32,7 +35,7 @@ public class AjaxController {
 	@ResponseBody
 	public String nickCheckAjaxHandle(@RequestParam String nickname ) {
 		System.out.println("param : " + nickname);
-		MemberVo MemberNackname = memberDao.getNickNameCheck(nickname);
+		int MemberNackname = memberDao.getNickNameCheck(nickname);
 		String json = gson.toJson(MemberNackname);
 		return json;
 	}

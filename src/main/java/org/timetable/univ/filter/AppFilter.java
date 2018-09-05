@@ -17,7 +17,9 @@ public class AppFilter extends HttpFilter {
 			throws IOException, ServletException {
 		String req = request.getRequestURI();
 		System.out.println("filter at " + req);
-		if (req.endsWith(".css") || req.endsWith(".js") || req.equals("/index") || req.equals("/") || req.equals("/join") || req.equals("/login/login")) {
+		if (req.endsWith(".css") || req.endsWith(".js") || req.equals("/index") || req.equals("/") || 
+				req.equals("/join") || req.equals("/login/login") || 
+				req.equals("/joinIdCheck") || req.equals("/joinNickCheck") ) {
 			
 			chain.doFilter(request, response);
 		} else {

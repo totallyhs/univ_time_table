@@ -14,15 +14,15 @@
                 <h3 class="panel-title">users</h3>
                 <!-- 검색 -->
                 <form action="/admin/members/find/list" method="get">
-             	<select name="findselect">
+             	<select name="findselect" style="color:black">
 					<option value="id" ${param.findselect eq 'id' ? 'selected':'' }>id</option>
 					<option value="name" ${param.findselect eq 'name' ? 'selected':'' }>name</option>
 					<option value="nickname" ${param.findselect eq 'nickname' ? 'selected':'' }>nickname</option>
 					<option value="department" ${param.findselect eq 'department' ? 'selected':'' }>department</option>
 					
 				</select>
-				  <input type="text" name="find" style="color:black"/>
-				<button type="submit">입력</button>
+				  <input type="text" name="find" style="color:black" value="${param.find }"/>
+				<button type="submit" style="color:black">입력</button>
 				</form>
             </div>
             <!-- form -->
@@ -125,14 +125,14 @@
                 <h3 class="panel-title">users</h3>
                 <!-- 검색 -->
                 <form action="/admin/members/find/list" method="get">
-             	<select name="findselect">
+             	<select name="findselect" style="color:black">
 					<option value="id" ${param.findselect eq 'id' ? 'selected':'' }>id</option>
 					<option value="name" ${param.findselect eq 'name' ? 'selected':'' }>name</option>
 					<option value="nickname" ${param.findselect eq 'nickname' ? 'selected':'' }>nickname</option>
 					<option value="department" ${param.findselect eq 'department' ? 'selected':'' }>department</option>		
 				</select>
-				  <input type="text" name="find" style="color:black"/>
-				<button type="submit">입력</button>
+				  <input type="text" name="find" style="color:black" value="${param.find }"/>
+				<button type="submit" style="color:black">입력</button>
 				</form>
 
 

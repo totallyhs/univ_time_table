@@ -56,6 +56,9 @@
 							<c:when test="${content eq  'subjects.list'}">
 								<tiles:insertAttribute name="subjects_list"/>
 							</c:when>
+							<c:when test="${content eq 'classes.list' }">
+								<tiles:insertAttribute name="classes_list"/>
+							</c:when>
 							<c:when test="${content eq 'subjects' }">
 								<tiles:insertAttribute name="subjects_adding"/>
 							</c:when>
@@ -95,6 +98,18 @@
 							<c:when test="${content eq 'subjects.delete.many' }">
 								<tiles:insertAttribute name="subjects_delete_many"/>
 							</c:when>
+							
+							<c:when test="${content eq 'classes.update' }">
+								<tiles:insertAttribute name="classes_update"/>
+							</c:when>
+							<c:when test="${content eq 'classes.delete' }">
+								<tiles:insertAttribute name="classes_delete"/>
+							</c:when>
+							<c:when test="${content eq 'classes.delete.many' }">
+								<tiles:insertAttribute name="classes_delete_many"/>
+							</c:when>
+							
+							
 							
 							<c:when test="${content eq 'posts.find.list' }">
 								<tiles:insertAttribute name="posts_list"/>

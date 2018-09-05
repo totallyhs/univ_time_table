@@ -58,9 +58,10 @@
   				  </div> <!-- FILES->
   				  
 					<!-- BUTTON -->					
-					<div class="form-group">	
+					<div class="form-group">
+						<a href="/mail/delete?no=${mailVo.no }">	
 						<button type="submit" class="btn btn-success">삭제</button>
-						
+						</a>
 			</div>	
 		</div>
 		

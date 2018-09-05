@@ -8,8 +8,8 @@
 		select mail_seq.nextval from dual
 	</select>
 	
-	<select id="getAllMails" resultType="org.timetable.univ.model.vo.MailVo">
-		select * from mail order by no desc
+	<select id="getAllMails" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.MailVo">
+		select * from mail where receiver = #{receiver} order by no desc 
 	</select>
 	
 	<select id="getAllMailsWithFilesCount" parameterType="java.lang.String" resultType="java.util.HashMap">
@@ -42,6 +42,14 @@
 	<insert id="saveMailFiles" parameterType="org.timetable.univ.model.vo.MailFileVo">
 		insert into mailfile values(#{no}, #{mailNo}, #{filePath}, #{fileSize}, #{fileName})
 	</insert>
+	
+	<select id="mailcount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(*) from mail where receiver = #{receiver}
+	</select>
+	
+	<delete id="maildelete" parameterType="java.lang.Integer">
+		delete from mail where no = #{no}
+	</delete>
 	
 	
 </mapper>

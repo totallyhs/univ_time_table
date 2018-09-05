@@ -92,4 +92,24 @@
   		select * from member where department like #{department}
   	</select>
   	
+  	<select id="classeslist" resultType="org.timetable.univ.model.vo.ClassVo">
+  		select * from class
+  	</select>
+  	
+  	<select id="classesSelect" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.ClassVo">
+  		select * from class where id = #{id}
+  	</select>
+  	
+  	<update id="classesupdate" parameterType="org.timetable.univ.model.vo.ClassVo">
+  		update class set no = #{no}, subjectNo =#{subjectNo},professor =#{professor}, day =#{day}, starttime= #{starttime},endtime =#{endtime} where id =#{id}
+  	</update>
+  	
+  	<delete id="classesdelete" parameterType="java.lang.Integer">
+  		delete from class where id = #{id}
+  	</delete>
+  	
+  	<delete id="classesdeletemany" parameterType="java.lang.Integer">
+  		delete from class where id = #{id}
+  	</delete>
+  	
   </mapper>

@@ -21,8 +21,8 @@ public class SHSMailDao {
 		return template.selectOne("shs_mail.getMailSeq", null);
 	}
 	
-	public List<MailVo> getAllMails() {
-		return template.selectList("shs_mail.getAllMails", null);
+	public List<MailVo> getAllMails(String receiver) {
+		return template.selectList("shs_mail.getAllMails", receiver);
 	}
 	
 	public List<Map<String, Object>> getAllMailsWithFilesCount(String receiver) {
@@ -52,5 +52,13 @@ public class SHSMailDao {
 	public boolean saveMailFiles(MailFileVo mailFileVo) {
 		int success = template.insert("shs_mail.saveMailFiles", mailFileVo);
 		return (success == 1);
+	}
+	
+	public int  mailCount(String receiver) {
+		return template.selectOne("shs_mail.mailcount",receiver);
+	}
+	
+	public boolean mailDelete(int no) {
+		return template.delete("shs_mail.maildelete",no)==1?true:false;
 	}
 }

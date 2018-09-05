@@ -15,7 +15,7 @@
                 <h3 class="panel-title">posts</h3><br/>
                 <!-- 검색 -->
                 <form action="/admin/circleposts/find/list" method="get">
-             	<select name="findselect">
+             	<select name="findselect" style="color:black">
 					<option value="subject" ${param.findselect eq 'subject' ? 'selected':'' }>subject</option>
 					<option value="no" ${param.findselect eq 'no' ? 'selected':'' }>no</option>
 					<option value="published" ${param.findselect eq 'published' ? 'selected':'' }>published</option>
@@ -23,8 +23,8 @@
 					<option value="writer" ${param.findselect eq 'writer' ? 'selected':'' }>writer</option>
 					
 				</select>
-				  <input type="text" name="find" style="color:black"/>
-				<button type="submit">입력</button>
+				  <input type="text" name="find" style="color:black" value="${param.find }"/>
+				<button type="submit" style="color:black">입력</button>
 				</form>
 				
 				
@@ -61,8 +61,8 @@
                	 		<td style="display: none;" id="memberNo"></td>
                	 		<td>${post.no }</td>
                	 		<td>${post.boardNo }</td>
-               			<td>${post.subject }</td>
-                		<td><a href="/circleboardview?no=${post.no}">${post.writer }</a></td>
+               			<td><a href="/circleboardview?no=${post.no}">${post.subject }</a></td>
+                		<td>${post.writer }</td>
                 		<td>${post.content }</td>
                 		<td>${post.ip }</td>
                 		<td><fmt:formatDate value="${post.writtenDate }" pattern="yyyy-MM-dd"/></td>
@@ -124,7 +124,7 @@
                 <h3 class="panel-title">posts</h3><br/>
                 <!-- 검색 -->
                 <form action="/admin/circleposts/find/list" method="get">
-             	<select name="findselect" >
+             	<select name="findselect" style="color:black">
 					<option value="subject">subject</option>
 					<option value="no">no</option>
 					<option value="published">published</option>
@@ -132,7 +132,7 @@
 					<option value="writer">writer</option>
 				</select>
 				<input type="text" name="find" style="color:black" placeholder="내용을 입력해주세요."/>
-				<button>입력</button>
+				<button style="color:black">입력</button>
 				</form>
             </div>
             <!-- form -->
@@ -167,8 +167,8 @@
                	 		<td style="display: none;" id="memberNo"></td>
                	 		<td>${post.no }</td>
                	 		<td>${post.boardNo }</td>
-               			<td>${post.subject }</td>
-                		<td><a href="/circleboardview?no=${post.no}">${post.writer }</a></td>
+               			<td><a href="/circleboardview?no=${post.no}">${post.subject }</a></td>
+                		<td>${post.writer }</td>
                 		<td>${post.content }</td>
                 		<td>${post.ip }</td>
                 		<td><fmt:formatDate value="${post.writtenDate }" pattern="yyyy-MM-dd"/></td>

@@ -58,6 +58,11 @@ public class ClassVo {
 	public void setDepartment(int department) {
 		this.department = department;
 	}
+	@Override
+	public String toString() {
+		return "ClassVo [id=" + id + ", no=" + no + ", subjectNo=" + subjectNo + ", professor=" + professor + ", day="
+				+ day + ", starttime=" + starttime + ", endtime=" + endtime + ", department=" + department + "]";
+	}
 	
 	
 	

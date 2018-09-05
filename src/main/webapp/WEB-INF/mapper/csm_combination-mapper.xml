@@ -22,7 +22,10 @@
 	<select id="cultivateClasses" resultType="org.timetable.univ.model.vo.ClassVo">
 		select a.* from class a , subject b where department = 0 
 	</select>
-	
+	<!-- classno로 subject name,units 불러오기 -->
+	<select id="subjectImform" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.SubjectVo">
+		select * from subject where no = (select distinct subjectno from class where no=#{no})
+	</select>
 	<!-- 교양과목 학점수 불러오기 -->
 	<select id="cultureUnits" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select units from subject where no = #{subjectno}

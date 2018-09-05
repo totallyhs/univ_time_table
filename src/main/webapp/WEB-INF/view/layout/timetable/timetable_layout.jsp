@@ -33,6 +33,9 @@
 		</c:when>
 		<c:when test="${content eq 'search' }">
 			<tiles:insertAttribute name="searchtimetableUI"/>
+		</c:when>
+		<c:when test="${content eq 'culture.combined' }">
+			<tiles:insertAttribute name="afterCultureCombinedUI"/>
 		</c:when>	
 	</c:choose>
 	</div>

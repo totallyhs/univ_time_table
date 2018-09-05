@@ -10,6 +10,8 @@
 		<put-attribute name="searchtimetableUI" value="/WEB-INF/view/timetable/search_timetable_edited.jsp"/>
 	</definition>
 	
-	
+	<definition name="timetable.culture.combined" extends="timetable.edited">
+		<put-attribute name="afterCultureCombinedUI" value="/WEB-INF/view/timetable/after_culture_combined.jsp"/>
+	</definition>
 	
 </tiles-definitions>

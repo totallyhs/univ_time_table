@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
+import org.timetable.univ.controller.component.Timetable;
 import org.timetable.univ.dao.SHSAdminDao;
 import org.timetable.univ.dao.SHSMemberDao;
 import org.timetable.univ.model.vo.MemberVo;
-import org.timetable.univ.model.vo.VisitorCountVo;
 
 @Controller
 @RequestMapping("/login")
@@ -50,7 +50,10 @@ public class LoginController {
 				String t = (String)webRequest.getAttribute("target", WebRequest.SCOPE_SESSION);
 				return "redirect:"+t;
 			}
-		}
+		} else {
+			Timetable timetable = new Timetable();
+			webRequest.setAttribute("timetable", timetable, WebRequest.SCOPE_SESSION);
+		} 
 		String t = (String)webRequest.getAttribute("target", WebRequest.SCOPE_SESSION);
 		System.out.println("t : " + t);
 		

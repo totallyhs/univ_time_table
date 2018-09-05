@@ -35,6 +35,9 @@
 	color: white;
 }
 </style>
+
+
+
 <!-- / College Timetable -->
 <!-- 시간표 만들기 중앙 타이틀 -->
 <div class="row">
@@ -50,10 +53,18 @@
 <!-- 시간표 && 과목 리스트 row -->
 <div class="row">
 	<div class="col-sm-8">
-		<h2>과목 리스트</h2>
+		<div class="row">
+			<div class="col-sm-4">
+				<h2>과목 리스트</h2>
+			</div>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<button type="button" id="cultureCombineBtn">교양넣기</button>
+			</div>
+		</div>
 		<!--BEGIN HEAD-->
 		<small>
-			<div id="container" style="margin-left: 0px;">
+			<div id="container" style="margin-right: 0px;margin-left: 0px;">
 			<div id="accordion">
 		<!--END HEAD-->
 
@@ -67,7 +78,7 @@
 									<div class="panel-heading">
 										<a class="collapsed text-center" data-toggle="collapse" 
 											href="#${subject.no }FIRST" style="text-decoration: none;">
-											<span class="card-title text-dark sname">${subject.name }</span>
+											<span class="card-title text-dark sname">${subject.name } <small>(${subject.units })</small></span>
 											<span class="card-subtitle mb-2 text-muted sno">학수번호 : ${subject.no }</span>
 										</a>
 									</div> <!-- panel-header -->
@@ -78,7 +89,7 @@
 											<thead style="color: gray;">
 												<tr>
 													<th style="width:40%; padding-left: 0; padding-right: 1.5em;">
-														<input type="checkbox" class='${classs.no }' id='${classs.no }' />수업번호
+														<input type="checkbox" class='${classs.no } subjcheckbox' id='${classs.no }' />수업번호
 													</th>
 													<th style="width:20%; padding-left: 0px;">교수님</th>
 													<th style="width:40%;">시간</th>
@@ -88,34 +99,42 @@
 	  											<c:forEach var="cl" items="${subject.classList }" varStatus="status">
 	  												<c:choose>
 		  												<c:when test="${status.first }">
-		  													<tr data="${cl.no }" id='${cl.id }' class='${cl.no } class'>
+		  													<tr data="${cl.no }" id='${cl.id }' class='${cl.no } clrow'>
 		  														<td style="padding-left: 0; padding-right: 1.5em;">
-		  															<input type="checkbox" class="clcheckbox" value="${cl.no }"/>&nbsp; ${cl.no }
+		  															<input type="checkbox" id="${cl.no }checkbox" name="${subject.no }" class="clcheckbox ${subject.no }cl" value="${cl.no }"/>&nbsp; ${cl.no }
 		  														</td>
-					  											<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
+					  											<td id="${cl.id }professor" style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
+					  												<input type="hidden" id="${cl.id }subject" value="${subject.no}"/>
+					  												<input type="hidden" id="${cl.id }units" value="${subject.units }"/>
 					  											</td>
 					  										</tr>
 	  													</c:when>
 	  													<c:when test="${cl.no == subject.classList[status.index - 1].no }">
-	  														<tr data="${cl.no }" id='${cl.id }' class='${cl.no } class'>
+	  														<tr data="${cl.no }" id='${cl.id }' class='${cl.no } clrow'>
 		  														<td>  ${cl.no }</td>
 					  											<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
+					  												<input type="hidden" id="${cl.id }subject" value="${subject.no}"/>
+					  												<input type="hidden" id="${cl.id }units" value="${subject.units }"/>
 					  											</td>
 					  										</tr>
 	  													</c:when>
 	  													<c:when test="${cl.no != subject.classList[status.index - 1].no }">
-	  														<tr data="${cl.no }" id='${cl.id }' class='${cl.no } class'>
-		  														<td style="padding-left: 0; padding-right: 1.5em;"><input type="checkbox"/>&nbsp; ${cl.no }</td>
+	  														<tr data="${cl.no }" id='${cl.id }' class='${cl.no } clrow'>
+		  														<td style="padding-left: 0; padding-right: 1.5em;">
+		  															<input type="checkbox" id="${cl.no }checkbox" name="${subject.no }" class="clcheckbox ${subject.no }cl" value="${cl.no }"/>&nbsp; ${cl.no }
+		  														</td>
 					  											<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
+					  												<input type="hidden" id="${cl.id }subject" value="${subject.no}"/>
+					  												<input type="hidden" id="${cl.id }units" value="${subject.units }"/>
 					  											</td>
 					  										</tr>
 	  													</c:when>
@@ -144,6 +163,7 @@
 </div>	<!-- col-sm-9 -->
 		
 	<div class="col-sm-4">
+		<p>총 학점 : <span id="sumUnits">0</span> </p>
 		<table border='0' cellpadding='0' cellspacing='0' style="max-height: 700; max-width: 700px; text-align: center;">
 			<tr class='days' style="width: 100%;" align="center">
 				<th style="width: 15%;"></th>
@@ -174,119 +194,19 @@
 		</table>
 	</div>
 
-<script>
-	var getClassInfo = function(id) {
-		var no = $("#" + id).attr("data");
-		var day = $("#"+ id + "day").html();
-		var starttime = $("#" + id + "starttime").html();
-		var endtime = $("#" + id + "endtime").html();
-		
-		
-		var start = Math.floor((starttime-850)/50);
-		var end = Math.floor((endtime-850)/50);
-		
-		var json = {
-				"no" : no,
-				"day" : day,
-				"start" : start,
-				"end" : end,
-				"box" : "[" + start + "," + end + "]"
-		};
-		console.log(json);
-		return json;
-	}
-	
-	var onMouseOverAction = function(start, end, day) {
-		for (var i=start; i<=end; i++) {
-			var id = $("#"+i +"-" + day);
-			if("rgb(0, 128, 0)"===id.css("backgroundColor")){
-				id.css("backgroundColor","red");
-			}else if("rgb(0, 0, 255)"===id.css("backgroundColor")){
-				id.css("backgroundColor","yellow");
-			}else{
-				id.css("backgroundColor", "green");
-			}
-		}
-	}
-	
-	var onMouseOutAction = function(start, end, day) {
-		for (var i=start; i<=end; i++) {
-			var id = $("#"+i +"-" + day);
-			if("rgb(255, 0, 0)"===id.css("backgroundColor")){
-				id.css("backgroundColor","green");											
-			}else if("rgb(0, 0, 255)"===id.css("backgroundColor")){
-				id.css("backgroundColor","blue");
-			}else if("rgb(255, 255, 0)"===$("#"+i).css("backgroundColor")){
-				id.css("backgroundColor","blue");
-			}else{
-				id.css("backgroundColor", "white");
-			}
-		}
-	}
-	
-	$(".class").on("mouseover", function() {
-		var no = $(this).attr("data");
-		
-		$("." + no).each(function() {
-			var id = $(this).attr("id");
-			var classJson = getClassInfo(id);
-			
-			onMouseOverAction(classJson.start, classJson.end, classJson.day);
-		});
-	}).on("mouseout", function() {
-		var no = $(this).attr("data");
-			
-		$("." + no).each(function() {
-			var id = $(this).attr("id");
-			var classJson = getClassInfo(id);
-				
-			onMouseOutAction(classJson.start, classJson.end, classJson.day);
-		});
-	});
-	
-	
-	
-	/*
-	$(":checkbox").on("click", function() {
-		var val = $(this).attr("class");
-		console.log("class val : " +  val);
-		console.log($(this).attr("data"));
-		var start=parseInt($(this).attr("data").split("-")[1]);
-		var end=parseInt($(this).attr("data").split("-")[2]);
-		if ($(this).is(":checked")) {
-			$("." + val).attr("checked",true);
-			if(start===1900||start===2900||start===3900||start===4900||start===5900){
-				start=(start%1000)+parseInt((start/1000))*10000;				
-				
-			}
-			for (var i = start; i < end; i=i + 50) {
-				$("#" + i).css("backgroundColor", "blue");
-			}
-		} else {
-			$("." + val).prop("checked", false);
-			for (var i = start; i < end; i=i + 50) {
-				$("#" + i).css("backgroundColor", "green");
-			}
-		}
-	});
-	*/
-	
-	/*
-	$(".clcheckbox").on("click", function() {
-		var val = $(this).val();
-		$.ajax(function() {
-			"url":"",
-			"method":"post",
-			"data" : {
-				"no" : $(this).val();
-			}
-		}).done(function(r) {
-			
-		});
-	});
-	*/
-	
-</script>
+<script src="/js/search-timetable.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -30,6 +30,10 @@ public class SHSSubjectDao {
 		return template.selectOne("shs_subject.getSubjectsBySno",sno);
 	}
 	
+	public List<SubjectVo> getOnlyMajorSubjects() {
+		return template.selectList("shs_subject.getOnlyMajorSubjects", null);
+	}
+	
 	// UPDATE
 	public boolean updateSubject(SubjectVo subjectVo) {
 		int success = template.update("shs_subject.updateSubject", subjectVo);

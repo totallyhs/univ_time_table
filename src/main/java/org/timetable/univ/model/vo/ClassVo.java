@@ -8,6 +8,7 @@ public class ClassVo {
 	private int day;
 	private int starttime;
 	private int endtime;
+	private int department;
 	
 	public int getId() {
 		return id;
@@ -51,6 +52,14 @@ public class ClassVo {
 	public void setEndtime(int endtime) {
 		this.endtime = endtime;
 	}
+	public int getDepartment() {
+		return department;
+	}
+	public void setDepartment(int department) {
+		this.department = department;
+	}
+	
+	
 	
 	
 }

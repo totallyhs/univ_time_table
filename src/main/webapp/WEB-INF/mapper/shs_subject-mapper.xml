@@ -20,6 +20,10 @@
 		select * from subject where no=#{sno}
 	</select>
 	
+	<select id="getOnlyMajorSubjects" resultType="org.timetable.univ.model.vo.SubjectVo">
+		select * from subject where department != 0
+	</select>
+	
 		
 	<!-- Update Subject -->
 	<update id="updateSubject" parameterType="org.timetable.univ.model.vo.SubjectVo">

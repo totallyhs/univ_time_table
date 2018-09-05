@@ -108,13 +108,6 @@ public class CSMTimeTablePageController {
 			jsonMap.put("empty", false);
 		}
 		
-		for (int i=0; i<cultureCombi.size(); i++) {
-			System.out.println("cultureCombi i : " + i);
-			System.out.println(cultureCombi.get(i));
-			System.out.println();
-		}
-		
-		
 		return gson.toJson(jsonMap);
 		
 	}
@@ -130,7 +123,7 @@ public class CSMTimeTablePageController {
 				(List<Map<Integer, List<ClassVo>>>)session.getAttribute("cultureCombinedTimetable");
 		
 		if (cultureCombi.size() > page) {
-			mav.addObject("cultureCombinedTimetable", cultureCombi.get(page));
+			mav.addObject("cultureCombinedTimetable", gson.toJson(cultureCombi.get(page)));
 			System.out.println("page : " + page);
 			System.out.println(cultureCombi.get(page));
 		} else {

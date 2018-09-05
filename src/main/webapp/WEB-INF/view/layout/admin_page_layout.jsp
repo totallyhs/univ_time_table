@@ -106,6 +106,9 @@
 								<tiles:insertAttribute name="circleposts_list"/>
 							</c:when>
 							
+							<c:when test="${content eq 'members.find.list' }">
+								<tiles:insertAttribute name="members_list"/>
+							</c:when>
 						</c:choose>
 					
 					</div>

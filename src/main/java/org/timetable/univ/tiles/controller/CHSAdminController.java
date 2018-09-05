@@ -126,7 +126,32 @@ public class CHSAdminController {
 		webRequest.setAttribute("result", result, webRequest.SCOPE_REQUEST);
 		return "admin.posts.delete.many";
 	}
+	
+	//member find list
+	
+	@GetMapping("members/find/list")
+	public String adminGetMembersFindList(WebRequest webRequest,@RequestParam(name="findselect") String findselect, @RequestParam(name="find") String find) {
+		webRequest.setAttribute("findtype", "membersfind", webRequest.SCOPE_REQUEST);
+		webRequest.setAttribute("content", "members.find.list", webRequest.SCOPE_REQUEST);
+		List<MemberVo> list = new ArrayList<MemberVo>();
+		if(findselect.equals("id")) {
+			String id = find+"%";
+			list = CHSAdminDao.membersIdList(id);
+		}else if(findselect.equals("name")) {
+			String name = find+"%";
+			list = CHSAdminDao.membersNameList(name);
+		}else if(findselect.equals("nickname")) {
+			String nickname = find+"%";
+			list = CHSAdminDao.membersNickNameList(nickname);
+		}else {
+			String department = find+"%";
+			list = CHSAdminDao.membersDepartmentList(department);
+		}
 		
+		webRequest.setAttribute("memberlist", list, webRequest.SCOPE_REQUEST);
+		return "admin.members.list";
+	}
+		//
 	@GetMapping("posts/find/list")
 	public String adminGetPostFindList(WebRequest webRequest,@RequestParam(name="findselect") String findselect, @RequestParam(name="find") String find) {
 			webRequest.setAttribute("findtype", "boardfind", webRequest.SCOPE_REQUEST);

@@ -13,9 +13,8 @@
 <div class="container">
   <h2>동아리 게시판</h2>
   <p>
-  ${memberVo.id }<br/>
+  사용자 ID : ${memberVo.id }<br/>
   </p>
-  <h3>테스트중 입니다.</h3>  
         <table class="table table-striped table-hover">
             <thead>
             	<tr>

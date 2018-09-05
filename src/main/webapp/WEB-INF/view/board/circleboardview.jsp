@@ -31,10 +31,10 @@
  			<a href="/circlepostdelete?no=${boardno }&postno=${PostVo.no}"><button type="submit" class="[ btn btn-success ]">개시글 삭제</button></a><br/><br/>
  			<a href="/circlerewrite?boardno=${boardno }&postno=${PostVo.no}"><button type="submit" class="[ btn btn-success ]">개시글 수정</button></a>
  			</c:if>
-	<h2>${PostVo.no }postvo.no test</h2>
-  	<h2>${PostVo.writer }</h2> <br/>
+	<h2>게시글 No : ${PostVo.no }</h2>
+  	<h2>작성자 ID : ${PostVo.writer }</h2> <br/>
   	작성일 : <fmt:formatDate value="${PostVo.writtenDate }" pattern="yyyy-MM-dd"/>
-  	<p>${PostVo.subject }</p>
+  	<h2>제목  </h2> <h4>${PostVo.subject }</h4>
  		 <div class="panel panel-default">
    		 		<div class="panel-body" style="height:500px;">
 					${PostVo.content }

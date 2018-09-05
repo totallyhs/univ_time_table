@@ -30,7 +30,7 @@ public class LoginController {
 	SHSAdminDao shsAdminDao;
 	
 	@PostMapping("/login")
-	public String loginHandle(@RequestParam HashMap<String, String> data, WebRequest webRequest) {
+	public String loginHandle(@RequestParam HashMap<String, String> data, WebRequest webRequest,HttpSession session) {
 		MemberVo memberVo = shsMemberDao.findByIdAndPassMap(data);
 		webRequest.setAttribute("memberVo", memberVo, WebRequest.SCOPE_SESSION);
 		
@@ -40,13 +40,31 @@ public class LoginController {
 		if ((visitorCnt+1)%100 == 0 ) {
 			shsAdminDao.updateVisitorCnt(visitorCnt + 1);
 		}
-		
+		System.out.println("membervo" + memberVo);
+		System.out.println("Test" + session.getAttribute("target"));
 		
 		if (memberVo==null) {
 			webRequest.setAttribute("login", false, WebRequest.SCOPE_REQUEST);
+			System.out.println("test" + session.getAttribute("target"));
+			if(session.getAttribute("target") != null) {
+				String t = (String)webRequest.getAttribute("target", WebRequest.SCOPE_SESSION);
+				return "redirect:"+t;
+			}
 		}
+		String t = (String)webRequest.getAttribute("target", WebRequest.SCOPE_SESSION);
+		System.out.println("t : " + t);
 		
-		return ("index");
+		if(t==null) {
+			System.out.println("nulltest");
+			return "redirect:/index";
+		}
+		else if(t.equals("/bulletinboard")) {
+			return "redirect:"+t+"?no="+session.getAttribute("no");
+		}else if(t.equals("/circleboard")){
+			return "redirect:"+t+"?no="+session.getAttribute("no");
+		}else {
+			return "redirect:"+t;
+		}
 	}
 	
 	@RequestMapping("/logout")

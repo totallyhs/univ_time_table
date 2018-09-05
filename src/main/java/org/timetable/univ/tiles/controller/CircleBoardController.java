@@ -287,7 +287,7 @@ public class CircleBoardController {
 		
 		if(result) {
 			try {
-				response.sendRedirect("circleboard?no=10");
+				response.sendRedirect("circleboard?no=40");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

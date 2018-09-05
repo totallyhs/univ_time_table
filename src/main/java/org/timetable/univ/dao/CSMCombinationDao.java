@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.timetable.univ.model.vo.ClassVo;
+import org.timetable.univ.model.vo.SubjectVo;
 
 @Repository
 public class CSMCombinationDao {
@@ -17,6 +18,9 @@ public class CSMCombinationDao {
 	}
 	public int cutureUnits(String subjectno) {
 		return template.selectOne("csm_combi.cultureUnits",subjectno);
+	}
+	public SubjectVo getInformSubject(int no) {
+		return template.selectOne("csm_combi.subjectImform",no);
 	}
 	
 }

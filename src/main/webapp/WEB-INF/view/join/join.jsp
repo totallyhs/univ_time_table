@@ -62,7 +62,6 @@
 			$.ajax({
 				url : "/joinIdCheck", // 중복체크할 경로
 				type : "POST",
-				
 				data : {
 					id : $(this).val()
 				},

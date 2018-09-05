@@ -115,7 +115,7 @@
 	  													<c:when test="${cl.no == subject.classList[status.index - 1].no }">
 	  														<tr data="${cl.no }" id='${cl.id }' class='${cl.no } clrow'>
 		  														<td>  ${cl.no }</td>
-					  											<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
+					  											<td id="${cl.id }professor" style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
@@ -129,7 +129,7 @@
 		  														<td style="padding-left: 0; padding-right: 1.5em;">
 		  															<input type="checkbox" id="${cl.no }checkbox" name="${subject.no }" class="clcheckbox ${subject.no }cl" value="${cl.no }"/>&nbsp; ${cl.no }
 		  														</td>
-					  											<td style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
+					  											<td id="${cl.id }professor" style="padding-left: 0px; padding-right: 0px;">${cl.professor }</td>
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>

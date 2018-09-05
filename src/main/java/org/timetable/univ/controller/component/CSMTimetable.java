@@ -11,12 +11,22 @@ import org.timetable.univ.dao.CSMCombinationDao;
 import org.timetable.univ.model.vo.ClassVo;
 import org.timetable.univ.model.vo.SubjectVo;
 
+import com.google.gson.Gson;
+
 @Component
 public class CSMTimetable {
 	@Autowired
 	CSMCombinationDao combinationdao;
-
+	
 	// 교양 과목 조합해주는 메소드(필요한 정보 : 체크된 시간표리스트, 체크된 과목 합산 학점수)
+	/*
+	 * List<Map<Integer, Object>>
+	 * list = all the possibilities
+	 * in Map:
+	 *   key : -classno  => subjectname
+	 *   key : -classno*2  => class units
+	 *   key : classno => list<classvo> 
+	 */
 	public List<Map> cultureCombination(Map<Integer, List<ClassVo>> checkedClassMap,
 			int unitssum) {
 		// 모든 교양과목 리스트
@@ -31,7 +41,7 @@ public class CSMTimetable {
 			// 더해줄 교양과목 class list form
 			List<ClassVo> addCulture = new ArrayList();
 			// 추가해줄 시간표 조합
-			Map<Integer, List<ClassVo>> result = checkedClassMap;
+			Map<Integer, List<ClassVo>> result = (Map<Integer, List<ClassVo>>) ((HashMap)checkedClassMap).clone();
 
 			// 비교할 교양과목 classvo를 뽑아냄
 			ClassVo cvo = cultureSubjectList.get(i);
@@ -43,7 +53,7 @@ public class CSMTimetable {
 				combi = false;
 				continue;
 			}
-			Map<Integer, List<ClassVo>> immap = checkedClassMap;
+			Map<Integer, List<ClassVo>> immap = (Map<Integer, List<ClassVo>>) ((HashMap)checkedClassMap).clone();
 			Map<Integer,Object> informMap = new HashMap<Integer, Object>();
 			
 			// 1.체크된 과목들을 하나하나 교양과목에 비교하는 포문

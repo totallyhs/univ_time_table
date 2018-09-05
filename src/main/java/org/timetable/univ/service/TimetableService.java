@@ -66,6 +66,7 @@ public class TimetableService {
 			
 			checkedSubjectClassMap.get(subjectNo).add(classVo);
 			
+			System.out.println("checkboxchecked prof : " + classVo.getProfessor());
 			// set checkedClassMap
 			if (!checkedClassMap.containsKey(classNo)) {
 				List<ClassVo> checkedClassList = new ArrayList<ClassVo>();

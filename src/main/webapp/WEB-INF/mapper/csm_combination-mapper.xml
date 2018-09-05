@@ -27,11 +27,6 @@
 	<select id="cultureUnits" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select units from subject where no = #{subjectno}
 	</select>
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="csm_combi">
 	<!-- subject no 에 해당하는 class no 뽑기-->
 	<select id="subjectClassNoList" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select no from class where subjectno=#{subjectno}

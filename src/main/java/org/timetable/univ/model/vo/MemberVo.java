@@ -75,6 +75,12 @@ public class MemberVo {
 	public void setNo(int no) {
 		this.no = no;
 	}
+	@Override
+	public String toString() {
+		return "MemberVo [id=" + id + ", pass=" + pass + ", name=" + name + ", nickname=" + nickname + ", department="
+				+ department + ", joindate=" + joindate + ", lastlogin=" + lastlogin + ", photo=" + photo + ", email="
+				+ email + ", no=" + no + "]";
+	}
 	
 	
 	

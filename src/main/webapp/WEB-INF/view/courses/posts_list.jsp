@@ -16,14 +16,14 @@
                 <!-- 검색 -->
                 <form action="/admin/posts/find/list" method="get">
              	<select name="findselect">
-					<option value="subject">subject</option>
-					<option value="no">no</option>
-					<option value="published">published</option>
-					<option value="content">content</option>
-					<option value="writer">writer</option>
+					<option value="subject" ${param.findselect eq 'subject' ? 'selected':'' }>subject</option>
+					<option value="no" ${param.findselect eq 'no' ? 'selected':'' }>no</option>
+					<option value="published" ${param.findselect eq 'published' ? 'selected':'' }>published</option>
+					<option value="content" ${param.findselect eq 'content' ? 'selected':'' }>content</option>
+					<option value="writer" ${param.findselect eq 'writer' ? 'selected':'' }>writer</option>
 					
 				</select>
-				  <input type="text" name="find" style="color:black"/>
+				  <input type="text" name="find" style="color:black" value="${param.find }"/>
 				<button type="submit">입력</button>
 				</form>
 				
@@ -62,7 +62,7 @@
                	 		<td>${post.no }</td>
                	 		<td>${post.boardNo }</td>
                			<td>${post.subject }</td>
-                		<td>${post.writer }</td>
+                		<td><a href="/boardview?no=${post.no }">${post.writer }</a></td>
                 		<td>${post.content }</td>
                 		<td>${post.ip }</td>
                 		<td><fmt:formatDate value="${post.writtenDate }" pattern="yyyy-MM-dd"/></td>
@@ -168,7 +168,7 @@
                	 		<td>${post.no }</td>
                	 		<td>${post.boardNo }</td>
                			<td>${post.subject }</td>
-                		<td>${post.writer }</td>
+                		<td><a href="/boardview?no=${post.no }">${post.writer }</a></td>
                 		<td>${post.content }</td>
                 		<td>${post.ip }</td>
                 		<td><fmt:formatDate value="${post.writtenDate }" pattern="yyyy-MM-dd"/></td>

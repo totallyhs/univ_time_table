@@ -11,8 +11,10 @@
             <div class="account-wall">
                 <div id="my-tab-content" class="tab-content">
 						<div class="tab-pane active" id="login">
-               		    <img class="profile-img" 
+						<!-- 
+						  <img class="profile-img" 
                		    src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
+               		    --!>
                			<!-- login form -->
                			<form class="form-signin" action="/login/login" method="post" autocomplete="off">
                				<input type="text" class="form-control" name="id" placeholder="Username" required autofocus>
@@ -27,7 +29,11 @@
                				<!--  <p class="text-center"><a href="#select" data-toggle="tab">Select Account</a></p>-->
               				</div>
 						</div>
-						<!-- 
+						
+						
+					
+					<!-- 여기서부터 -->
+					<!--  
 						<div class="tab-pane" id="register" style="position: absolute;">
 							<form class="form-signin" action="" method="">
 								<input type="text" class="form-control" placeholder="User Name ..." required autofocus>
@@ -93,6 +99,9 @@
                		<p class="text-center"><a href="#select" data-toggle="tab">Select another Account</a></p>
 						</div>
 						 -->
+						 <!-- 여기까지 -->
+						 
+						 
 					</div>
             </div>
         </div>

@@ -99,5 +99,19 @@ public class CHSAdminDao {
 		return template.selectList("chs_admin.circleboardwriterlist",writer);
 	}
 
+	public List<MemberVo> membersIdList(String id){
+		return template.selectList("chs_admin.membersidlist",id);
+	}
 	
+	public List<MemberVo> membersNameList(String name){
+		return template.selectList("chs_admin.membersnamelist",name);
+	}
+	
+	public List<MemberVo> membersNickNameList(String nickname){
+		return template.selectList("chs_admin.membersnicknamelist",nickname);
+	}
+	
+	public List<MemberVo> membersDepartmentList(String department){
+		return template.selectList("chs_admin.membersdepartmentlist",department);
+	}
 }

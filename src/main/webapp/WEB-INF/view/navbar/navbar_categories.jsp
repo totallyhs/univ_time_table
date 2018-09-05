@@ -22,8 +22,6 @@
     	</c:otherwise>
     </c:choose>
     <li><a href="${pageContext.servletContext.contextPath }/mail/inbox">쪽지</a></li>
-    <li><a href="#">News</a></li>
-    <li><a href="#">Contact</a></li>
     <li>
     <c:choose>
       <c:when test="${sessionScope.memberVo eq null }">
@@ -58,14 +56,6 @@
              <li><a href="/login/logout">Logout</a></li>
              <li><a href="#">My profile</a></li>
              <li><a href="#">Settings</a></li>
-         <li><a href="#">Support</a></li>
-             <li><a href="#">Favorite</a></li>
-             <li class="divider"></li>
-         <li class="dropdown">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img class="img-circle" src="" alt="maridlcrmn" width="20" /> Maridlcrmn <span class="caret"></span></a>
-           <ul class="dropdown-menu" role="menu">
-           </ul>
-        </li>
       </ul>
     </c:otherwise>          
   </c:choose>

@@ -53,4 +53,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<filter>
+		<filter-name>af</filter-name>
+		<filter-class>org.timetable.univ.filter.AppFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>af</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>

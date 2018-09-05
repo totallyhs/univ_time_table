@@ -38,7 +38,6 @@ public class MailController {
 	MailService mailService;
 	
 	// INBOX
-	
 	@GetMapping("/inbox")
 	public ModelAndView inboxHandle(HttpServletRequest request, HttpSession session) {
 		ModelAndView mav = new ModelAndView();

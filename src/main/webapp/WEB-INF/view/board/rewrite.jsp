@@ -41,9 +41,8 @@
 				<span id="byteInfo">0</span>/2000Byte
 			</div>
 
-			<button type="submit" class="btn btn-primary">작성</button>
+			<button type="submit" class="btn btn-primary">작성</button><br/>
 			</div><br/>
-			
 			<!-- 파일 -->
 			<b>첨부파일</b> 
 			<input type="file" name="fileupload" multiple style="width: 430px;"

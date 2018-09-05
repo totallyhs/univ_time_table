@@ -75,4 +75,21 @@
   	<select id="circleboardwriterlist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.PostVo">
   		select * from post where writer like #{writer} and boardno = 40
   	</select>
+  	
+  	<select id="membersidlist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.MemberVo">
+  		select * from member where id like #{id}
+  	</select>
+  	
+  	<select id="membersnamelist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.MemberVo">
+  		select * from member where name like #{name}
+  	</select>
+  	
+  	<select id="membersnicknamelist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.MemberVo">
+  		select * from member where nickname like #{nickname}
+  	</select>
+  	
+  	<select id="membersdepartmentlist" parameterType="java.lang.String" resultType="org.timetable.univ.model.vo.MemberVo">
+  		select * from member where department like #{department}
+  	</select>
+  	
   </mapper>

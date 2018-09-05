@@ -23,9 +23,18 @@ public class SHSTimeTableAjaxController {
 	
 	@RequestMapping(path="/checkboxchecked", produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String timetableCheckboxAjaxHandle(@RequestParam String json, HttpSession session) {
+	public String timetableCheckboxCheckedAjaxHandle(@RequestParam String json, HttpSession session) {
 		Timetable timetable = (Timetable)session.getAttribute("timetable");
 		String jsonResult = timetableService.checkboxChecked(json, timetable);
+		
+		return jsonResult;
+	}
+	
+	@RequestMapping(path="/checkboxunchecked", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String timetableCheckboxUncheckedAjaxHandle(@RequestParam String json, HttpSession session) {
+		Timetable timetable = (Timetable)session.getAttribute("timetable");
+		String jsonResult = timetableService.checkboxUnchecked(json, timetable);
 		
 		return jsonResult;
 	}

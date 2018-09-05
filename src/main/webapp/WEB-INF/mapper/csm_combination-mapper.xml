@@ -20,7 +20,7 @@
 	
 	<!-- 교양과목 전체 불러오기 -->
 	<select id="cultivateClasses" resultType="org.timetable.univ.model.vo.ClassVo">
-		select a.* from class a , subject b where department = 0 
+		select * from class where department=0
 	</select>
 	
 	<!-- 교양과목 학점수 불러오기 -->

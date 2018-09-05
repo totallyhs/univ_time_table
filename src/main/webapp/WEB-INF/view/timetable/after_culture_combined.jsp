@@ -67,7 +67,7 @@
 			var end = Math.floor((cl.endtime-850)/50);
 			
 			// set box and backgroundcolor
-			for (var j=start; j<=end; j++) {
+			for (var j=start; j<end; j++) {
 				var box = j + "-" + day;
 				
 				setBackgroundColor(box);

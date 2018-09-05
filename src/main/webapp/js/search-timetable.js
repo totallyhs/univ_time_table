@@ -50,7 +50,7 @@
 	
 	var onMouseOverAction = function(json) {
 		console.log("mouseover..." + json);
-		for (var i=json.start; i<=json.end; i++) {
+		for (var i=json.start; i<json.end; i++) {
 			var id = $("#"+i +"-" + json.day);
 			// green
 			if("rgb(0, 128, 0)"===id.css("backgroundColor")){
@@ -83,7 +83,7 @@
 	
 	var onMouseOutAction = function(json) {
 		console.log("mouseout..." + json);
-		for (var i=json.start; i<=json.end; i++) {
+		for (var i=json.start; i<json.end; i++) {
 			// rgb(255, 0, 0) == red
 			// rgb(0, 0, 255) == blue
 			// rgb(0, 128, 0) == green
@@ -216,7 +216,7 @@
 	
 	
 	var setBackgroundColorOnCheckboxClick = function(json, checked) {
-		for (var i = json.start; i <= json.end; i++) {
+		for (var i = json.start; i < json.end; i++) {
 			var boxId = $("#"+i +"-" + json.day);
 			if (checked) {
 				boxId.css("backgroundColor", "blue");

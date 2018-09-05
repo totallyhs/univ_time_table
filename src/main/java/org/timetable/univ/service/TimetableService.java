@@ -81,7 +81,7 @@ public class TimetableService {
 			
 			List<String> resultBoxesList = new ArrayList<String>();
 			// for each box
-			for (int j=start; j<=end; j++) {
+			for (int j=start; j<end; j++) {
 				table[j-1][day-1] = true;
 				
 				String box = j + "-" + day;
@@ -148,7 +148,7 @@ public class TimetableService {
 					
 					List<String> resultBoxesList = new ArrayList<String>();
 					// for each box
-					for (int j=start; j<=end; j++) {
+					for (int j=start; j<end; j++) {
 						table[j-1][day-1] = false;
 						
 						String box = j + "-" + day;

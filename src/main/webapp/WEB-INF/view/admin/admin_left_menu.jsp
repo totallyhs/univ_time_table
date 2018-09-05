@@ -10,6 +10,8 @@
       <a href="/admin/posts/list" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> BoardPosts</a>
       <a href="/admin/circleposts/list" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> CirclePosts</a>
       <a href="/admin/members/list" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a>
+      <a href="/admin/subjects/list" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Subject Edit</a>
+      <a href="/admin/classes/list" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Classes Edit</a>
       <a href="#" class="list-group-item" id="timetable">
       	<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Timetable <span class="badge"></span>
       </a>

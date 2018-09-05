@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.timetable.univ.model.vo.ClassVo;
 import org.timetable.univ.model.vo.MemberVo;
 import org.timetable.univ.model.vo.PostVo;
 
@@ -113,5 +114,25 @@ public class CHSAdminDao {
 	
 	public List<MemberVo> membersDepartmentList(String department){
 		return template.selectList("chs_admin.membersdepartmentlist",department);
+	}
+	
+	public List<ClassVo> classesList(){
+		return template.selectList("chs_admin.classeslist");
+	}
+	
+	public ClassVo classesSelect(int no) {
+		return template.selectOne("chs_admin.classesSelect",no);
+	}
+	
+	public boolean classesupdate(ClassVo vo) {
+		return template.update("chs_admin.classesupdate",vo)==1?true:false;
+	}
+	
+	public boolean classesdelete(int id) {
+		return template.delete("chs_admin.classesdelete",id)==1?true:false;
+	}
+	
+	public boolean classesDeleteMany(int id) {
+		return template.delete("chs_admin.classesdeletemany",id)==1?true:false;
 	}
 }

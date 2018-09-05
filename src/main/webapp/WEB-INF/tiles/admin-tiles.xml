@@ -18,7 +18,10 @@
 	<definition name="admin.subjects.list" extends="admin">
 		<put-attribute name="subjects_list" value="/WEB-INF/view/courses/subjects_list.jsp"/>
 	</definition>
-	
+	<!-- classes list -->
+	<definition name="admin.classes.list" extends="admin">
+		<put-attribute name="classes_list" value="/WEB-INF/view/courses/classes_list.jsp"/>
+	</definition>
 	<!-- post list -->
 	<definition name="admin.posts.list" extends="admin">
 		<put-attribute name="posts_list" value="/WEB-INF/view/courses/posts_list.jsp"/>
@@ -58,6 +61,20 @@
 		<put-attribute name="classes_adding" value="/WEB-INF/view/admin/classes_adding_page.jsp"/>
 	</definition>
 	
+	<!-- classes -->
+	<definition name="admin.classes.update" extends="admin">
+		<put-attribute name="classes_update" value="/WEB-INF/view/admin/classes_update_page.jsp"/>
+	</definition>
+	
+	<definition name="admin.classes.delete" extends="admin">
+		<put-attribute name="classes_delete" value="/WEB-INF/view/admin/classes_delete_page.jsp"/>
+	</definition>
+	
+	<definition name="admin.classes.delete.many" extends="admin">
+		<put-attribute name="classes_delete_many" value="/WEB-INF/view/admin/classes_delete_many_page.jsp"/>
+	</definition>
+	
+	<!-- subject -->
 	<definition name="admin.subjects.update" extends="admin">
 		<put-attribute name="subjects_update" value="/WEB-INF/view/admin/subjects_update_page.jsp"/>
 	</definition>
@@ -65,7 +82,6 @@
 	<definition name="admin.subjects.delete" extends="admin">
 		<put-attribute name="subjects_delete" value="/WEB-INF/view/admin/subjects_delete_page.jsp"/>
 	</definition>
-	
 	
 	<definition name="admin.subjects.delete.many" extends="admin">
 		<put-attribute name="subjects_delete_many" value="/WEB-INF/view/admin/subjects_delete_many_page.jsp"/>

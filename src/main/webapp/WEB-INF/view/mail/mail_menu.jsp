@@ -18,17 +18,13 @@
 	</ul>
 </div>
 <hr />
-<a href="/mail/compose" class="btn btn-danger btn-sm btn-block" role="button">COMPOSE</a>
+<a href="/mail/compose" class="btn btn-danger btn-sm btn-block" role="button">쪽지보내기</a>
 <hr />
 <ul class="nav nav-pills nav-stacked">
 	<li class="active">
-		<a href="/mail/inbox"><span class="badge pull-right">42</span>Inbox </a>
+		<a href="/mail/inbox"><span class="badge pull-right">${mailCount }</span>쪽지함 </a>
 	</li>
-	<li><a href="http://www.jquery2dotnet.com">Starred</a></li>
-	<li><a href="http://www.jquery2dotnet.com">Important</a></li>
-	<li><a href="http://www.jquery2dotnet.com">Sent Mail</a></li>
-	<li><a href="http://www.jquery2dotnet.com"><span
-			class="badge pull-right">3</span>Drafts</a></li>
+	
 </ul>
 
 

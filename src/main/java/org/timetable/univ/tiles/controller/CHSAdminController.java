@@ -7,14 +7,18 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.timetable.univ.dao.admin.CHSAdminDao;
+import org.timetable.univ.model.vo.ClassVo;
+import org.timetable.univ.model.vo.DepartmentVo;
 import org.timetable.univ.model.vo.MemberVo;
 import org.timetable.univ.model.vo.PostVo;
+import org.timetable.univ.model.vo.SubjectVo;
 
 @Controller
 @RequestMapping("/admin")
@@ -224,5 +228,83 @@ public class CHSAdminController {
 			webRequest.setAttribute("postslist", list, webRequest.SCOPE_REQUEST);
 		return "admin.circleposts.list";
 	}
+	// classes 
 	
+	@RequestMapping("/classes/list")
+	public String adminClassesHandler(WebRequest webRequest) {
+		
+		webRequest.setAttribute("content","classes.list", WebRequest.SCOPE_REQUEST);
+		List<ClassVo> list = new ArrayList();
+		list = CHSAdminDao.classesList();
+		webRequest.setAttribute("classesList", list, WebRequest.SCOPE_REQUEST);
+		
+		return "admin.classes.list";
+	}
+	
+	@GetMapping("/classes/update")
+	public String adminClassesUpdateGetHandle(@RequestParam(name="id") int id, WebRequest webRequest) {
+		webRequest.setAttribute("content", "classes.update", WebRequest.SCOPE_REQUEST);
+		
+		ClassVo vo = CHSAdminDao.classesSelect(id);
+		System.out.println("update no"+vo.getSubjectNo());
+		webRequest.setAttribute("ClassVo",vo, WebRequest.SCOPE_REQUEST);
+		
+		
+		return "admin.classes.update";	
+	}
+	
+	@PostMapping("/classes/update")
+	public String adminClassesUpdatePostHandle(@ModelAttribute ClassVo vo) {
+		boolean result = CHSAdminDao.classesupdate(vo);
+		System.out.println(vo);
+		if(!result) {
+			return "error";
+		}
+		
+		
+		return "admin.classes.list";
+	}
+	
+	@GetMapping("/classes/delete")
+	public String adminClassesDeleteGetHandle(@RequestParam(name="id")int id,WebRequest webRequest) {
+			webRequest.setAttribute("id", id, webRequest.SCOPE_REQUEST);
+			webRequest.setAttribute("content", "classes.delete", webRequest.SCOPE_REQUEST);
+		return "admin.classes.delete";
+	}
+	
+	@PostMapping("/classes/delete")
+	public String adminClassesDeletePostHandle(@RequestParam(name="id") int id) {
+		boolean result = CHSAdminDao.classesdelete(id);
+		if(!result) {
+			return "error";
+		}
+		
+		return "admin.classes.list";
+	}
+	
+	@GetMapping("classes/delete/many")
+	public String adminGetClassesManyDelete(WebRequest webRequest,@RequestParam(name="checkbox") List<String> list) {
+		webRequest.setAttribute("content", "classes.delete.many", webRequest.SCOPE_REQUEST);
+		List<Integer> classesdelete = new ArrayList<Integer>();
+		
+		for(String a : list) {
+			classesdelete.add(Integer.parseInt(a));
+		}
+		webRequest.setAttribute("classesid", classesdelete, webRequest.SCOPE_REQUEST);
+		
+		return "admin.classes.delete.many";
+	}
+	
+	
+	@PostMapping("classes/delete/many")
+	public String adminPostClassesManyDelete(WebRequest webRequest,@RequestParam(name="classesid") List<String> list) {
+		
+		boolean result = true;
+		for(String a : list) {
+			System.out.println("deletemany"+a);
+			result = CHSAdminDao.classesDeleteMany(Integer.parseInt(a));
+		}
+		webRequest.setAttribute("result", result, webRequest.SCOPE_REQUEST);
+		return "admin.classes.delete.many";
+	}
 }

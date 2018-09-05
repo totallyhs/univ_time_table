@@ -47,7 +47,11 @@ public class MailController {
 		List<Map<String, Object>> mailList = shsMailDao.getAllMailsWithFilesCount(memberVo.getId());
 		mav.addObject("mailList", mailList);
 		mav.addObject("today", new Date());
-		
+		String receiver = memberVo.getId();
+		int mailCount = shsMailDao.mailCount(receiver);
+		List<MailVo> vo = shsMailDao.getAllMails(receiver);
+		mav.addObject("mailCount",mailCount);
+		mav.addObject("mail", vo);
 		mav.setViewName("mail.inbox");
 		mav.addObject("uri", request.getRequestURI());
 		return mav;
@@ -112,17 +116,29 @@ public class MailController {
 	
 	// VIEW
 	
-	@GetMapping("view")
+	@GetMapping("/view")
 	public String viewGetHandle(@RequestParam("no") int no, WebRequest webRequest, HttpServletRequest request) {
 		MailVo mailVo = shsMailDao.getMailByNo(no);
 		List<MailFileVo> files = shsMailDao.getFilesByMailNo(no);
 		
 		webRequest.setAttribute("mailVo", mailVo, WebRequest.SCOPE_REQUEST);
+		String receiver = mailVo.getReceiver();
+		int mailCount = shsMailDao.mailCount(receiver);
+		webRequest.setAttribute("mailCount", mailCount, WebRequest.SCOPE_REQUEST);
 		webRequest.setAttribute("files", files, WebRequest.SCOPE_REQUEST);
 		webRequest.setAttribute("uri", request.getRequestURI(), WebRequest.SCOPE_REQUEST);
 		
 		return "mail.view";
+	}
+	
+	@GetMapping("/delete")
+	public String mailDelete(@RequestParam(name="no") int no) {
+			boolean result = shsMailDao.mailDelete(no);
+			if(!result) {
+				return "error";
+			}
 		
+		return "redirect:/mail/inbox";
 	}
 	
 }

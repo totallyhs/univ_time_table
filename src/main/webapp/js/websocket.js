@@ -15,8 +15,7 @@ ws.onmessage = function(ret) {
 var mailHandle = function(obj) {
 	var mailVo = obj.mail;
 	if (mailVo != null) {
-		var alarm = "H";
-		//var alarm = "<img src=''/>";
+		var alarm = "<img src='/images/alarm.png' alt='NEW' style='width:10px;height:10px;'/>";
 		$("#mailAlarm").html(alarm);
 	}
 }

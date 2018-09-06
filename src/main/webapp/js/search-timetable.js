@@ -1,9 +1,12 @@
 /**
  * 
  */
+	var classnoBoxesMap = new Map();
+	
 	// getClassInfo
 	var getClassInfo = function(id) {
 		var subjectno = $("#" + id + "subject").val();
+		var subjectname = $("#" + id + "subjectName").val();
 		var units = $("#" + id + "units").val();
 		var no = $("#" + id).attr("data");
 		var professor = $("#" + id + "professor").html();
@@ -17,6 +20,7 @@
 		
 		var json = {
 				"subjectno" : subjectno,
+				"subjectname" : subjectname,
 				"units" : units,
 				"id" : id,
 				"no" : no,
@@ -52,18 +56,12 @@
 		console.log("mouseover..." + json);
 		for (var i=json.start; i<json.end; i++) {
 			var id = $("#"+i +"-" + json.day);
-			// green
-			if("rgb(0, 128, 0)"===id.css("backgroundColor")){
+			// 하얀색이거나
+			if ("rgb(255, 255, 255)"===id.css("backgroundColor")) {
+				id.css("backgroundColor", "green");
+			} else {
 				id.css("backgroundColor","red");
 				$("#" + json.no + "checkbox").prop("disabled", true);
-			}
-			// blue
-			else if("rgb(0, 0, 255)"===id.css("backgroundColor")){
-				id.css("backgroundColor","yellow");
-				$("#" + json.no + "checkbox").prop("disabled", true);
-			}
-			else{
-				id.css("backgroundColor", "green");
 			}
 		}
 	}
@@ -88,16 +86,17 @@
 			// rgb(0, 0, 255) == blue
 			// rgb(0, 128, 0) == green
 			// rgb(255, 255, 0) == yellow
-			var id = $("#"+i +"-" + json.day);
-			if("rgb(255, 0, 0)"===id.css("backgroundColor")){
-				id.css("backgroundColor","green");											
-			}else if("rgb(0, 0, 255)"===id.css("backgroundColor")){
-				id.css("backgroundColor","blue");
-			}else if("rgb(255, 255, 0)"===id.css("backgroundColor")){
-				id.css("backgroundColor","blue");
-			}else{
+			var boxid = i + "-" + json.day
+			var id = $("#" + boxid);
+			if ("rgb(0, 128, 0)"===id.css("backgroundColor")) {
 				id.css("backgroundColor", "white");
 			}
+			// 겹치면 무조건 빨간색
+			else {
+				var color = classnoBoxesMap.get(boxid);
+				id.css("backgroundColor", color);
+			}
+			
 		}
 	}
 	
@@ -157,19 +156,38 @@
 				"json" : JSON.stringify(json)
 			}
 		}).done(function(r) {
-			for (var i=0; i<r.length; i++) {
+			console.log(r);
+			console.log(r[r.length-1]);
+			var colorMap = r[r.length-1];
+			var color = "";
+			var classNo = 0;
+			for (var i=0; i<r.length-1; i++) {
 				resultJson = r[i];
 				// id disable mouseover and mouseout
 				var id = resultJson.id;
 					$("#" + id).removeClass('clrow');
 					$("#" + id).off('mouseover');
 					$("#" + id).off('mouseout');
-				// set backgroundcolor
+				// get color and classNo
+				color = colorMap[resultJson.no];
+				classNo = resultJson.no;
+				// set backgroundcolor and classnoBoxesMap
 				var list = resultJson.boxes;
 					for (var j=0; j<list.length; j++) {
-						$("#" + list[j]).css("backgroundColor", "blue");
+						$("#" + list[j]).css("backgroundColor", color);
+						classnoBoxesMap.set(list[j], color);
+						
+						// for subject name and classno
+						if (j == Math.floor((list.length)/2)) {
+							var subjectname = resultJson.subjectname;
+							var str = "<span style='color: white;'>" + subjectname + 
+									"<br/>" + classNo + "</span>";
+							$("#" + list[j]).html(str);
+						}
 					}
 			} // for
+			console.log(classnoBoxesMap);
+			
 			var sumUnits = parseInt($("#sumUnits").html());
 			sumUnits += resultJson.units;
 			$("#sumUnits").html(sumUnits);
@@ -186,12 +204,15 @@
 				"json" : JSON.stringify(json)
 			}
 		}).done(function(r) {
+			var classNo = 0;
 			for (var i=0; i<r.length; i++) {
 				resultJson = r[i];
 				// set backgroundcolor
 				var list = resultJson.boxes;
 				for (var j=0; j<list.length; j++) {
 					$("#" + list[j]).css("backgroundColor", "white");
+					$("#" + list[j]).html("");
+					classnoBoxesMap.delete(list[j]);
 				}
 				// id disable mouseover and mouseout
 				var id = resultJson.id;
@@ -199,54 +220,12 @@
 					$("#" + id).on('mouseout', onMouseOutEvent);
 					$("#" + id).on('mouseover', onMouseOverEvent);
 			} // for
+			
 			var sumUnits = parseInt($("#sumUnits").html());
 			sumUnits -= resultJson.units;
 			$("#sumUnits").html(sumUnits);
 		});
 		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	var setBackgroundColorOnCheckboxClick = function(json, checked) {
-		for (var i = json.start; i < json.end; i++) {
-			var boxId = $("#"+i +"-" + json.day);
-			if (checked) {
-				boxId.css("backgroundColor", "blue");
-				$("#" + id).removeClass('clrow');
-				$("#" + id).off('mouseover');
-				$("#" + id).off('mouseout');
-			} else {
-				boxId.css("backgroundColor", "green");
-				$("#" + id).addClass('clrow');
-				$("#" + id).on('mouseover');
-				$("#" + id).on('mouseout');
-			}
-		}
-	}
-	
-	var ifCheckedRadio = function(json) {
-		var boxId = $("#" + i + "-" + day);
-		boxId.css("backgroundColor", "blue");
-		$("#" + id).removeClass('clrow');
-		$("#" + id).off('mouseover');
-		$("#" + id).off('mouseout');
-		
-		$("." + no).each(function() {
-			var otherId = $(this).attr("id");
-			if (otherId != boxId) {
-				$("#" + otherId).addClass('clrow');
-				$("#" + otherId).on('mouseover');
-				$("#" + otherId).on('mouseout');
-			}
-		});
 	}
 	
 	
@@ -276,25 +255,6 @@
 	
 	
 	
-	/*
-	var clcheckboxOnClickAction = function(json, checked) {
-		console.log("clcheckbox checked : " + checked);
-		for (var i = json.start; i <= json.end; i++) {
-			var boxId = $("#"+i +"-" + json.day);
-			if (checked) {
-				boxId.css("backgroundColor", "blue");
-				$("#" + id).removeClass('clrow');
-				$("#" + id).off('mouseover');
-				$("#" + id).off('mouseout');
-			} else {
-				boxId.css("backgroundColor", "green");
-				$("#" + id).addClass('clrow');
-				$("#" + id).on('mouseover');
-				$("#" + id).on('mouseout');
-			}
-		}
-	}
-	*/
 	
 	
 	

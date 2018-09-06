@@ -36,6 +36,12 @@ public class Timetable {
 	// 학점수
 	// 시간 => SQL 
 	
+	// 시간표 색깔 관리
+	public List<String> colorList;
+	public Map<String, Object> colorClassNoMap;
+	public Map<String, Object> classNoColorMap;
+	
+	
 	
 	public Timetable() {
 		// MajorSubjectMap
@@ -56,7 +62,24 @@ public class Timetable {
 		// fixedTimetableList
 		fixedTimetableList = new ArrayList<Map<Integer, List<ClassVo>>>();
 
+		// colorList;
+		colorList = new ArrayList<String>();
+			colorList.add("blanchedalmond");
+			colorList.add("cadetblue");
+			colorList.add("mediumpurple");
+			colorList.add("indianred");
+			colorList.add("cornflowerblue");
+			colorList.add("lightcoral");
+			colorList.add("lavender");
+			colorList.add("darksalmon");
+			colorList.add("darkcyan");
+			colorList.add("darkslategray");
 		
+		// colorClassNoMap
+		colorClassNoMap = new HashMap<String, Object>();
+		
+		// classNoColorMap
+		classNoColorMap = new HashMap<String, Object>();
 	}
 	
 	

@@ -71,7 +71,7 @@
 			<label class="col-md-3 control-label"></label>
 			<div class="col-md-8">
 				<input class="btn btn-primary" id="button" value="수정" type="submit">
-				<span></span> <input class="btn btn-default" id="resetbt" value="취소"
+				<span></span> <input class="btn btn-primary" id="resetbt" value="취소"
 					type="reset">
 			</div>
 		</div>
@@ -173,7 +173,7 @@
 
 		//가입취소 눌렀을때 뒤로가기
 		$("#resetbt").on("click", function() {
-			window.history.back();
+			location.href="/index";
 		});
 	</script>
 </html>

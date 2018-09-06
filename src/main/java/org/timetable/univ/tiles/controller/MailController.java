@@ -41,6 +41,7 @@ public class MailController {
 	@GetMapping("/inbox")
 	public ModelAndView inboxHandle(HttpServletRequest request, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("content", "inbox");
 		
 		// get mails
 		MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
@@ -62,6 +63,7 @@ public class MailController {
 	@GetMapping("/compose")
 	public ModelAndView composingHandle(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("content", "compose");
 		
 		mav.setViewName("mail.compose");
 		mav.addObject("uri", request.getRequestURI());
@@ -71,6 +73,8 @@ public class MailController {
 	@PostMapping("/compose")
 	public String composingPostHandle(@ModelAttribute MailVo mailVo, 
 			WebRequest webRequest, @RequestParam("fileupload") MultipartFile[] files) {
+		webRequest.setAttribute("content", "compose", WebRequest.SCOPE_REQUEST);
+		
 		// Mail
 		mailService.setMailVo(mailVo, 
 				(MemberVo)webRequest.getAttribute("memberVo", WebRequest.SCOPE_SESSION));
@@ -118,6 +122,8 @@ public class MailController {
 	
 	@GetMapping("/view")
 	public String viewGetHandle(@RequestParam("no") int no, WebRequest webRequest, HttpServletRequest request) {
+		webRequest.setAttribute("content", "view", WebRequest.SCOPE_REQUEST);
+		
 		MailVo mailVo = shsMailDao.getMailByNo(no);
 		List<MailFileVo> files = shsMailDao.getFilesByMailNo(no);
 		

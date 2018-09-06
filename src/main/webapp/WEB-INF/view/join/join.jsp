@@ -71,20 +71,29 @@
 					// 아니면 아이디 사용 불가능 가입버튼 비활성화
 					var sid = document.getElementById("IdCheck");
 					var button = document.getElementById("joinbt");
-					if (data == 0) {
+					var sidval = document.getElementById("inputId").value;
+					if (data == 0&&sidval.length > 3) {
 						sid.style.color = "blue";
 						sid.innerHTML = "사용가능한 멋진 아이디 입니다!";
-						
 						if(button.disabled){
 							button.disabled=true;
 						}else{
 							button.disabled=false;
 						}
 					} else {
+						if(sidval.length > 3){
+							
 						sid.style.color = "red";
 						sid.innerHTML = "중복된 아이디가 존재 합니다.";
 						button.disabled = true;
+						}else{
+							sid.style.color = "red";
+							sid.innerHTML = "ID는 4글자 이상으로 입력해주세요.";
+							button.disabled = true;
+						}
+						
 					}
+					
 				}
 			})
 		});
@@ -164,7 +173,7 @@
 		
 		// 가입취소 눌렀을때 뒤로가기
 		$("#cancelBtn").on("click", function(){
-			window.history.back();
+			location.href="/index";
 		});
 		
 	</script>

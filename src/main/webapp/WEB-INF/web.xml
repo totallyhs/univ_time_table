@@ -61,4 +61,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<filter-name>af</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<filter>
+		<filter-name>aff</filter-name>
+		<filter-class>org.timetable.univ.filter.AdminFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	<filter-name>aff</filter-name>
+		<url-pattern>/admin/*</url-pattern>
+	</filter-mapping>
 </web-app>

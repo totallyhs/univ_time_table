@@ -42,6 +42,10 @@ public class LoginController {
 		}
 		System.out.println("membervo" + memberVo);
 		System.out.println("Test" + session.getAttribute("target"));
+		MemberVo vo = (MemberVo)session.getAttribute("memberVo");
+		String id = vo.getId();
+		
+		
 		
 		if (memberVo==null) {
 			webRequest.setAttribute("login", false, WebRequest.SCOPE_REQUEST);

@@ -37,12 +37,11 @@ public class JoinController {
 	}
 	//가입 요청시 가입결과 반환 하는 메소드
 	@PostMapping("/joinadd")
-	public ModelAndView joinAddPostHandle(@ModelAttribute MemberVo vo, @RequestParam Map data, WebRequest webRequest) {
+	public ModelAndView joinAddPostHandle(@ModelAttribute MemberVo vo) {
 		ModelAndView mav = new ModelAndView();
 		int r = memberDao.addJoin(vo);
+		System.out.println(""+vo.toString());
 		if (r == 1) {
-			MemberVo memberVo = memberDao.findByIdandPass(data);
-			webRequest.setAttribute("memberVo", memberVo, WebRequest.SCOPE_SESSION);
 			mav.setViewName("index");
 		}else {
 			mav.setViewName("error");

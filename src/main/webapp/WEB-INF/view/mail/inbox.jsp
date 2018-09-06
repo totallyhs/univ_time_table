@@ -9,21 +9,10 @@
             <!-- Split button -->
             <div class="btn-group">
             </div>
-            <a href="/mail/inbox"><button type="button" class="btn btn-default" data-toggle="tooltip" title="Refresh">
+            <a href="/mail/inbox"><button type="button"  data-toggle="tooltip" title="Refresh">
                    <span class="glyphicon glyphicon-refresh"></span></button></a>
             <!-- Single button -->
             <div class="btn-group">
-            </div>
-            <div class="pull-right">
-                <span class="text-muted"><b>1</b>–<b>50</b> of <b>277</b></span>
-                <div class="btn-group btn-group-sm">
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                    </button>
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </button>
-                </div>
             </div>
         </div>
     <hr />

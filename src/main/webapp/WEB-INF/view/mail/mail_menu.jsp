@@ -7,15 +7,9 @@
 <!-- https://bootsnipp.com/snippets/featured/gmail-inbox -->
 
 <div class="btn-group">
-	<button type="button" class="btn btn-primary dropdown-toggle"
-		data-toggle="dropdown">
-		Mail <span class="caret"></span>
+	<button type="button" class="btn btn-primary">
+		Mail
 	</button>
-	<ul class="dropdown-menu" role="menu">
-		<li><a href="#">Mail</a></li>
-		<li><a href="#">Contacts</a></li>
-		<li><a href="#">Tasks</a></li>
-	</ul>
 </div>
 <hr />
 <a href="/mail/compose" class="btn btn-danger btn-sm btn-block" role="button">쪽지보내기</a>

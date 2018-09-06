@@ -12,30 +12,28 @@
 					<!-- RECIVER -->
 					<div class="form-group">
 				    	<label for="to" class="col-sm-1 control-label">FROM:</label>
-				    	<div class="col-sm-11">
-                              <input type="text" class="form-control select2-offscreen" 
-                              id="receiver" name="receiver" tabindex="-1" value="${mailVo.sender }" disabled>
+				    	<div class="col-sm-11 panel panel-default" style="width: 653px;">
+				    		<p id="receiver" style="width: 653px;">
+				    			<c:out value="${mailVo.sender }" escapeXml="true"/>
+				    		</p>
 				    	</div>
 				  	</div>
 					<div class="form-group">
 				    	<label for="bcc" class="col-sm-1 control-label">TITLE</label>
-				    	<div class="col-sm-11">
-                              <input type="text" class="form-control select2-offscreen" 
-                              	id="title" name="title" 
-                              	 value="<c:out value="${mailVo.title }" escapeXml="true"/>" tabindex="-1" disabled>
+				    	<div class="col-sm-11 panel panel-default" style="width: 653px;">
+				    		<p id="title" style="width: 653px;">
+				    			<c:out value="${mailVo.title }" escapeXml="true"/>
+				    		</p>
 				    	</div>
 				  	</div>
 				  
 				
 				<div class="col-sm-11 col-sm-offset-1">
-					
-					<br>	
-					
-					<div class="form-group">
-						<textarea class="form-control" id="contents" name="contents" 
-							rows="12" disabled>
+					<br>
+					<div class="panel panel-default">
+						<p id="contents" style="width: 653px; height: 300px;">
 							<c:out value="${mailVo.contents }" escapeXml="true"/>
-						</textarea>
+						</p>
 					</div>
 					
 					</div>

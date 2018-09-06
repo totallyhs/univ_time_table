@@ -42,13 +42,13 @@
 		<!-- inbox or compose or view-->
 		<div class="col-sm-9 col-md-10">
 		<c:choose>
-			<c:when test="${fn:endsWith(requestScope.uri, 'inbox') }">
+			<c:when test="${requestScope.content eq 'inbox'}">
 				<tiles:insertAttribute name="inboxUI"/>
 			</c:when>
-			<c:when test="${fn:endsWith(requestScope.uri, 'compose') }">
+			<c:when test="${requestScope.content eq 'compose'}">
 				<tiles:insertAttribute name="compose"/>
 			</c:when>	
-			<c:when test="${fn:endsWith(requestScope.uri, 'view') }">
+			<c:when test="${requestScope.content eq 'view'}">
 				<tiles:insertAttribute name="view"/>
 			</c:when>
 		</c:choose>

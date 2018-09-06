@@ -41,9 +41,6 @@ public class LoginController {
 			shsAdminDao.updateVisitorCnt(visitorCnt + 1);
 		}
 		System.out.println("membervo" + memberVo);
-		System.out.println("Test" + session.getAttribute("target"));
-		MemberVo vo = (MemberVo)session.getAttribute("memberVo");
-		String id = vo.getId();
 		
 		
 		

@@ -14,7 +14,12 @@
     <li><a href="${pageContext.servletContext.contextPath }/bulletinboard?no=10">자유게시판</a></li>
     <li><a href="${pageContext.servletContext.contextPath }/circleboard?no=40">동아리게시판</a></li>
     <li><a href="${pageContext.servletContext.contextPath }/courses/subject/list">과목</a></li> 	
-    <li><a href="${pageContext.servletContext.contextPath }/mail/inbox">쪽지</a></li>
+    <li>
+    	<a href="${pageContext.servletContext.contextPath }/mail/inbox">
+    		쪽지
+    		<span id="mailAlarm"></span>
+    	</a>
+    </li>
     <li>
     <c:choose>
       <c:when test="${sessionScope.memberVo eq null }">

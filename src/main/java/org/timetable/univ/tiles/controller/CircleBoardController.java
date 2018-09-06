@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -102,7 +103,7 @@ public class CircleBoardController {
 	// 글작성 눌렀을때 보내주는 컨트롤러 
 	@PostMapping("/circleboardwrite")
 	public ModelAndView circleWritePostHandle(@ModelAttribute PostVo vo,HttpSession session,HttpServletResponse response,
-			@RequestParam("fileupload") MultipartFile[] files ) throws Exception {
+			@RequestParam("fileupload") MultipartFile[] files,HttpServletRequest request ) throws Exception {
 		System.out.println(vo.getPublished());
 		ModelAndView mav = new ModelAndView();
 		int no = CircleBoardDao.getSquence();
@@ -110,6 +111,8 @@ public class CircleBoardController {
 		//vo.setNo(13); // mapper에서 sequence 처리 해야함.
 		MemberVo mvo=(MemberVo) session.getAttribute("memberVo");
 		vo.setWriter(mvo.getNickname());
+		String ip = request.getRemoteAddr();
+		vo.setIp(ip);
 		vo.setPublished("y");
 		vo.setHit(0);
 		System.out.println(vo.toString());
@@ -170,12 +173,14 @@ public class CircleBoardController {
 	
 	// 자유게시판 리플
 	@PostMapping("/circleboardview")
-	public ModelAndView circleReplyHandle(@RequestParam(name="postno") int postno,@RequestParam(name="content") String content, HttpSession session, HttpServletResponse response) {
+	public ModelAndView circleReplyHandle(@RequestParam(name="postno") int postno,@RequestParam(name="content") String content, HttpSession session, HttpServletResponse response,HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("circleboardview");
 		CommentsVo vo = new CommentsVo();
 		//PostVo pvo = bulletinboadrdao.selectPost(10);
 		//mav.addObject("PostVo",pvo);
+		String ip = request.getRemoteAddr();
+		vo.setIp(ip);
 		vo.setContent(content);
 		vo.setPostNo(postno);
 		MemberVo mvo=(MemberVo) session.getAttribute("memberVo");
@@ -265,11 +270,13 @@ public class CircleBoardController {
 	@PostMapping("/circlerewrite")
 	public ModelAndView circlereWritePostHandle( @RequestParam Map<String,String> map ,
 			HttpSession session,HttpServletResponse response,
-			@RequestParam("fileupload") MultipartFile[] files) throws Exception {
+			@RequestParam("fileupload") MultipartFile[] files,HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		MemberVo mvo=(MemberVo) session.getAttribute("memberVo");
 		String subject = map.get("subject");
 		String content = map.get("content");
+		String ip = request.getRemoteAddr();
+		map.put("ip", ip);
 		int no = Integer.parseInt(map.get("no"));
 		System.out.println(map);
 		boolean result = CircleBoardDao.reWriteUpdate(map);

@@ -26,4 +26,7 @@ public class SHSMemberDao {
 	public List<MemberVo> findAlikeId(String id) {
 		return template.selectList("shs_member.findAlikeId", "%" + id + "%");
 	}
+	public boolean updateLastLogin(String id) {
+		return template.update("shs_member.updateLastLogin",id)==1?true:false;
+	}
 }

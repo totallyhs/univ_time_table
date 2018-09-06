@@ -51,6 +51,7 @@ public class LoginController {
 				return "redirect:"+t;
 			}
 		} else {
+			shsMemberDao.updateLastLogin(memberVo.getId());
 			Timetable timetable = new Timetable();
 			webRequest.setAttribute("timetable", timetable, WebRequest.SCOPE_SESSION);
 		} 

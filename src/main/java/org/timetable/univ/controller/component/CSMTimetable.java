@@ -110,6 +110,12 @@ public class CSMTimetable {
 
 			// 하나도 중복이 안되었을때 체크리스트에 추가후 시간표리스트에 추가
 			if (combi) {
+				SubjectVo cultureSvo = combinationdao.getInformSubject(cvo.getNo());
+				// 체크된과목 이름
+				result.put(-cvo.getNo(), cultureSvo.getName());
+				// 체크된과목의 학점
+				result.put(-cvo.getNo()*2, cultureSvo.getUnits());
+				
 				addCulture.add(cvo);
 				// classNoList에 classNo 추가
 				if (!classNoList.contains(cvo.getNo())) {

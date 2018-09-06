@@ -20,14 +20,18 @@ public class TimetableService {
 	
 	public String checkboxChecked(String json, Timetable timetable) {
 		// list of maps containing in map
+		// key : subjectname, val : subjectname
 		// key : id, val : classid
+		// key : no, val : classno
 		// key : units, val : units
 		// key : boxes, val :  list of boxes => i- day
+		// last of list : colorMap
 		List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
 		
 		
 		List classJson = gson.fromJson(json, List.class);
 		String subjectNo = (String) ((Map)classJson.get(0)).get("subjetno");
+		String subjectname = (String)((Map)classJson.get(0)).get("subjectname");
 		System.out.println(classJson);
 		
 		// update checkedSubjectClassMap
@@ -44,16 +48,21 @@ public class TimetableService {
 			checkedSubjectClassMap.put(subjectNo, clList);
 		}
 		
+		// classNo
+		int classNo = 0;
+		
 		// for each class
 		for (int i=0; i<classJson.size(); i++) {
 			Map<String, Object> jsonMap = (Map<String, Object>) classJson.get(i);
 			int id = Integer.parseInt((String)jsonMap.get("id"));
 			int units = Integer.parseInt((String)jsonMap.get("units"));
-			int classNo = Integer.parseInt((String)jsonMap.get("no"));
+			classNo = Integer.parseInt((String)jsonMap.get("no"));
 			
 			Map<String, Object> resultMap = new HashMap<String, Object>();
 			resultMap.put("id", id);
 			resultMap.put("units", units);
+			resultMap.put("no", classNo);
+			resultMap.put("subjectname", subjectname);
 			
 			
 			ClassVo classVo = new ClassVo();
@@ -87,11 +96,29 @@ public class TimetableService {
 				String box = j + "-" + day;
 				resultBoxesList.add(box);
 			}
+			
 			resultMap.put("boxes", resultBoxesList);
 			result.add(resultMap);
 			
 		} // for each class
 		
+		// set color
+		List<String> colorList = timetable.colorList;
+		Map<String, Object> colorClassMap = (Map<String, Object>)timetable.colorClassNoMap;
+		Map<String, Object> classNoColorMap = timetable.classNoColorMap;
+		
+		for (int i=0; i<colorList.size(); i++) {
+			if (!colorClassMap.containsKey(colorList.get(i))) {
+				colorClassMap.put(colorList.get(i), classNo);
+				classNoColorMap.put(String.valueOf(classNo), colorList.get(i));
+				break;
+			}
+		}
+		System.out.println("colorList : " + colorList);
+		System.out.println("colorClassMap :" + colorClassMap);
+		System.out.println("classNoColorMap : " + classNoColorMap);
+		
+		result.add(classNoColorMap);
 		
 		String jsonResult = gson.toJson(result);
 		
@@ -129,6 +156,21 @@ public class TimetableService {
 				// removing in checkedClassMap
 				if (checkedClassMap.containsKey(classNo)) {
 					checkedClassMap.remove(classNo);
+				}
+				
+				// removing in colorset
+				// set color
+				List<String> colorList = timetable.colorList;
+				Map<String, Object> colorClassMap = (Map<String, Object>)timetable.colorClassNoMap;
+				Map<String, Object> classNoColorMap = timetable.classNoColorMap;
+				
+				String color = "";
+				if (classNoColorMap.containsKey(String.valueOf(classNo))) {
+					color = (String) classNoColorMap.get(String.valueOf(classNo));
+					classNoColorMap.remove(String.valueOf(classNo));
+				}
+				if (colorClassMap.containsKey(color)) {
+					colorClassMap.remove(color);
 				}
 				
 				// for each class

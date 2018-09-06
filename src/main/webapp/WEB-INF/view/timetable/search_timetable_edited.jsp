@@ -107,6 +107,7 @@
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
+					  												<input type="hidden" id="${cl.id }subjectName" value="${subject.name}"/>
 					  												<input type="hidden" id="${cl.id }subject" value="${subject.no}"/>
 					  												<input type="hidden" id="${cl.id }units" value="${subject.units }"/>
 					  											</td>
@@ -119,6 +120,7 @@
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
+					  												<input type="hidden" id="${cl.id }subjectName" value="${subject.name}"/>
 					  												<input type="hidden" id="${cl.id }subject" value="${subject.no}"/>
 					  												<input type="hidden" id="${cl.id }units" value="${subject.units }"/>
 					  											</td>
@@ -133,6 +135,7 @@
 					  											<td>
 					  												(<span id="${cl.id}day" class="day">${cl.day}</span>)
 					  												<span id="${cl.id}starttime">${cl.starttime }</span>~<span id="${cl.id}endtime">${cl.endtime }</span>
+					  												<input type="hidden" id="${cl.id }subjectName" value="${subject.name}"/>
 					  												<input type="hidden" id="${cl.id }subject" value="${subject.no}"/>
 					  												<input type="hidden" id="${cl.id }units" value="${subject.units }"/>
 					  											</td>
@@ -176,23 +179,26 @@
 			<c:forEach var="i" begin="0" end="20" step="2">
 			<tr>
 				<td class='time'>${Math.floor(9+(i/2)) }.00</td>
-				<td id='${i+1}-1'></td>
-				<td id='${i+1}-2'></td>
-				<td id='${i+1}-3'></td>
-				<td id='${i+1}-4'></td>
-				<td id='${i+1}-5'></td>
+				<td id='${i+1}-1' style="background-color: white;"></td>
+				<td id='${i+1}-2' style="background-color: white;"></td>
+				<td id='${i+1}-3' style="background-color: white;"></td>
+				<td id='${i+1}-4' style="background-color: white;"></td>
+				<td id='${i+1}-5' style="background-color: white;"></td>
 			</tr>
 			<tr>
 				<td class='time'>${9+(i/2) }.30</td>
-				<td id='${i+2}-1'></td>
-				<td id='${i+2}-2'></td>
-				<td id='${i+2}-3'></td>
-				<td id='${i+2}-4'></td>
-				<td id='${i+2}-5'></td>
+				<td id='${i+2}-1' style="background-color: white;"></td>
+				<td id='${i+2}-2' style="background-color: white;"></td>
+				<td id='${i+2}-3' style="background-color: white;"></td>
+				<td id='${i+2}-4' style="background-color: white;"></td>
+				<td id='${i+2}-5' style="background-color: white;"></td>
 			</tr>
 			</c:forEach>
 		</table>
 	</div>
+	<span id="listOfColor">
+	
+	</span>
 
 <script src="/js/search-timetable.js"></script>
 

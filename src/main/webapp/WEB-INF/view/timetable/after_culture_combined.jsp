@@ -4,17 +4,23 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-	${requestScope.cultureCombinedTimetable}
-
-	<c:forEach begin="0" end="${listLength -1 }" var="page">
-		<a href="/timetable/culture/combination?page=${page }">
-			${page }
-		</a>
-	</c:forEach>
+<style>
+table th, table td {
+  padding: 0.5em;
+  padding: 5px;
+  width: 2em;
+  height: 1em;
+  font-size: 0.5em;
+  text-align: center;
+  width : 100px;
+  height: 10px;
+}
+</style>
+	
 
 <div align="center">
 	<p>총 학점 : <span id="unitssum">0</span> </p>
-		<table border='0' cellpadding='0' cellspacing='0' style="max-height: 700; max-width: 700px; text-align: center;">
+		<table border='0' cellpadding='0' cellspacing='0' style="max-height: 450; max-width: 1500px; text-align: center;">
 			<tr class='days' style="width: 100%;" align="center">
 				<th style="width: 15%;"></th>
 				<th>월</th>
@@ -24,7 +30,7 @@
 				<th>금</th>
 			</tr>
 			<c:forEach var="i" begin="0" end="20" step="2">
-			<tr>
+			<tr valign="top">
 				<td class='time'>${Math.floor(9+(i/2)) }.00</td>
 				<td id='${i+1}-1'></td>
 				<td id='${i+1}-2'></td>
@@ -32,7 +38,7 @@
 				<td id='${i+1}-4'></td>
 				<td id='${i+1}-5'></td>
 			</tr>
-			<tr>
+			<tr valign="top">
 				<td class='time'>${9+(i/2) }.30</td>
 				<td id='${i+2}-1'></td>
 				<td id='${i+2}-2'></td>
@@ -42,11 +48,14 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<c:forEach begin="0" end="${listLength -1 }" var="page">
+		<a href="/timetable/culture/combination?page=${page }">
+			${page + 1 }
+		</a>
+	</c:forEach>
 </div>
 
-<p id="test">
 
-</p>
 		
 <script>
 	// cultureCombinedTimetable instanceof Json
@@ -56,6 +65,7 @@
 	
 	// for each class, get the list associated
 	for (var cNL=0; cNL < classNoList.length; cNL++) {
+		var classNo = classNoList[cNL];
 		var classList = json[classNoList[cNL]];
 		
 		// look each class (unique id)
@@ -72,15 +82,17 @@
 				
 				setBackgroundColor(box);
 				
+			// for subject name and classno
 				if (j == Math.floor((start+end)/2)) {
 					var subjectName = json[-classNoList[cNL]];
-					$("#" + box).html(subjectName);
+					var str = "<span style='color: white;'>" + subjectName + 
+							"<br/>" + classNo + "</span>";
+					$("#" + box).html(str);
 				}
  				
 			} // for box
 		} // for classList
 		
-		// for subject name
 		
 		// for units
 		console.log(json[-classNoList[cNL] * 2]);

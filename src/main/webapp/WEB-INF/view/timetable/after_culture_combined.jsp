@@ -61,12 +61,14 @@ table th, table td {
 	// cultureCombinedTimetable instanceof Json
 	var json = JSON.parse('${cultureCombinedTimetable}');
 	var classNoList = json[0];
+	var colorMap = json[-1];
 	var unitssum = 0;
 	
 	// for each class, get the list associated
 	for (var cNL=0; cNL < classNoList.length; cNL++) {
 		var classNo = classNoList[cNL];
 		var classList = json[classNoList[cNL]];
+		var color = colorMap[classNo];
 		
 		// look each class (unique id)
 		for (var i=0; i < classList.length; i++) {
@@ -80,7 +82,7 @@ table th, table td {
 			for (var j=start; j<end; j++) {
 				var box = j + "-" + day;
 				
-				setBackgroundColor(box);
+				setBackgroundColor(box, color);
 				
 			// for subject name and classno
 				if (j == Math.floor((start+end)/2)) {
@@ -104,8 +106,8 @@ table th, table td {
 	$("#unitssum").html(unitssum);
 	console.log(unitssum);
 	
-	function setBackgroundColor(box) {
-		$("#" + box).css("backgroundColor", "blue");
+	function setBackgroundColor(box, color) {
+		$("#" + box).css("backgroundColor", color);
 	}
 	
 </script>

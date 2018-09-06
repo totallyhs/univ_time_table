@@ -95,9 +95,8 @@ public class CSMTimeTablePageController {
 			HttpSession session) {
 		Timetable timetable = (Timetable)session.getAttribute("timetable");
 		Map<Integer, List<ClassVo>> checkedClassMap = timetable.checkedClassMap;
-		System.out.println("checkedclassMap : \n" + checkedClassMap + "\n");
 		
-		List<Map> cultureCombi = csmTimetable.cultureCombination(checkedClassMap, unitssum);
+		List<Map> cultureCombi = csmTimetable.cultureCombination(timetable, unitssum);
 		session.setAttribute("cultureCombinedTimetable", cultureCombi);
 		
 		Map<String, Object> jsonMap = new HashMap<String, Object>();

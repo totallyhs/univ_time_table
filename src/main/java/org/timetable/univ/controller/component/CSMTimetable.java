@@ -27,14 +27,22 @@ public class CSMTimetable {
 	 *   key : -classno*2  => class units
 	 *   key : classno => list<classvo> 
 	 *   key : 0 => list of classes resulted with their no
+	 * last index of list : classNoColorMap
 	 */
-	public List<Map> cultureCombination(Map<Integer, List<ClassVo>> checkedClassMap,
+	public List<Map> cultureCombination(Timetable timetable,
 			int unitssum) {
+		Map<Integer, List<ClassVo>> checkedClassMap = timetable.checkedClassMap;
+		
 		// 모든 교양과목 리스트
 		List<ClassVo> cultureSubjectList = combinationdao.getcultivateClasses();
 
 		// 최종 결과 시간표(리스트)의 리스트
 		List<Map> resultList = new ArrayList();
+		
+		// 섹깔 리스트
+		List colorList = timetable.colorList;
+		Map classNoColorMap = timetable.classNoColorMap;
+		Map colorClassMap = timetable.colorClassNoMap;
 		
 				
 		// 교양과목마다 체크된 과목 리스트와 비교하는 포문
@@ -121,22 +129,24 @@ public class CSMTimetable {
 				if (!classNoList.contains(cvo.getNo())) {
 					classNoList.add(cvo.getNo());
 				}
-
+				
+				for (int j=0; j<colorList.size(); j++) {
+					if (!colorClassMap.containsKey(colorList.get(j))) {
+						colorClassMap.put(colorList.get(j), cvo.getNo());
+						classNoColorMap.put(String.valueOf(cvo.getNo()), colorList.get(j));
+						break;
+					}
+				}
+				result.put(-1, classNoColorMap);
 				result.put(cvo.getNo(), addCulture);
 				result.put(0, classNoList);
 				resultList.add(result);
 				
+				
 			}
 
 		} // cultureSubject for
-
 		return resultList;
 	}
 
-	// 선택한 전공랜덤 함수
-	public List<List<Map<Integer, List<ClassVo>>>> majorCombination(
-			List<Map<Integer, List<ClassVo>>> checkedSubjectClassList, int unitssum) {
-
-		return null;
-	}
 }

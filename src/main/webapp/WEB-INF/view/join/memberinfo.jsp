@@ -67,15 +67,24 @@
 			</div>
 		</fieldset>
 	</form>
-
 	<!-- Button -->
-	<form action="/editview">
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="button"></label>
 			<div class="col-md-4">
-				<button type="submit" class="btn btn-primary">수정</button>
+				<button type="submit" id="gobt" class="btn btn-primary">수정</button>
+				<button type="submit" id="backbt" class="btn btn-primary">목록으로</button>
 			</div>
 		</div>
-	</form>
 </body>
+<script>
+	// 목록버튼 클릭할시 전 페이지 가는 스크립트
+	$("#backbt").on("click", function() {
+		window.history.back();
+	});
+	
+	$("#gobt").on("click", function() {
+		window.location.href = "/editview";
+	});
+	
+</script>
 </html>

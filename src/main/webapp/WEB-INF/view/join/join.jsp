@@ -57,6 +57,16 @@
 	</article>
 
 	<script>
+	var idcheck = false;
+	var passcheck1 = false;
+	var passcheck2 = false;
+	var nickcheck = false;
+	var button = document.getElementById("joinbt");
+	function check(){
+		if(idcheck==true&&passcheck1==true&&passcheck2==true&&nickcheck==true){
+			button.disabled=false;
+		}
+	};
 		// ID중복체크 스크립트
 		$("#inputId").on("change", function() {
 			$.ajax({
@@ -70,26 +80,23 @@
 					// 데이터에 널값이 들어오면 아이디 사용가능 가입버튼 활성화
 					// 아니면 아이디 사용 불가능 가입버튼 비활성화
 					var sid = document.getElementById("IdCheck");
-					var button = document.getElementById("joinbt");
 					var sidval = document.getElementById("inputId").value;
 					if (data == 0&&sidval.length > 3) {
 						sid.style.color = "blue";
 						sid.innerHTML = "사용가능한 멋진 아이디 입니다!";
-						if(button.disabled){
-							button.disabled=true;
-						}else{
-							button.disabled=false;
-						}
+						idcheck=true;
+						check();
 					} else {
 						if(sidval.length > 3){
-							
+							idcheck=false;	
 						sid.style.color = "red";
 						sid.innerHTML = "중복된 아이디가 존재 합니다.";
-						button.disabled = true;
+						button.disabled=true;
 						}else{
+							idcheck=false;
 							sid.style.color = "red";
 							sid.innerHTML = "ID는 4글자 이상으로 입력해주세요.";
-							button.disabled = true;
+							button.disabled=true;
 						}
 						
 					}
@@ -112,19 +119,16 @@
 					// 데이터에 널값이 들어오면 닉네임 사용가능 가입버튼 활성화
 					// 아니면 닉네임 사용 불가능 가입버튼 비활성화
 					var nickName = document.getElementById("nickmsg");
-					var button = document.getElementById("joinbt");
 					if (data == 0) {
 						nickName.style.color = "blue";
 						nickName.innerHTML = "사용 가능한 멋진 닉네임 입니다.";
-						if(button.disabled){
-							button.disabled=true;
-						}else{
-							button.disabled=false;
-						}
+						nickcheck=true;
+						check();
 					} else {
 						nickName.style.color = "red";
 						nickName.innerHTML = "중복된 닉네임이 존재 합니다.";
-						button.disabled = true;
+						button.disabled=true;
+						nickcheck=false;
 					}
 				}
 			})
@@ -134,20 +138,16 @@
 		$("#pass").on("change", function() {
 			var pass = $("#pass").val();
 			var pattensMsg = document.getElementById("pattensMsg");
-			var button = document.getElementById("joinbt");
 			var pattern = /^([a-zA-Z0-9])(?=.*\d\S)(?=.*[a-zA-Z]).{7,16}/
 			
 			if (!pattern.test(pass)) {
 				pattensMsg.innerHTML = "8~16자 영문 대 소문자, 숫자를 포함해서 사용하세요.";
-				button.disabled = true;
+				button.disabled=true;
+				passcheck1=false;
 			}else {
 				pattensMsg.innerHTML = "";
-				
-				if(button.disabled){
-					button.disabled=true;
-				}else{
-					button.disabled=false;
-				}
+				passcheck1=true;
+				check();
 			}
 		});
 		// 비번과 비번 확인 같은지 체크
@@ -155,19 +155,15 @@
 			var pass = $("#pass").val();
 			var passCheck = $("#passCheck").val();
 			var passmsg = document.getElementById("passmsg");
-			var button = document.getElementById("joinbt");
 			
 			if (pass != passCheck) {
 				passmsg.innerHTML ="비밀번호를 다시 확인 해주세요.";
-				button.disabled = true;
+				passcheck2=false;
+				button.disabled=true;
 			} else {
 				passmsg.innerHTML = "";
-				
-				if(button.disabled){
-					button.disabled=true;
-				}else{
-					button.disabled=false;
-				}
+				passcheck2=true;
+				check();
 			}
 		});
 		

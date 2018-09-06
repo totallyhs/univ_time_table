@@ -1,6 +1,7 @@
 package org.timetable.univ.tiles.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import org.timetable.univ.model.vo.MailVo;
 import org.timetable.univ.model.vo.MemberVo;
 import org.timetable.univ.service.MailService;
 import org.timetable.univ.service.UploadService;
+import org.timetable.univ.service.WebSocketService;
 
 @Controller
 @RequestMapping("/mail")
@@ -36,6 +38,9 @@ public class MailController {
 	
 	@Autowired
 	MailService mailService;
+	
+	@Autowired
+	WebSocketService webSocketService;
 	
 	// INBOX
 	@GetMapping("/inbox")
@@ -113,6 +118,12 @@ public class MailController {
 		}
 		
 		System.out.println(webRequest.getAttribute("success", WebRequest.SCOPE_REQUEST));
+		
+		// Websocket : inform the receiver about the new message
+		Map data = new HashMap();
+			data.put("mode", "mail");
+			data.put("mail", mailVo);
+		webSocketService.sendToOne(data, mailVo.getReceiver());
 		
 		return "mail.compose";
 	}

@@ -13,7 +13,7 @@
 
 	
 	<insert id="circleinsertpost" parameterType="org.timetable.univ.model.vo.PostVo">
-		insert into post values(#{no},#{boardNo},#{subject},#{writer},#{content},1,sysdate,#{hit},#{published})
+		insert into post values(#{no},#{boardNo},#{subject},#{writer},#{content},#{ip},sysdate,#{hit},#{published})
 	</insert>
 	
 	<update id="circleboardhit" parameterType="java.util.Map">
@@ -33,7 +33,7 @@
 	</select>
 	
 	<insert id="circleinsertreply" parameterType="org.timetable.univ.model.vo.CommentsVo">
-		insert into comments values(comments_seq.nextval,#{postNo},#{commentator},#{content},#{published},1,sysdate)
+		insert into comments values(comments_seq.nextval,#{postNo},#{commentator},#{content},#{published},#{ip},sysdate)
 	</insert>
 	
 	<select id="circlereplylist" parameterType="java.lang.Integer" resultType="org.timetable.univ.model.vo.CommentsVo">
@@ -73,7 +73,7 @@
 	</select>
 	
 	<update id="circlerewriteupdate" parameterType="java.util.Map">
-		update post set subject = #{subject}, content = #{content} where no= #{no}
+		update post set subject = #{subject}, content = #{content}, ip = #{ip} where no= #{no}
 	</update>
 		
 </mapper>

@@ -6,16 +6,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.timetable.univ.dao.board.BulletinBoardDao;
@@ -100,13 +103,15 @@ public class BulletinBoardController {
 	// 글작성 눌렀을때 보내주는 컨트롤러 
 	@PostMapping("/boardwrite")
 	public ModelAndView bulletinWritePostHandle(@ModelAttribute PostVo vo,HttpSession session,HttpServletResponse response,
-			@RequestParam("fileupload") MultipartFile[] files ) throws Exception {
+			@RequestParam("fileupload") MultipartFile[] files,HttpServletRequest request ) throws Exception {
 		System.out.println(vo.getPublished());
 		ModelAndView mav = new ModelAndView();
 		int no = bulletinboadrdao.getSquence();
 		vo.setNo(no);
 		//vo.setNo(13); // mapper에서 sequence 처리 해야함.
 		MemberVo mvo=(MemberVo) session.getAttribute("memberVo");
+		String ip = request.getRemoteAddr();
+		vo.setIp(ip);
 		vo.setWriter(mvo.getNickname());
 		vo.setPublished("y");
 		vo.setHit(0);
@@ -168,12 +173,14 @@ public class BulletinBoardController {
 	
 	// 자유게시판 리플
 	@PostMapping("/boardview")
-	public ModelAndView bulletinReplyHandle(@RequestParam(name="postno") int postno,@RequestParam(name="content") String content, HttpSession session, HttpServletResponse response) {
+	public ModelAndView bulletinReplyHandle(@RequestParam(name="postno") int postno,@RequestParam(name="content") String content, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("boardview");
 		CommentsVo vo = new CommentsVo();
 		//PostVo pvo = bulletinboadrdao.selectPost(10);
 		//mav.addObject("PostVo",pvo);
+		String ip = request.getRemoteAddr();
+		vo.setIp(ip);
 		vo.setContent(content);
 		vo.setPostNo(postno);
 		MemberVo mvo=(MemberVo) session.getAttribute("memberVo");
@@ -263,11 +270,13 @@ public class BulletinBoardController {
 	@PostMapping("/rewrite")
 	public ModelAndView reWritePostHandle( @RequestParam Map<String,String> map ,
 			HttpSession session,HttpServletResponse response,
-			@RequestParam("fileupload") MultipartFile[] files) throws Exception {
+			@RequestParam("fileupload") MultipartFile[] files,HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		MemberVo mvo=(MemberVo) session.getAttribute("memberVo");
 		String subject = map.get("subject");
 		String content = map.get("content");
+		String ip = request.getRemoteAddr();
+		map.put("ip", ip);
 		int no = Integer.parseInt(map.get("no"));
 		System.out.println(map);
 		boolean result = bulletinboadrdao.reWriteUpdate(map);

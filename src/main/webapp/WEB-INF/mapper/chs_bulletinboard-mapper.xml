@@ -13,7 +13,7 @@
 
 	
 	<insert id="insertpost" parameterType="org.timetable.univ.model.vo.PostVo">
-		insert into post values(#{no},#{boardNo},#{subject},#{writer},#{content},1,sysdate,#{hit},#{published})
+		insert into post values(#{no},#{boardNo},#{subject},#{writer},#{content},#{ip},sysdate,#{hit},#{published})
 	</insert>
 	
 	<update id="boardhit" parameterType="java.util.Map">
@@ -73,7 +73,7 @@
 	</select>
 	
 	<update id="rewriteupdate" parameterType="java.util.Map">
-		update post set subject = #{subject}, content = #{content} where no= #{no}
+		update post set subject = #{subject}, content = #{content}, ip = #{ip} where no= #{no}
 	</update>
 		
 </mapper>

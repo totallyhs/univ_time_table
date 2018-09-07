@@ -6,7 +6,6 @@
 
 	<definition name="timetable" template="/WEB-INF/view/layout/timetable/timetable_layout.jsp">
 		<put-attribute name="navbar" value="/WEB-INF/view/navbar/navbar.jsp"/>
-		<put-attribute name="resulttimetableUI" value="/WEB-INF/view/timetable/result_timetable.jsp"/>
 		<put-attribute name="searchtimetableUI" value="/WEB-INF/view/timetable/search_timetable.jsp"/>
 	</definition>
 	

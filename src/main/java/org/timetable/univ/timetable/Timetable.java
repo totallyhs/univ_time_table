@@ -1,14 +1,12 @@
-package org.timetable.univ.controller.component;
+package org.timetable.univ.timetable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Component;
 import org.timetable.univ.model.vo.ClassVo;
 
-@Component
 public class Timetable {
 
 	public boolean[][] table = new boolean[22][5];

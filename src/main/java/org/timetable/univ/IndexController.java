@@ -1,5 +1,8 @@
 package org.timetable.univ;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.WebRequest;
 import org.timetable.univ.dao.SHSMemberDao;
+import org.timetable.univ.model.vo.ClassVo;
 import org.timetable.univ.model.vo.MemberVo;
 
 import com.google.gson.Gson;
@@ -24,7 +29,15 @@ public class IndexController {
 	Gson gson;
 
 	@GetMapping({"/index", "/"})
-	public String index() {
+	public String index(@RequestParam(name="page", defaultValue="0") int page, HttpSession session) {
+		MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
+		if (memberVo != null) {
+			List<Map<Integer, List<ClassVo>>> lastCombi = 
+					(List<Map<Integer, List<ClassVo>>>)session.getAttribute("lastCombi");
+			if (lastCombi != null) {
+				session.setAttribute("lastCombiTimetable", gson.toJson(lastCombi.get(page)));
+			}
+		}
 		return "index";
 	}
 	

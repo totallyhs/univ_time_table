@@ -1,6 +1,8 @@
 package org.timetable.univ.controller.login;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -11,10 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
-import org.timetable.univ.controller.component.Timetable;
 import org.timetable.univ.dao.SHSAdminDao;
 import org.timetable.univ.dao.SHSMemberDao;
+import org.timetable.univ.model.vo.ClassVo;
 import org.timetable.univ.model.vo.MemberVo;
+import org.timetable.univ.timetable.Timetable;
+import org.timetable.univ.timetable.mongo.TimetableMongoRepository;
+import org.timetable.univ.timetable.mongo.TimetableMongoVo;
+
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/login")
@@ -28,6 +35,12 @@ public class LoginController {
 	
 	@Autowired
 	SHSAdminDao shsAdminDao;
+	
+	@Autowired
+	TimetableMongoRepository ttMongoRepository;
+	
+	@Autowired
+	Gson gson;
 	
 	@PostMapping("/login")
 	public String loginHandle(@RequestParam HashMap<String, String> data, WebRequest webRequest,HttpSession session) {
@@ -55,6 +68,20 @@ public class LoginController {
 			shsMemberDao.updateLastLogin(memberVo.getId());
 			Timetable timetable = new Timetable();
 			webRequest.setAttribute("timetable", timetable, WebRequest.SCOPE_SESSION);
+			
+			// Mongo read
+			TimetableMongoVo ttMongoVo = ttMongoRepository.readByMemberId(memberVo.getId());
+			if (ttMongoVo != null) {
+				String lastCombiStr = ttMongoVo.getCultureCombiStr();
+				if (lastCombiStr != null) {
+					List lastCombi = gson.fromJson(lastCombiStr, List.class);
+					webRequest.setAttribute("lastCombi", lastCombi, WebRequest.SCOPE_SESSION);
+					webRequest.setAttribute("lastCombiLength", lastCombi.size(), WebRequest.SCOPE_SESSION);
+					webRequest.setAttribute("lastCombiTimetable", gson.toJson(lastCombi.get(0)), WebRequest.SCOPE_SESSION);
+				}
+			}
+			
+			
 		} 
 		String t = (String)webRequest.getAttribute("target", WebRequest.SCOPE_SESSION);
 		System.out.println("t : " + t);

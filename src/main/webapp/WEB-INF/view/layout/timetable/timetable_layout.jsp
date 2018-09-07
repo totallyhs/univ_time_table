@@ -28,9 +28,6 @@
 	
 	<div class="container" id="timetable" style="margin: 0px;">
 	<c:choose>
-		<c:when test="${content eq 'result' }">
-			<tiles:insertAttribute name="resulttimetableUI"/>
-		</c:when>
 		<c:when test="${content eq 'search' }">
 			<tiles:insertAttribute name="searchtimetableUI"/>
 		</c:when>

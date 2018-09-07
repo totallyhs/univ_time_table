@@ -242,7 +242,8 @@
 			"method" : "post",
 			"data" : {
 				"unitssum" : units
-			}
+			},
+			"async" : false
 		}).done(function(r) {
 			var empty = r.empty;
 			if (!empty) {

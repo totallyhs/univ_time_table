@@ -22,6 +22,9 @@
 	<!-- login -->
 	<link href="/css/login.css" rel="stylesheet" type="text/css"/>
 	
+	<!-- timetable -->
+	<link href="/css/timetable.css" rel="stylesheet" type="text/css"/>
+	
 	<style>
 		#navb {
 		position: absolute;
@@ -31,7 +34,7 @@
 	</style>
 
 </head>
-<body style="min-height: 500px; background: rgba(48, 46, 45, 1);">
+<body style="min-height: 500px;">
 
 	<div id="navb">
 		<tiles:insertAttribute name="navbar"/>	
@@ -42,6 +45,7 @@
 			<tiles:insertAttribute name="loginUI"/>
 		</c:if>
 	</div>
+	
 	
 	<!-- https://bootsnipp.com/snippets/56A0W 
 	<div id="particles-js"></div>

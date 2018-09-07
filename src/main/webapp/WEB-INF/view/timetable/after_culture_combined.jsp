@@ -18,6 +18,8 @@ table th, table td {
 </style>
 	
 
+<c:choose>
+	<c:when test="${listLength > 0 }">
 <div align="center">
 	<p>총 학점 : <span id="unitssum">0</span> </p>
 		<table border='0' cellpadding='0' cellspacing='0' style="max-height: 450; max-width: 1500px; text-align: center;">
@@ -54,9 +56,6 @@ table th, table td {
 		</a>
 	</c:forEach>
 </div>
-
-
-		
 <script>
 	// cultureCombinedTimetable instanceof Json
 	var json = JSON.parse('${cultureCombinedTimetable}');
@@ -111,6 +110,15 @@ table th, table td {
 	}
 	
 </script>
+</c:when>
+	<c:otherwise>
+		<div>
+			<h3>교양과목 추가 불가</h3>
+		</div>
+	
+	</c:otherwise>
+</c:choose>
+
 
 
 

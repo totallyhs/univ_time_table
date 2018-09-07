@@ -1,6 +1,5 @@
 package org.timetable.univ.tiles.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -17,7 +16,6 @@ import org.timetable.univ.dao.SHSDepartmentDao;
 import org.timetable.univ.dao.admin.CHSAdminDao;
 import org.timetable.univ.dao.admin.CSMAdminDao;
 import org.timetable.univ.model.vo.DepartmentVo;
-import org.timetable.univ.model.vo.MemberVo;
 import org.timetable.univ.model.vo.SubjectVo;
 
 @Controller
@@ -32,14 +30,7 @@ public class CSMAdminPageController {
 	@Autowired
 	SHSDepartmentDao shsDepartmentDao;
 	
-//	ServletContext application;
-//	
-//	@RequestMapping("/dashboard")
-//	public String adminDashboardHandle() {
-//		
-//		return "admin.dashboard";
-//	}
-
+	@Autowired
 	ServletContext application;
 	
 	@RequestMapping("/dashboard")

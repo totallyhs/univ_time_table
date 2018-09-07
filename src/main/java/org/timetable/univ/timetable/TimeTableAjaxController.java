@@ -1,4 +1,4 @@
-package org.timetable.univ.tiles.controller;
+package org.timetable.univ.timetable;
 
 import javax.servlet.http.HttpSession;
 
@@ -7,19 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.timetable.univ.controller.component.CSMTimetable;
-import org.timetable.univ.controller.component.Timetable;
-import org.timetable.univ.service.TimetableService;
 
 @Controller
 @RequestMapping("/timetable/ajax")
-public class SHSTimeTableAjaxController {
+public class TimeTableAjaxController {
 
 	@Autowired
-	TimetableService timetableService;
-	
-	@Autowired
-	CSMTimetable csmTimetable;
+	SHSTimetableService timetableService;
 	
 	@RequestMapping(path="/checkboxchecked", produces="application/json;charset=utf-8")
 	@ResponseBody

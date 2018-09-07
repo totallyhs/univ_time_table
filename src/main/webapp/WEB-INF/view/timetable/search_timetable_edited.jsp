@@ -59,7 +59,7 @@
 			</div>
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
-				<button type="button" id="cultureCombineBtn">교양넣기</button>
+				<button type="button" class="btn btn-success" id="cultureCombineBtn" style="margin-top: 17px;">교양 자동</button>
 			</div>
 		</div>
 		<!--BEGIN HEAD-->

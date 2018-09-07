@@ -35,7 +35,7 @@ import com.google.gson.Gson;
 public class BulletinBoardController {	
 	
 	@Autowired
-	BulletinBoardDao bulletinboadrdao;
+	BulletinBoardDao bulletinboardDao;
 	@Autowired
 	UploadService uploadService;
 	
@@ -55,12 +55,12 @@ public class BulletinBoardController {
 		map.put("no", Integer.valueOf(no));
 		map.put("start", start);
 		map.put("end",end);
-		list = bulletinboadrdao.selectBoardPage(map);
+		list = bulletinboardDao.selectBoardPage(map);
 		for(PostVo a : list) {
-			a.setCount(bulletinboadrdao.replyCount(a.getNo()));
+			a.setCount(bulletinboardDao.replyCount(a.getNo()));
 		}
 		
-		int totalPage = bulletinboadrdao.pageCount(no);
+		int totalPage = bulletinboardDao.pageCount(no);
 		int pagebegin=0;
 		int pageend=0;
 		if(page>3&&totalPage>=page+2) {
@@ -106,7 +106,7 @@ public class BulletinBoardController {
 			@RequestParam("fileupload") MultipartFile[] files,HttpServletRequest request ) throws Exception {
 		System.out.println(vo.getPublished());
 		ModelAndView mav = new ModelAndView();
-		int no = bulletinboadrdao.getSquence();
+		int no = bulletinboardDao.getSquence();
 		vo.setNo(no);
 		//vo.setNo(13); // mapper에서 sequence 처리 해야함.
 		MemberVo mvo=(MemberVo) session.getAttribute("memberVo");
@@ -116,14 +116,14 @@ public class BulletinBoardController {
 		vo.setPublished("y");
 		vo.setHit(0);
 		System.out.println(vo.toString());
-		boolean result = bulletinboadrdao.insertPost(vo);
+		boolean result = bulletinboardDao.insertPost(vo);
 		System.out.println(result);
 		//file
 		if(!files[0].isEmpty()) {
 			for(MultipartFile file : files) {
 				
 				PostFileVo fvo = uploadService.uploadHandle(file, vo.getNo());
-				bulletinboadrdao.fileUpload(fvo);
+				bulletinboardDao.fileUpload(fvo);
 				
 			}
 		}
@@ -149,13 +149,13 @@ public class BulletinBoardController {
 	public ModelAndView bulletinViewHandle(@RequestParam int no) {
 		//여기서 post no 값 가지고옴 requestParam을 통해서 
 		ModelAndView mav = new ModelAndView();
-		List<PostFileVo> flist = bulletinboadrdao.fileView(no);
+		List<PostFileVo> flist = bulletinboardDao.fileView(no);
 		mav.addObject("flist",flist);
-		int postlikeCount = bulletinboadrdao.PostLikeCount(no);
+		int postlikeCount = bulletinboardDao.PostLikeCount(no);
 		mav.addObject("postlike","좋아요"+postlikeCount);
 		mav.setViewName("boardview");
 		// hit 업데이트 처줘야댐.
-		PostVo vo = bulletinboadrdao.selectPost(no);
+		PostVo vo = bulletinboardDao.selectPost(no);
 		mav.addObject("PostVo",vo);
 		int hit = vo.getHit();
 		int hitPlus = hit+1;
@@ -163,9 +163,9 @@ public class BulletinBoardController {
 		map.put("hitPlus",hitPlus);
 		map.put("no",no);
 		mav.addObject("postNo",no);
-		bulletinboadrdao.boardHit(map);
+		bulletinboardDao.boardHit(map);
 		List<CommentsVo> rvo = new ArrayList();
-		rvo = bulletinboadrdao.replyList(no);
+		rvo = bulletinboardDao.replyList(no);
 		mav.addObject("replylist",rvo);
 		mav.addObject("boardno",10);
 		return mav;
@@ -177,7 +177,7 @@ public class BulletinBoardController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("boardview");
 		CommentsVo vo = new CommentsVo();
-		//PostVo pvo = bulletinboadrdao.selectPost(10);
+		//PostVo pvo = bulletinboardDao.selectPost(10);
 		//mav.addObject("PostVo",pvo);
 		String ip = request.getRemoteAddr();
 		vo.setIp(ip);
@@ -187,7 +187,7 @@ public class BulletinBoardController {
 		vo.setPublished("y");
 		vo.setCommentator(mvo.getNickname());
 		System.out.println("reply"+vo.getCommentator()+vo.getNo()+vo.getPostNo()+vo.getContent());
-		boolean result = bulletinboadrdao.insertReply(vo);
+		boolean result = bulletinboardDao.insertReply(vo);
 		
 		if(result) {
 			try {
@@ -207,7 +207,7 @@ public class BulletinBoardController {
 		Map<String,Object> map = new HashMap();
 		map.put("published", "n");
 		map.put("no", no);
-		boolean result = bulletinboadrdao.replyDelete(map);
+		boolean result = bulletinboardDao.replyDelete(map);
 		System.out.println("replydelete /" + map.get("published")+map.get("no")+postno+result);
 		if(result) {
 				System.out.println("in");
@@ -222,7 +222,7 @@ public class BulletinBoardController {
 		Map<String,Object> put = new HashMap();
 		put.put("published", "n");
 		put.put("no", postno);
-		boolean result = bulletinboadrdao.postDelete(put);
+		boolean result = bulletinboardDao.postDelete(put);
 		if(result) {
 			System.out.println("in");
 		}
@@ -239,7 +239,7 @@ public class BulletinBoardController {
 //		vo.setId(id);
 //		
 //		System.out.println("postlie" + map);
-//		boolean result = bulletinboadrdao.postLike(vo);
+//		boolean result = bulletinboardDao.postLike(vo);
 //		
 //	
 //		
@@ -253,11 +253,11 @@ public class BulletinBoardController {
 	public ModelAndView reWriteGepHandle(@RequestParam Map<String,String> map) {
 		ModelAndView mav = new ModelAndView();
 		int no = Integer.parseInt(map.get("postno"));
-		PostVo vo = bulletinboadrdao.selectPost(no);		
+		PostVo vo = bulletinboardDao.selectPost(no);		
 		
 		List<PostFileVo> flist = new ArrayList();
 		
-		flist = bulletinboadrdao.fileView(no);
+		flist = bulletinboardDao.fileView(no);
 		
 		mav.addObject("flist",flist);
 		
@@ -279,14 +279,14 @@ public class BulletinBoardController {
 		map.put("ip", ip);
 		int no = Integer.parseInt(map.get("no"));
 		System.out.println(map);
-		boolean result = bulletinboadrdao.reWriteUpdate(map);
+		boolean result = bulletinboardDao.reWriteUpdate(map);
 		
 		//file
 		if(!files[0].isEmpty()) {
 			for(MultipartFile file : files) {
 				
 				PostFileVo fvo = uploadService.uploadHandle(file, no);
-				bulletinboadrdao.fileUpload(fvo);
+				bulletinboardDao.fileUpload(fvo);
 				
 			}
 		}

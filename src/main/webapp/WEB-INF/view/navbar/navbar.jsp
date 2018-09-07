@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:if test="${sessionScope.memberVo != null }">
 	<script>
-		var ws = new WebSocket("ws://${pageContext.request.localAddr}:8080/ws/conn.do");
+		var ws = new WebSocket("ws://${pageContext.request.localAddr}/ws/conn.do");
 		console.log("websocket connected");
 	</script>
 	<script src="/js/websocket.js"></script>

@@ -24,7 +24,7 @@
 	<script src="/js/subjects-classes-list.js"></script>
 
 </head>
-<body style="min-height: 500px; background: rgba(48, 46, 45, 1);">
+<body style="min-height: 500px;">
 
 	<div id="navb">
 		<tiles:insertAttribute name="navbar"/>	

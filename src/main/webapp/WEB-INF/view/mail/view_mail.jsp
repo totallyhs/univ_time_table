@@ -10,7 +10,7 @@
 			<div class="panel-body message">
 				<p class="text-center">MESSAGE</p>
 					<!-- RECIVER -->
-					<div class="form-group">
+					<div class="form-group row">
 				    	<label for="to" class="col-sm-1 control-label">FROM:</label>
 				    	<div class="col-sm-11 panel panel-default" style="width: 653px;">
 				    		<p id="receiver" style="width: 653px;">
@@ -18,7 +18,7 @@
 				    		</p>
 				    	</div>
 				  	</div>
-					<div class="form-group">
+					<div class="form-group row">
 				    	<label for="bcc" class="col-sm-1 control-label">TITLE</label>
 				    	<div class="col-sm-11 panel panel-default" style="width: 653px;">
 				    		<p id="title" style="width: 653px;">
@@ -26,8 +26,8 @@
 				    		</p>
 				    	</div>
 				  	</div>
-				  
 				
+			<div class="row">
 				<div class="col-sm-11 col-sm-offset-1">
 					<br>
 					<div class="panel panel-default">
@@ -36,32 +36,40 @@
 						</p>
 					</div>
 					
-					</div>
+				</div>
+			</div>
 					
-					<!-- FILES-->
-					<div class="col-sm-1">
-					</div>
-					<div class="col-sm-11">
-      					<div class="panel panel-default">
-   					   		  <div class="panel-body">
-   					   		  	<c:forEach items="${files }" var="f">
-   					   		  		<a href="${f.filePath }" download>
-   					   		  		 <c:out value="${f.fileName }" escapeXml="true"/>
-   					   		  		</a>
-   					   		  		 <br/>
-   					   		  	</c:forEach>
+				<!-- FILES-->
+			<div class="row">
+				<div class="col-sm-1">
+				</div>
+				<div class="col-sm-11">
+      				<div class="panel panel-default">
+   			  		  <div class="panel-body">
+   			   		  	<c:forEach items="${files }" var="f">
+			   		  		<a href="${f.filePath }" download>
+  				   		  		 <c:out value="${f.fileName }" escapeXml="true"/>
+ 			   		  		</a>
+  		   		  		 <br/>
+ 			   		  	</c:forEach>
 
-   				    		 </div>
-  			  		  </div>
-  				  </div> <!-- FILES->
-  				  
-					<!-- BUTTON -->					
-					<div class="form-group">
-						<a href="/mail/delete?no=${mailVo.no }">	
+   				    </div>
+  			  		</div>
+  				</div>
+  				</div>
+  				 <!-- FILE -->
+  				<div class="col-sm-8">
+  				</div>
+  				<div class="col-sm-4">
+  					<!-- BUTTON -->	
+  					<a href="/mail/delete?no=${mailVo.no }">	
 						<button type="submit" class="btn btn-success">삭제</button>
-						</a>
-			</div>	
-		</div>
+					</a>
+  				</div>
+  		</div>
+  	</div>
+  									
+				
 		
 		
 

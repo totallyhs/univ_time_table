@@ -30,7 +30,7 @@
            	             <th><input type="text" class="form-control" placeholder="끝시간" disabled></th>
            	             <th><input type="text" class="form-control" placeholder="전공" disabled></th>
            	             <c:if test="${sessionScope.memberVo.id  eq 'admin'}">
-           	             	<th colspan="2"><button type="submit" class="btn btn-primary">선택삭제</button></th>
+           	             	<th colspan="2"><button type="submit" disabled="" id="choicedelete" class="btn btn-primary">선택삭제</button></th>
            	             </c:if>
            	         </tr>
            	     </thead>
@@ -68,14 +68,18 @@
 	$(".checkbox").on("click", function() {
 		if ($(".checkbox:checked").length == $(".checkbox").length) {
 			$("#checkboxAll").prop("checked", true);
+			$("#choicedelete").attr('disabled',false);
 		} else {
 			$("#checkboxAll").prop("checked", false);
+			$("#choicedelete").attr('disabled',true);
 		}
 		
 		if ($(this).is(":checked")) {
 			$(this).attr("name", "checkbox");
+			$("#choicedelete").attr('disabled',false);
 		} else {
 			$(this).removeAttr("name");
+			$("#choicedelete").attr('disabled',true);
 		}
 		console.log($(this).val());
 		
@@ -87,9 +91,11 @@
 		if (checked) {
 			$(".checkbox").prop("checked", true);		
 			$(".checkbox").attr("name", "checkbox");
+			$("#choicedelete").attr('disabled',false);
 		} else {
 			$(".checkbox").prop("checked", false);
 			$(".checkbox").removeAttr("name");
+			$("#choicedelete").attr('disabled',true);
 		}
 		
 	});

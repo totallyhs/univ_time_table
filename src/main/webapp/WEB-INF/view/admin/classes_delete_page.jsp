@@ -29,7 +29,7 @@
 						</ul>
 						
 					<button type="submit" class="btn btn-lg btn-info">삭제</button>
-					<a href="/courses/classes/list">
+					<a href="/admin/classes/list">
 						<button type="button" class="btn btn-lg btn-info" id="cancelBtn">취소</button>
 					</a>
 				</div>

@@ -41,7 +41,7 @@
 					<div class="form-group">
 				    	<label for="bcc" class="col-sm-1 control-label">TITLE</label>
 				    	<div class="col-sm-11">
-                              <input type="text" class="form-control select2-offscreen" id="title" name="title" placeholder="Type email" tabindex="-1">
+                              <input type="text" class="form-control select2-offscreen" id="title" name="title" placeholder="Type title" tabindex="-1">
 				    	</div>
 				  	</div>
 				  
